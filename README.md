@@ -7,7 +7,9 @@ npm init -y
 npm install -D tailwindcss @tailwindcss/cli postcss autoprefixer
 
 crear este carpeta y archivo dentro: src/input.css
-poner este contenido: @import "tailwindcss";
+poner este contenido: 
+    @source "../**/*.{php,html,js}";
+    @import "tailwindcss";
 
 poner esto dentro de package.json:
 "scripts": {

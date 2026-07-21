@@ -1,2 +1,2 @@
-@source "../**/*.{php,html,js}";
 @import "tailwindcss";
+@source "../**/*.{php,html,js}";
