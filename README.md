@@ -19,3 +19,5 @@ poner esto dentro de package.json:
 
 npm run build-css
 
+Comando para estar escuchando los cambios de tailwind
+npm run watch-css
