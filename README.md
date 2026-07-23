@@ -21,3 +21,9 @@ npm run build-css
 
 Comando para estar escuchando los cambios de tailwind
 npm run watch-css
+
+instalar jquery
+npm install jquery
+
+Luego instalar esto (crear la carpeta dentro de public para que funcione el comando):
+copy node_modules\jquery\dist\jquery.min.js public\js\
