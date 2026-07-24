@@ -31,7 +31,7 @@
         </div>
 
 
-        <div class="grid grid-cols-2 gap-6">
+        <div class="grid grid-cols-2 gap-6 relative">
             <div>
                 <label for="date" class="block mb-2.5 text-sm font-medium text-heading text-gray-700 dark:text-gray-200">Select date</label>
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
