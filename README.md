@@ -27,3 +27,6 @@ npm install jquery
 
 Luego instalar esto (crear la carpeta dentro de public para que funcione el comando):
 copy node_modules\jquery\dist\jquery.min.js public\js\
+
+instalacion de fullcalendar
+npm install fullcalendar

@@ -7,9 +7,22 @@
     <title>Pagina principal</title>
     <link rel="stylesheet" href="/public/css/style.css">
 
-</head>
+    <!-- STANDARD JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/all/global.js"></script>
 
-<body class="bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <!-- THEME JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/themes/monarch/global.js"></script>
+
+    <!-- STYLESHEETS -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/skeleton.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/themes/monarch/theme.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/themes/monarch/palettes/purple.css' rel='stylesheet' />
+
+    <link href='/public/css/calendar.css' rel='stylesheet' />
+
+</head>
+<!-- continuar con el modo oscuro del calendario y trabajar con el calendario -->
+<body class="dark bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
 
     <!-- Cambio de tema -->
