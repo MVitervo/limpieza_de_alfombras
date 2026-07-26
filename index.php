@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -8,27 +8,29 @@
     <link rel="stylesheet" href="/public/css/style.css">
 
     <!-- STANDARD JS -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/all/global.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/all/global.js"></script> -->
 
     <!-- THEME JS -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/themes/monarch/global.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/themes/monarch/global.js"></script> -->
 
     <!-- STYLESHEETS -->
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/skeleton.css' rel='stylesheet' />
+    <!-- <link href='https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/skeleton.css' rel='stylesheet' />
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/themes/monarch/theme.css' rel='stylesheet' />
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/themes/monarch/palettes/purple.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/themes/monarch/palettes/purple.css' rel='stylesheet' /> -->
 
-    <link href='/public/css/calendar.css' rel='stylesheet' />
+    <!-- <link href='/public/css/calendar.css' rel='stylesheet' /> -->
 
 </head>
 <!-- continuar con el modo oscuro del calendario y trabajar con el calendario -->
-<body class="dark bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
-
-
-    <!-- Cambio de tema -->
-    <button id="toggle-theme" class="px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
-        🌙
-    </button>
+<body class="bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <div class="w-full md:w-1/2 mx-auto px-4">
+        <div class="grid grid-cols-1 gap-6 mb-3">
+            <!-- Cambio de tema -->
+            <button id="toggle-theme" class="px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
+                🌙
+            </button>
+        </div>
+    </div>
 
     <div id="renderPage"></div>
 
@@ -37,7 +39,7 @@
 
 </html>
 <script src="/public/js/jquery.min.js"></script>
-<script src="/public/js/app.js"></script>
+<!-- <script src="/public/js/app.js"></script> -->
 <script>
     
     $(function() {

@@ -30,3 +30,37 @@ copy node_modules\jquery\dist\jquery.min.js public\js\
 
 instalacion de fullcalendar
 npm install fullcalendar
+
+
+/*
+
+Base de datos
+
+CREATE TABLE appointment (
+	Id INT IDENTITY,
+	[Name] VARCHAR (100),
+	[Lastname] VARCHAR(100),
+	[Email] VARCHAR(200),
+	[Phone] VARCHAR(20),
+	Appointment VARCHAR(100),
+	LastEditDt DATETIME
+
+)
+
+
+CREATE TABLE schedules (
+	Id INT IDENTITY,
+	Schedule VARCHAR(100),
+)
+
+
+la idea es que cuando la persona escoja un dia ire a revisar la tabla de appointment para saber
+que horarios deshabilitar que seran los que ya exista un registro para ese dia esos se mostraran pero
+deshabilitados
+
+nota: algo que tengo pensado para deshabilitar el dia es que por cada dis haya cierto numeros de citas y una vez alcado
+ese numero entonces ya podre deshabilitar ese dia
+
+*/
+
+continuar debo de aplicar el estilo del select2 con bootstrap

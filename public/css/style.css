@@ -10,6 +10,7 @@
       "Courier New", monospace;
     --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-blue-500: oklch(62.3% 0.214 259.815);
+    --color-indigo-400: oklch(67.3% 0.182 276.935);
     --color-indigo-500: oklch(58.5% 0.233 277.117);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-300: oklch(87.2% 0.01 258.338);
@@ -23,7 +24,6 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
-    --container-sm: 24rem;
     --container-md: 28rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
@@ -184,9 +184,6 @@
   }
 }
 @layer utilities {
-  .pointer-events-none {
-    pointer-events: none;
-  }
   .visible {
     visibility: visible;
   }
@@ -201,12 +198,6 @@
   }
   .static {
     position: static;
-  }
-  .inset-y-0 {
-    inset-block: 0px;
-  }
-  .left-0 {
-    left: 0px;
   }
   .mx-auto {
     margin-inline: auto;
@@ -223,14 +214,14 @@
   .mb-3 {
     margin-bottom: calc(var(--spacing) * 3);
   }
+  .mb-4 {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
   .ml-4 {
     margin-left: calc(var(--spacing) * 4);
   }
   .block {
     display: block;
-  }
-  .flex {
-    display: flex;
   }
   .grid {
     display: grid;
@@ -247,23 +238,8 @@
   .table {
     display: table;
   }
-  .h-5 {
-    height: calc(var(--spacing) * 5);
-  }
-  .h-10 {
-    height: calc(var(--spacing) * 10);
-  }
-  .w-5 {
-    width: calc(var(--spacing) * 5);
-  }
-  .w-10 {
-    width: calc(var(--spacing) * 10);
-  }
   .w-full {
     width: 100%;
-  }
-  .max-w-md {
-    max-width: var(--container-md);
   }
   .border-collapse {
     border-collapse: collapse;
@@ -277,17 +253,11 @@
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .items-center {
-    align-items: center;
-  }
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
   .rounded {
     border-radius: 0.25rem;
-  }
-  .rounded-full {
-    border-radius: calc(infinity * 1px);
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
@@ -308,6 +278,9 @@
   .bg-white {
     background-color: var(--color-white);
   }
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
+  }
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
   }
@@ -316,18 +289,6 @@
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
-  }
-  .py-2\.5 {
-    padding-block: calc(var(--spacing) * 2.5);
-  }
-  .pr-3 {
-    padding-right: calc(var(--spacing) * 3);
-  }
-  .pl-3 {
-    padding-left: calc(var(--spacing) * 3);
-  }
-  .pl-10 {
-    padding-left: calc(var(--spacing) * 10);
   }
   .text-sm {
     font-size: var(--text-sm);
@@ -340,9 +301,6 @@
   .text-black {
     color: var(--color-black);
   }
-  .text-gray-400 {
-    color: var(--color-gray-400);
-  }
   .text-gray-700 {
     color: var(--color-gray-700);
   }
@@ -354,9 +312,6 @@
   }
   .underline {
     text-decoration-line: underline;
-  }
-  .placeholder-gray-400::placeholder {
-    color: var(--color-gray-400);
   }
   .shadow-sm {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
@@ -381,14 +336,6 @@
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
-  }
-  @media (hover: hover) {
-    .hover\:bg-blue-500:hover {
-      background-color: var(--color-blue-500);
-    }
-    .hover\:text-white:hover {
-      color: var(--color-white);
-    }
   }
   .focus\:border-blue-500:focus {
     border-color: var(--color-blue-500);
@@ -430,9 +377,6 @@
   .dark\:text-gray-200:where(.dark, .dark *) {
     color: var(--color-gray-200);
   }
-  .dark\:text-gray-500:where(.dark, .dark *) {
-    color: var(--color-gray-500);
-  }
   .dark\:text-white:where(.dark, .dark *) {
     color: var(--color-white);
   }
@@ -442,8 +386,11 @@
   .dark\:focus\:border-blue-400:where(.dark, .dark *):focus {
     border-color: var(--color-blue-400);
   }
-  .dark\:focus\:ring-blue-400:where(.dark, .dark *):focus {
-    --tw-ring-color: var(--color-blue-400);
+  .dark\:focus\:border-indigo-400:where(.dark, .dark *):focus {
+    border-color: var(--color-indigo-400);
+  }
+  .dark\:focus\:ring-indigo-400:where(.dark, .dark *):focus {
+    --tw-ring-color: var(--color-indigo-400);
   }
 }
 @property --tw-border-style {
