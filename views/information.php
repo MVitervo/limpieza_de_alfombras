@@ -16,7 +16,7 @@
             </div>
 
             <div>
-                <label for="last_name" class="block mb-2.5 text-sm font-medium text-heading text-gray-700 dark:text-gray-200">Last name</label>
+                <label for="lastname" class="block mb-2.5 text-sm font-medium text-heading text-gray-700 dark:text-gray-200">Last name</label>
                 <input
                     class="
                         w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500
@@ -26,7 +26,45 @@
                         dark:text-white
                         dark:border-gray-600
                         dark:placeholder-gray-400
-                    " placeholder="John" type="text" id="last_name" required />
+                    " placeholder="John" type="text" name="lastname" id="lastname" required />
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 mb-3">
+            <div>
+                <div class="mb-4">
+                    <label for="email"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Email
+                    </label>
+
+                    <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        class="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm text-gray-900 shadow-sm
+                       focus:border-blue-500 focus:ring-2 focus:ring-blue-500
+                       dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400"
+                       placeholder="correo@gmail.com">
+                </div>
+            </div>
+
+            <div>
+                <div class="mb-4">
+                    <label for="phone"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Phone
+                    </label>
+
+                    <input
+                        type="number"
+                        id="phone"
+                        name="phone"
+                        class="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm text-gray-900 shadow-sm
+                       focus:border-blue-500 focus:ring-2 focus:ring-blue-500
+                       dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400"
+                       placeholder="+1 915 123 456789">
+                </div>
             </div>
         </div>
 
@@ -82,9 +120,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <!-- <div class="grid grid-cols-1 gap-6 relative">
             <div id="calendar"></div>
         </div> -->
@@ -93,13 +128,23 @@
 </form>
 
 <script>
-    /*
+    // continuar con la logica del controlador y del servicio siguiendo el modelo
     $(function() {
-        var calendarEl = document.getElementById("calendar");
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: "dayGridMonth",
-        });
-        calendar.render();
+        findAppointments();
     });
-    */
+
+    function findAppointments() {
+        $.ajax({
+            method: 'GET',
+            url: '',
+            dataType: 'json',
+            success: function(response) {
+
+            },
+            error: function(response) {
+
+            }
+        });
+    }
+    
 </script>

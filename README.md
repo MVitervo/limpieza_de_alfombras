@@ -51,7 +51,13 @@ CREATE TABLE appointment (
 CREATE TABLE schedules (
 	Id INT IDENTITY,
 	Schedule VARCHAR(100),
+	LastEditBy VARCHAR(100),
+	LastEditDt DATETIME
 )
+
+INSERT INTO schedules (Schedule) 
+VALUES ('8:00 AM - 10:00 AM'), ('10:00 AM - 12:00 PM'), ('12:00 PM - 2:00 PM'), ('2:00 PM - 4:00 PM'),
+('4:00 PM - 6:00 PM'), ('6:00 PM - 8:00 PM')
 
 
 la idea es que cuando la persona escoja un dia ire a revisar la tabla de appointment para saber
