@@ -31,6 +31,13 @@ copy node_modules\jquery\dist\jquery.min.js public\js\
 instalacion de fullcalendar
 npm install fullcalendar
 
+instalacion de bootstrap:
+npm install bootstrap
+
+instalacion de select2:
+npm install select2
+
+ya instale el select2 y bootstrap falta importarlos en el proyecto
 
 /*
 
@@ -68,5 +75,3 @@ nota: algo que tengo pensado para deshabilitar el dia es que por cada dis haya c
 ese numero entonces ya podre deshabilitar ese dia
 
 */
-
-continuar debo de aplicar el estilo del select2 con bootstrap

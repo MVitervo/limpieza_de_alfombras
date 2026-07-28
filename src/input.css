@@ -1,2 +1,4 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "select2/dist/css/select2.min.css";

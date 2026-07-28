@@ -27,7 +27,9 @@
     "tailwindcss": "^4.3.3"
   },
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "fullcalendar": "^7.0.2",
-    "jquery": "^4.0.0"
+    "jquery": "^4.0.0",
+    "select2": "^4.0.13"
   }
 }
