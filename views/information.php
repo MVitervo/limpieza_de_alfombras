@@ -45,7 +45,7 @@
                         class="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm text-gray-900 shadow-sm
                        focus:border-blue-500 focus:ring-2 focus:ring-blue-500
                        dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400"
-                       placeholder="correo@gmail.com">
+                        placeholder="correo@gmail.com">
                 </div>
             </div>
 
@@ -63,7 +63,7 @@
                         class="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm text-gray-900 shadow-sm
                        focus:border-blue-500 focus:ring-2 focus:ring-blue-500
                        dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400"
-                       placeholder="+1 915 123 456789">
+                        placeholder="+1 915 123 456789">
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                     </label>
 
                     <select
-                        class="
+                        class="expectHour
                             w-full
                             rounded-lg
                             border border-gray-300
@@ -113,6 +113,7 @@
                             dark:focus:border-indigo-400
                             dark:focus:ring-indigo-400
                         ">
+                        <option value=""></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -131,6 +132,11 @@
     // continuar con la logica del controlador y del servicio siguiendo el modelo
     $(function() {
         findAppointments();
+        $('.expectHour').select2({
+            theme: 'bootstrap-5',
+            placeholder: '1',
+        });
+        loadSchedules();
     });
 
     function findAppointments() {
@@ -146,5 +152,18 @@
             }
         });
     }
-    
+
+    function loadSchedules() {
+        $.ajax({
+            method: 'GET',
+            url: '/controllers/consult_schedules_controller.php',
+            dataType: 'json',
+            success: function(response) {
+
+            },
+            error: function(response) {
+
+            }
+        });
+    }
 </script>

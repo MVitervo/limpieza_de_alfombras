@@ -23,7 +23,7 @@ Comando para estar escuchando los cambios de tailwind
 npm run watch-css
 
 instalar jquery
-npm install jquery
+npm install jquery@3.7.1
 
 Luego instalar esto (crear la carpeta dentro de public para que funcione el comando):
 copy node_modules\jquery\dist\jquery.min.js public\js\
@@ -37,7 +37,10 @@ npm install bootstrap
 instalacion de select2:
 npm install select2
 
-ya instale el select2 y bootstrap falta importarlos en el proyecto
+instalacion de los estilos para el select2:
+npm install select2-bootstrap-5-theme
+
+continuar con el color del select2 en el modo oscuro
 
 /*
 
@@ -75,3 +78,18 @@ nota: algo que tengo pensado para deshabilitar el dia es que por cada dis haya c
 ese numero entonces ya podre deshabilitar ese dia
 
 */
+
+
+Base de un ajax:
+
+$.ajax({
+	method: 'GET',
+	url: '',
+	dataType: 'json',
+	success: function(response) {
+
+	},
+	error: function(response) {
+
+	}
+});

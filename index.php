@@ -36,9 +36,15 @@
 
     
 </body>
+<!-- <link rel="stylesheet" href="/public/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="/public/css/select2.min.css">
+<link rel="stylesheet" href="/public/css/select2-bootstrap-5-theme.min.css">
+<link rel="stylesheet" href="/public/css/especificSelect2.css">
 
 </html>
 <script src="/public/js/jquery.min.js"></script>
+<script src="/public/js/bootstrap.bundle.min.js"></script>
+<script src="/public/js/select2.min.js"></script>
 <!-- <script src="/public/js/app.js"></script> -->
 <script>
     
