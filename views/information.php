@@ -157,9 +157,12 @@
         $.ajax({
             method: 'GET',
             url: '/controllers/consult_schedules_controller.php',
+            data: {
+                function: 'getSchedules'
+            },
             dataType: 'json',
             success: function(response) {
-
+                
             },
             error: function(response) {
 

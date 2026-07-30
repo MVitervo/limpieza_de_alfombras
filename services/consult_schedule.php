@@ -20,13 +20,13 @@ class schedulesService
 
             $conn->commit();
 
-            echo json_encode([
+            return [
                 'status' => 'success',
                 'data' => $resultSchedules
-            ]);
+            ];
         } catch (PDOException $e) {
             $conn->rollBack();
-            echo json_encode(['status' => false, 'message' => "Error de base de datos " . $e->getMessage()]);
+            return ['status' => false, 'message' => "Error de base de datos " . $e->getMessage()];
         } finally {
             $conn = null;
         }
