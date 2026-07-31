@@ -2,11 +2,12 @@
 
 header('Content-Type: application/json');
 // require_once __DIR__ . '/../database/connection.php';
-require_once __DIR__ . '/../services/consult_schedule.php';
+require_once __DIR__ . '/../services/consult_schedule_service.php';
+$conn = require_once __DIR__ . '/../database/connection.php';
+// revisar como hacer la conexion quiero fijarme en la conexion que hice en el proyecto del parque central
+$function = $_GET['function'] ?? '';
 
-$function = $_POST['function'] ?? '';
-
-$schedulesService = new SchedulesService();
+$schedulesService = new SchedulesService($conn);
 
 switch ($function) {
 
