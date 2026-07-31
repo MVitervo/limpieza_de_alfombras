@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 require_once __DIR__ . '/../database/connection.php';
 
-class schedulesService
+class SchedulesService
 {
     public function schedules()
     {

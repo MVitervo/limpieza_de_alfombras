@@ -154,6 +154,7 @@
     }
 
     function loadSchedules() {
+
         $.ajax({
             method: 'GET',
             url: '/controllers/consult_schedules_controller.php',
@@ -162,10 +163,10 @@
             },
             dataType: 'json',
             success: function(response) {
-                
+                debugger;
             },
             error: function(response) {
-
+                debugger;
             }
         });
     }

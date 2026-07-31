@@ -1,21 +1,21 @@
-<?php 
+<?php
 
 header('Content-Type: application/json');
 // require_once __DIR__ . '/../database/connection.php';
-require_once './services/consult_schedule.php';
+require_once __DIR__ . '/../services/consult_schedule.php';
 
 $function = $_POST['function'] ?? '';
 
-$service = new schedulesService();
+$schedulesService = new SchedulesService();
 
 switch ($function) {
 
-    case 'getSchedules':
-        getSchedules($service);
+    case 'getAppointment':
+        // getSchedules($service);
         break;
 
-    case 'getAppointment':
-        getSchedules($service);
+    case 'getSchedules':
+        getSchedules($schedulesService);
         break;
 
     default:
@@ -26,13 +26,11 @@ switch ($function) {
         break;
 }
 
-function getSchedules($service) {
-        
+function getSchedules(SchedulesService $schedulesService)
+{
     echo json_encode(
-        $service->schedules()
+        $schedulesService->schedules()
     );
 }
-
-
 
 ?>

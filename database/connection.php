@@ -7,11 +7,19 @@ $dbname = "materiales_dev";
 $username = "sa";
 $password = "03210O9I";
 */
+/*
 $host = "localhost";
 $db   = "LimpiezaAlfombra";
 $user = "root";      // usuario por defecto en XAMPP
 $pass = "";          // contraseña vacía por defecto
 $port = 3307;
+$charset = "utf8mb4";
+*/
+$host = "localhost";
+$db   = "LimpiezaAlfombra";
+$user = "root";      // usuario por defecto en XAMPP
+$pass = "";          // contraseña vacía por defecto
+$port = 3306;
 $charset = "utf8mb4";
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
