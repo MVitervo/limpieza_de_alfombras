@@ -1,7 +1,6 @@
 <?php
 
-header('Content-Type: application/json');
-require_once __DIR__ . '/../database/connection.php';
+// header('Content-Type: application/json'); // esta linea no es necesario en el servicio solo en el controlador
 
 class SchedulesService
 {
@@ -16,26 +15,29 @@ class SchedulesService
     {
         try {
 
-            $this->$conn->beginTransaction();
+            $this->conn->beginTransaction();
 
             $querySchedules = "SELECT Schedule FROM schedules";
 
-            $stmtSchedules = $this->$conn->prepare($querySchedules);
+            $stmtSchedules = $this->conn->prepare($querySchedules);
             $stmtSchedules->execute();
 
             $resultSchedules = $stmtSchedules->fetchAll(PDO::FETCH_ASSOC);
 
-            $this->$conn->commit();
+            $this->conn->commit();
 
             return [
                 'status' => 'success',
                 'data' => $resultSchedules
             ];
         } catch (PDOException $e) {
-            $this->$conn->rollBack();
+            $this->conn->rollBack();
             return ['status' => false, 'message' => "Error de base de datos " . $e->getMessage()];
-        } finally {
-            $conn = null;
         }
+        // como se esta usando una inyeccion de dependencias no es necesario destruir la conexion, pero php liberara
+        // automaticamente al terminar la peticion
+        // finally {
+        //     $this->conn = null;
+        // }
     }
 }

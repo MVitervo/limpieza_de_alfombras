@@ -1,13 +1,14 @@
 <?php
 
 header('Content-Type: application/json');
-// require_once __DIR__ . '/../database/connection.php';
-require_once __DIR__ . '/../services/consult_schedule_service.php';
-$conn = require_once __DIR__ . '/../database/connection.php';
-// revisar como hacer la conexion quiero fijarme en la conexion que hice en el proyecto del parque central
+require_once __DIR__ . '/../services/consult_schedules_service.php'; // con esta linea puedo acceder a los metodos del servicio
+$conn = require __DIR__ . '/../database/connection.php'; // variable que contiene la conexion a la base ed datos
+$schedulesService = new SchedulesService($conn); // esta linea es la inyeccion de dependencias
+
+
+// Variables que recibe del ajax
 $function = $_GET['function'] ?? '';
 
-$schedulesService = new SchedulesService($conn);
 
 switch ($function) {
 

@@ -114,9 +114,6 @@
                             dark:focus:ring-indigo-400
                         ">
                         <option value=""></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
                     </select>
                 </div>
             </div>
@@ -154,7 +151,7 @@
     }
 
     function loadSchedules() {
-
+        // esta funcion debera de mandarse a llamar cuando se seleccione una fecha antes no para no consumir recursos
         $.ajax({
             method: 'GET',
             url: '/controllers/consult_schedules_controller.php',
@@ -164,6 +161,12 @@
             dataType: 'json',
             success: function(response) {
                 debugger;
+                const schedules = response.data;
+                $('.expectHour').html();
+                const fieldSchedules = $('.expectHour');
+                schedules.forEach(element => {
+                    fieldSchedules.append(`<option value='${element.Schedule}'>${element.Schedule}</option>`);
+                });
             },
             error: function(response) {
                 debugger;
