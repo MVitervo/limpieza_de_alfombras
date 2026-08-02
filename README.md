@@ -41,7 +41,6 @@ instalacion de los estilos para el select2:
 npm install select2-bootstrap-5-theme
 
 continuar con el color del select2 en el modo oscuro
-continuar hacer que funcione la conexion a la base de datos
 
 /*
 
@@ -53,11 +52,13 @@ CREATE TABLE appointment (
 	[Lastname] VARCHAR(100),
 	[Email] VARCHAR(200),
 	[Phone] VARCHAR(20),
-	Appointment VARCHAR(100),
+	[Date] DATE,
+	Schedule VARCHAR(100),
 	LastEditDt DATETIME
-
 )
 
+INSERT INTO appointment ([Name],Lastname,Email,Phone,[Date],Schedule,LastEditDt)
+VALUES ('miguel', 'vitervo', 'vitervo@gmail.com', '656123456789', CAST(GETDATE() AS DATE), '8:00 AM - 10:00 AM', GETDATE())
 
 CREATE TABLE schedules (
 	Id INT IDENTITY,

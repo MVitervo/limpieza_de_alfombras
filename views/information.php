@@ -131,8 +131,13 @@
         findAppointments();
         $('.expectHour').select2({
             theme: 'bootstrap-5',
-            placeholder: '1',
+            placeholder: 'first select a date',
         });
+        // loadSchedules();
+    });
+
+    // cuando seleccione una fecha entonces buscara los harios disponibles de esa fecha en especifico
+    document.querySelector('#expectDate').addEventListener('change', function() {
         loadSchedules();
     });
 
@@ -151,12 +156,14 @@
     }
 
     function loadSchedules() {
+        debugger;
         // esta funcion debera de mandarse a llamar cuando se seleccione una fecha antes no para no consumir recursos
         $.ajax({
             method: 'GET',
             url: '/controllers/consult_schedules_controller.php',
             data: {
-                function: 'getSchedules'
+                function: 'getSchedules',
+                date: document.querySelector('#expectDate').value
             },
             dataType: 'json',
             success: function(response) {

@@ -5,10 +5,9 @@ require_once __DIR__ . '/../services/consult_schedules_service.php'; // con esta
 $conn = require __DIR__ . '/../database/connection.php'; // variable que contiene la conexion a la base ed datos
 $schedulesService = new SchedulesService($conn); // esta linea es la inyeccion de dependencias
 
-
 // Variables que recibe del ajax
 $function = $_GET['function'] ?? '';
-
+$date = $_GET['date'] ?? '';
 
 switch ($function) {
 
@@ -17,7 +16,7 @@ switch ($function) {
         break;
 
     case 'getSchedules':
-        getSchedules($schedulesService);
+        getSchedules($schedulesService, $date);
         break;
 
     default:
@@ -28,10 +27,10 @@ switch ($function) {
         break;
 }
 
-function getSchedules(SchedulesService $schedulesService)
+function getSchedules(SchedulesService $schedulesService, string $date)
 {
     echo json_encode(
-        $schedulesService->schedules()
+        $schedulesService->schedules($date)
     );
 }
 
