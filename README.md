@@ -41,6 +41,7 @@ instalacion de los estilos para el select2:
 npm install select2-bootstrap-5-theme
 
 continuar con el color del select2 en el modo oscuro
+continuar con la explicacion de chatgpt sobre las observaciones que me hizo y continuar desde ese punto
 
 /*
 

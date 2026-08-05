@@ -22,6 +22,7 @@
 
 </head>
 <!-- continuar con el modo oscuro del calendario y trabajar con el calendario -->
+
 <body class="bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
     <div class="w-full md:w-1/2 mx-auto px-4">
         <div class="grid grid-cols-1 gap-6 mb-3">
@@ -34,7 +35,7 @@
 
     <div id="renderPage"></div>
 
-    
+
 </body>
 <!-- <link rel="stylesheet" href="/public/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="/public/css/select2.min.css">
@@ -46,8 +47,17 @@
 <script src="/public/js/bootstrap.bundle.min.js"></script>
 <script src="/public/js/select2.min.js"></script>
 <!-- <script src="/public/js/app.js"></script> -->
+<?php
+require './core/router.php';
+require './services/consult_schedules_service.php';
+require './controllers/consult_schedules_controller.php';
+$router = new Router();
+require './routes/api.php';
+
+$router->dispatch();
+
+?>
 <script>
-    
     $(function() {
         loadPage("/");
     });
