@@ -9,7 +9,12 @@ $controller = new AppointmentSchedulesController($schedulesService);
 
 $router->get('/api/schedules', function () use ($controller) {
 
-    $controller->getSchedules();
+    // continuar con la explicacion de chatgpt para hacer que la estructura se parezca mas a la de nestjs y jhacer los ajustes
+    // que deba de hacer
+
+    $controller->getSchedules(
+        $_GET["date"] ?? ""
+    );
 
 });
 

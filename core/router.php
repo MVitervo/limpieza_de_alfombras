@@ -4,24 +4,24 @@ class Router
 {
     private array $routes = [];
 
-    public function get(string $route, callable $callback): void
+    public function get(string $route, array $handler): void
     {
-        $this->routes['GET'][$route] = $callback;
+        $this->routes['GET'][$route] = $handler;
     }
 
-    public function post(string $route, callable $callback): void
+    public function post(string $route, array $handler): void
     {
-        $this->routes['POST'][$route] = $callback;
+        $this->routes['POST'][$route] = $handler;
     }
 
-    public function put(string $route, callable $callback): void
+    public function put(string $route, array $handler): void
     {
-        $this->routes['PUT'][$route] = $callback;
+        $this->routes['PUT'][$route] = $handler;
     }
 
-    public function delete(string $route, callable $callback): void
+    public function delete(string $route, array $handler): void
     {
-        $this->routes['DELETE'][$route] = $callback;
+        $this->routes['DELETE'][$route] = $handler;
     }
 
     public function dispatch(): void
@@ -32,7 +32,11 @@ class Router
 
         if (isset($this->routes[$method][$uri])) {
 
-            $this->routes[$method][$uri]();
+            $handler = $this->routes[$method][$uri];
+
+            $controllerClass = $handler[0];
+
+            $methodName = $handler[1];
 
             return;
         }
@@ -45,5 +49,3 @@ class Router
         ]);
     }
 }
-
-?>
