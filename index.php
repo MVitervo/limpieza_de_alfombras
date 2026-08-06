@@ -1,3 +1,13 @@
+<?php
+require './core/router.php';
+// require './services/consult_schedules_service.php'; // no es necesaria esta linea ya que la tengo en el archivo api.php
+require './controllers/consult_schedules_controller.php';
+$router = new Router();
+require './routes/api.php';
+
+$router->dispatch();
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="dark">
 
@@ -47,16 +57,7 @@
 <script src="/public/js/bootstrap.bundle.min.js"></script>
 <script src="/public/js/select2.min.js"></script>
 <!-- <script src="/public/js/app.js"></script> -->
-<?php
-require './core/router.php';
-// require './services/consult_schedules_service.php'; // no es necesaria esta linea ya que la tengo en el archivo api.php
-require './controllers/consult_schedules_controller.php';
-$router = new Router();
-require './routes/api.php';
 
-$router->dispatch();
-
-?>
 <script>
     $(function() {
         loadPage("/");

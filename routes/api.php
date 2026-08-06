@@ -7,15 +7,17 @@ $schedulesService = new SchedulesService($conn); // esta linea es la inyeccion d
 $controller = new AppointmentSchedulesController($schedulesService);
 // $router = new Router(); // esta linea no es necesaria ya que la tenemos en el index.php
 
+/*
 $router->get('/api/schedules', function () use ($controller) {
-
-    // continuar con la explicacion de chatgpt para hacer que la estructura se parezca mas a la de nestjs y jhacer los ajustes
-    // que deba de hacer
-
     $controller->getSchedules(
         $_GET["date"] ?? ""
     );
-
 });
+*/
+
+$router->get('/api/schedules', [
+    AppointmentSchedulesController::class,
+    'getSchedules'
+]);
 
 ?>

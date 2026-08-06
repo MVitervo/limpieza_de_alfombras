@@ -30,6 +30,10 @@ class Router
 
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+        // var_dump($method);
+        // var_dump($uri);
+        // return;
+
         if (isset($this->routes[$method][$uri])) {
 
             $handler = $this->routes[$method][$uri];

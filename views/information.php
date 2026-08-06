@@ -160,9 +160,8 @@
         // esta funcion debera de mandarse a llamar cuando se seleccione una fecha antes no para no consumir recursos
         $.ajax({
             method: 'GET',
-            url: '/controllers/consult_schedules_controller.php',
+            url: '/api/schedules',
             data: {
-                function: 'getSchedules',
                 date: document.querySelector('#expectDate').value
             },
             dataType: 'json',
