@@ -4,7 +4,7 @@ class Router
 {
     private array $routes = [];
 
-    public function get(string $route, array $handler): void
+    public function get(string $route, callable|array $handler): void
     {
         $this->routes['GET'][$route] = $handler;
     }
