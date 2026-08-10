@@ -128,7 +128,7 @@
 <script>
     // continuar con la logica del controlador y del servicio siguiendo el modelo
     $(function() {
-        findAppointments();
+        // findAppointments();
         $('.expectHour').select2({
             theme: 'bootstrap-5',
             placeholder: 'first select a date',
@@ -138,7 +138,7 @@
 
     // cuando seleccione una fecha entonces buscara los harios disponibles de esa fecha en especifico
     document.querySelector('#expectDate').addEventListener('change', function() {
-        loadSchedules();
+        // loadSchedules();
     });
 
     function findAppointments() {

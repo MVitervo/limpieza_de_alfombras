@@ -9,17 +9,18 @@ $username = "sa";
 $password = "03210O9I";
 */
 
+/*
 $host = "VITERVO\SQLEXPRESS";
 $dbname = "LimpiezaAlfombras";
 // $username = ""; // cuando no es necesario un usuario ni la contraseña entonces esto no es necesario
 // $password = "";
+*/
 
-/*
 $host = "TESTSERVER\SQLEXPRESS";
 $dbname = "materiales_dev";
 $username = "sa"; // cuando no es necesario un usuario ni la contraseña entonces esto no es necesario
 $password = "03210O9I";
-*/
+
 
 
 /*
@@ -46,8 +47,8 @@ $charset = "utf8mb4";
 $dsn = "sqlsrv:Server=$host;Database=$dbname";
 
 try {
-    // $conn = new PDO($dsn, $username, $password); // trabajo
-    $conn = new PDO($dsn, null, null); // local
+    $conn = new PDO($dsn, $username, $password); // trabajo
+    // $conn = new PDO($dsn, null, null); // local
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 

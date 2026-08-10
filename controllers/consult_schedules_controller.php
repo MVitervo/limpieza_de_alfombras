@@ -1,6 +1,6 @@
 <?php
 
-header('Content-Type: application/json'); // esta linea si se debera de quedar ya que todas las respuestas
+// header('Content-Type: application/json'); // comente esta linea por que me regresa el json tal cual en el HTML
 // seran enviadas como tipo json
 
 // require_once __DIR__ . '/../services/consult_schedules_service.php'; // con esta linea puedo acceder a los metodos del servicio
