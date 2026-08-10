@@ -19,13 +19,10 @@ class SchedulesService
 
             // continuar lo que debo de hacer es traerme primero todos los horarios
             // despues buscar que horarios estan ocupados para deshabilitarlos
-            $querySchedules = "SELECT b.Schedule FROM appointment a
-                                INNER JOIN Schedules b
-                                ON a.Schedule = b.Schedule
-                                WHERE a.[Date] = :dateSelected";
+            $querySchedules = "SELECT * FROM Schedules";
 
             $stmtSchedules = $this->conn->prepare($querySchedules);
-            $stmtSchedules->bindParam(':dateSelected', $date, PDO::PARAM_STR);
+            // $stmtSchedules->bindParam(':dateSelected', $date, PDO::PARAM_STR);
             $stmtSchedules->execute();
 
             $resultSchedules = $stmtSchedules->fetchAll(PDO::FETCH_ASSOC);

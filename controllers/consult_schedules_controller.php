@@ -20,8 +20,10 @@ class AppointmentSchedulesController
         $this->service = $service;
     }
 
-    public function getSchedules(string $date)
+    public function getSchedules()
     {
+        $date = $_GET['date'] ?? '';
+
         echo json_encode(
             $this->service->schedules($date)
         );
