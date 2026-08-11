@@ -18,6 +18,37 @@ $router->controller(
     $controller
 );
 
+// continuar con la explicacion de chatgpt de como deberia de quedar el index con esto del container ya implementado
+
+$container = new Container();
+
+$container->set(PDO::class, function () {
+    return require './database/connection.php';
+});
+
+$container->set(SchedulesService::class, function ($container) {
+
+    return new SchedulesService(
+        $container->get(PDO::class)
+    );
+
+});
+
+$container->set(
+    AppointmentSchedulesController::class,
+    function ($container) {
+
+        return new AppointmentSchedulesController(
+            $container->get(SchedulesService::class)
+        );
+
+    }
+);
+
+$controller = $container->get(
+    AppointmentSchedulesController::class
+);
+
 require './routes/api.php';
 require './routes/web.php';
 
