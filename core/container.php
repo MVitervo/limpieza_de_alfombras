@@ -4,6 +4,7 @@ class Container
 {
     private array $bindings = [];
 
+    // el set indica: Cuando alguien solicite PDO, sé cómo construirlo
     public function set(string $abstract, callable $factory): void
     {
         $this->bindings[$abstract] = $factory;

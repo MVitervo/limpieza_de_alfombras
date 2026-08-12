@@ -6,6 +6,14 @@ class Router
 
     private array $controllers = [];
 
+    private Container $container;
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
+
     public function get(string $route, callable|array $handler): void
     {
         $this->routes['GET'][$route] = $handler;
@@ -72,6 +80,10 @@ class Router
             [$controllerClass, $methodName] = $handler;
 
             $controller = $this->controllers[$controllerClass];
+
+            $controller = $this->container->get(
+                $controllerClass
+            );
 
             $controller->$methodName();
 

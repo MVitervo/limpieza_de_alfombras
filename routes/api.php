@@ -5,7 +5,7 @@ $conn = require __DIR__ . '/../database/connection.php'; // variable que contien
 $schedulesService = new SchedulesService($conn); // esta linea es la inyeccion de dependencias
 
 $controller = new AppointmentSchedulesController($schedulesService);
-// $router = new Router(); // esta linea no es necesaria ya que la tenemos en el index.php
+$router = new Router(); // esta linea no es necesaria ya que la tenemos en el index.php
 
 /*
 $router->get('/api/schedules', function () use ($controller) {
