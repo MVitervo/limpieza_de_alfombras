@@ -5,7 +5,7 @@ $conn = require __DIR__ . '/../database/connection.php'; // variable que contien
 $schedulesService = new SchedulesService($conn); // esta linea es la inyeccion de dependencias
 
 $controller = new AppointmentSchedulesController($schedulesService);
-$router = new Router(); // esta linea no es necesaria ya que la tenemos en el index.php
+$router = new Router($container); // tanto $router como $container existen en el archivo index.php
 
 /*
 $router->get('/api/schedules', function () use ($controller) {
@@ -14,6 +14,8 @@ $router->get('/api/schedules', function () use ($controller) {
     );
 });
 */
+
+// continuar con el paso numero 6 que menciona chatgpt
 
 $router->get('/api/schedules', [
     AppointmentSchedulesController::class,

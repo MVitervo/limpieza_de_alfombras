@@ -13,7 +13,6 @@ class Router
         $this->container = $container;
     }
 
-
     public function get(string $route, callable|array $handler): void
     {
         $this->routes['GET'][$route] = $handler;
@@ -62,19 +61,32 @@ class Router
 
         $handler = $this->routes[$method][$uri];
 
+        [$controllerClass, $methodName] = $handler;
+
+
+        // esta instruccion menciona chat que es muy importante ya que este dice: Dame una instancia de este Controller
+        $controller = $this->container->get(
+            $controllerClass
+        );
+
+
+        $controller->$methodName();
+
         /*
          * Closure
          */
+        /*
         if (is_callable($handler)) {
 
             $handler();
 
             return;
         }
-
+        */
         /*
          * Controller + method
          */
+        /*
         if (is_array($handler)) {
 
             [$controllerClass, $methodName] = $handler;
@@ -89,5 +101,6 @@ class Router
 
             return;
         }
+        */
     }
 }
