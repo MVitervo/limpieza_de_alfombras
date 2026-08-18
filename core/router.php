@@ -61,6 +61,11 @@ class Router
 
         $handler = $this->routes[$method][$uri];
 
+        if ($handler instanceof Closure) {
+            $handler();
+            return;
+        }
+        
         [$controllerClass, $methodName] = $handler;
 
 
