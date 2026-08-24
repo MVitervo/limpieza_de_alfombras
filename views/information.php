@@ -1,4 +1,4 @@
-<form class="px-4">
+<form class="px-4" id="appointmentForm">
     <div class="w-full md:w-1/2 mx-auto">
         <div class="grid grid-cols-2 gap-6 mb-3">
             <div>
@@ -12,7 +12,7 @@
                         dark:text-white
                         dark:border-gray-600
                         dark:placeholder-gray-400
-                    " placeholder="John" type="text" id="first_name" required />
+                    " placeholder="John" type="text" id="first_name" autocomplete="off" name="name" required />
             </div>
 
             <div>
@@ -26,7 +26,7 @@
                         dark:text-white
                         dark:border-gray-600
                         dark:placeholder-gray-400
-                    " placeholder="John" type="text" name="lastname" id="lastname" required />
+                    " placeholder="John" type="text" name="lastname" id="lastname" autocomplete="off" name="lastname" required />
             </div>
         </div>
 
@@ -45,7 +45,7 @@
                         class="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm text-gray-900 shadow-sm
                        focus:border-blue-500 focus:ring-2 focus:ring-blue-500
                        dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400"
-                        placeholder="correo@gmail.com">
+                        placeholder="correo@gmail.com" autocomplete="off" name="email">
                 </div>
             </div>
 
@@ -63,7 +63,7 @@
                         class="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm text-gray-900 shadow-sm
                        focus:border-blue-500 focus:ring-2 focus:ring-blue-500
                        dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400"
-                        placeholder="+1 915 123 456789">
+                        placeholder="+1 915 123 456789" autocomplete="off" name="phone" required>
                 </div>
             </div>
         </div>
@@ -79,10 +79,9 @@
                     <input
                         type="date"
                         id="expectDate"
-                        name="expectDate"
                         class="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm text-gray-900 shadow-sm
                        focus:border-blue-500 focus:ring-2 focus:ring-blue-500
-                       dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400">
+                       dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400" name="date" required>
                 </div>
             </div>
 
@@ -112,7 +111,7 @@
                             dark:text-white
                             dark:focus:border-indigo-400
                             dark:focus:ring-indigo-400
-                        ">
+                        " name="schedule" required>
                         <option value=""></option>
                     </select>
                 </div>
@@ -122,6 +121,7 @@
             <div id="calendar"></div>
         </div> -->
 
+        <button type="submit">Guardar</button>
     </div>
 </form>
 
@@ -136,9 +136,9 @@
         // loadSchedules();
     });
 
-    // cuando seleccione una fecha entonces buscara los harios disponibles de esa fecha en especifico
+    // cuando seleccione una fecha entonces buscara los horarios disponibles de esa fecha en especifico
     document.querySelector('#expectDate').addEventListener('change', function() {
-        // loadSchedules();
+        loadSchedules();
     });
 
     function findAppointments() {
@@ -162,7 +162,7 @@
             method: 'GET',
             url: '/api/schedules',
             data: {
-                date: document.querySelector('#expectDate').value
+                // dae: document.querySelector('#expectDate').value
             },
             dataType: 'json',
             success: function(response) {
@@ -179,4 +179,37 @@
             }
         });
     }
+
+    const form = document.querySelector('#appointmentForm');
+
+    form.addEventListener('submit', function(event) {
+
+        event.preventDefault(); // evita que la pagina recargue
+
+        const appointment = $('#appointmentForm').serialize(); // toma todos los valores de los campos
+        debugger;
+        // importante, los inputs en la propiedad de name tiene el nombre que le correcponde al modelo
+        // pero sera mejor crear un objeto con los nombres del modelo y al lado asignar el valor para que de esta forma no afecte 
+        // como se llamen los campos en el formulario y siempre coincida con el modelo para que no haya fallas por que los nombres
+        // no corresponden a los nombres del modelo que se usara en el controlador y en el servicio
+
+        // para este caso si me fije en los nombres del modelo y estan exactamente igual que los nombres del formulario
+
+
+        $.ajax({
+            method: 'POST',
+            url: '/api/saveAppointment',
+            data: appointment,
+            dataType: 'json',
+            success: function(response) {
+                debugger;
+                // mensaje de que todo funciono
+            },
+            error: function(response) {
+                debugger;
+                // mensaje de que hubo un error
+            }
+        });
+
+    });
 </script>

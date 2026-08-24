@@ -11,6 +11,8 @@
 // $function = $_GET['function'] ?? '';
 // $date = $_GET['date'] ?? '';
 
+require './models/appointment_model.php';
+
 class AppointmentSchedulesController
 {
     private SchedulesService $service; // inyeccion de dependencias
@@ -22,10 +24,27 @@ class AppointmentSchedulesController
 
     public function getSchedules()
     {
-        $date = $_GET['date'] ?? '';
+        // $date = $_GET['date'] ?? '';
 
         echo json_encode(
-            $this->service->schedules($date)
+            $this->service->schedules()
+        );
+    }
+
+    public function saveAppointment()
+    {
+        // $date = $_GET['date'] ?? '';
+        $appointment = new Appointment();
+
+        $appointment->name = $_POST['name'] ?? '';
+        $appointment->lastname = $_POST['lastname'] ?? '';
+        $appointment->email = $_POST['email'] ?? '';
+        $appointment->phone = $_POST['phone'] ?? '';
+        $appointment->date = $_POST['date'] ?? '';
+        $appointment->schedule = $_POST['schedule'] ?? '';
+
+        echo json_encode(
+            $this->service->saveAppointment($appointment)
         );
     }
 }

@@ -41,7 +41,9 @@ instalacion de los estilos para el select2:
 npm install select2-bootstrap-5-theme
 
 continuar con el color del select2 en el modo oscuro
-continuar con la explicacion de chatgpt sobre las observaciones que me hizo y continuar desde ese punto
+ya funciona el guardar continuar con limitar los numeros en el input de phone, crear el objeto respetando los campos del modelo
+para tenerlo como un estandar y continuar con la validacion al momento de guardar que no se pueda si la fecha y el horario ya
+existen
 
 /*
 
@@ -96,3 +98,78 @@ $.ajax({
 
 	}
 });
+
+funcionamiento interno del proyecto
+
+vista:
+
+Browser
+   │
+   │ GET /
+   ▼
+index.php
+   │
+   ▼
+Router
+   │
+   │ busca "/"
+   ▼
+routes/web.php
+   │
+   ▼
+Controller / Closure
+   │
+   ▼
+views/home.php
+   │
+   ▼
+HTML
+   │
+   ▼
+Browser
+
+consulta:
+
+Browser
+   │
+   │ GET /api/schedules?date=2026-08-01
+   ▼
+index.php
+   │
+   ▼
+Router
+   │
+   │ busca "/api/schedules"
+   ▼
+routes/api.php
+   │
+   ▼
+AppointmentSchedulesController
+   │
+   ▼
+SchedulesService
+   │
+   ▼
+PDO
+   │
+   ▼
+SQL Server
+
+y de esta forma lo regresa:
+
+SQL Server
+   │
+   ▼
+PDO
+   │
+   ▼
+SchedulesService
+   │
+   ▼
+AppointmentSchedulesController
+   │
+   ▼
+JSON
+   │
+   ▼
+Browser / AJAX
