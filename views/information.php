@@ -195,6 +195,8 @@
 
         // para este caso si me fije en los nombres del modelo y estan exactamente igual que los nombres del formulario
 
+        // retroalimentacion ya busque y me quedare siemopre con esta forma de manera estandar si por alguna razon los nombres de los campos del formulario
+        // con diferentes a los del modelo entonces los voy a mappear directamente en el contrador
 
         $.ajax({
             method: 'POST',

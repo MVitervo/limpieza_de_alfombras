@@ -16,10 +16,12 @@ require './models/appointment_model.php';
 class AppointmentSchedulesController
 {
     private SchedulesService $service; // inyeccion de dependencias
+    // private Appointment $appointment;
 
-    public function __construct(SchedulesService $service)
+    public function __construct(SchedulesService $service, Appointment $appointment)
     {
         $this->service = $service;
+        $this->appointment = $appointment;
     }
 
     public function getSchedules()
@@ -34,17 +36,17 @@ class AppointmentSchedulesController
     public function saveAppointment()
     {
         // $date = $_GET['date'] ?? '';
-        $appointment = new Appointment();
+        // $appointment = new Appointment();
 
-        $appointment->name = $_POST['name'] ?? '';
-        $appointment->lastname = $_POST['lastname'] ?? '';
-        $appointment->email = $_POST['email'] ?? '';
-        $appointment->phone = $_POST['phone'] ?? '';
-        $appointment->date = $_POST['date'] ?? '';
-        $appointment->schedule = $_POST['schedule'] ?? '';
+        $this->appointment->name = $_POST['name'] ?? '';
+        $this->appointment->lastname = $_POST['lastname'] ?? '';
+        $this->appointment->email = $_POST['email'] ?? '';
+        $this->appointment->phone = $_POST['phone'] ?? '';
+        $this->appointment->date = $_POST['date'] ?? '';
+        $this->appointment->schedule = $_POST['schedule'] ?? '';
 
         echo json_encode(
-            $this->service->saveAppointment($appointment)
+            $this->service->saveAppointment($this->appointment)
         );
     }
 }
