@@ -1,7 +1,7 @@
 <?php
 require './core/router.php';
 require './core/container.php';
-require './services/schedules_appointment_service.php'; // no es necesaria esta linea ya que la tengo en el archivo api.php
+require './services/schedules_appointment_service.php';
 require './controllers/schedules_appointment_controller.php';
 
 $container = new Container();

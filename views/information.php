@@ -187,13 +187,6 @@
         event.preventDefault(); // evita que la pagina recargue
 
         const appointment = $('#appointmentForm').serialize(); // toma todos los valores de los campos
-        debugger;
-        // importante, los inputs en la propiedad de name tiene el nombre que le correcponde al modelo
-        // pero sera mejor crear un objeto con los nombres del modelo y al lado asignar el valor para que de esta forma no afecte 
-        // como se llamen los campos en el formulario y siempre coincida con el modelo para que no haya fallas por que los nombres
-        // no corresponden a los nombres del modelo que se usara en el controlador y en el servicio
-
-        // para este caso si me fije en los nombres del modelo y estan exactamente igual que los nombres del formulario
 
         // retroalimentacion ya busque y me quedare siemopre con esta forma de manera estandar si por alguna razon los nombres de los campos del formulario
         // con diferentes a los del modelo entonces los voy a mappear directamente en el contrador

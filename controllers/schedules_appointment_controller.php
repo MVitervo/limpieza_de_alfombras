@@ -13,15 +13,36 @@
 
 require './models/appointment_model.php';
 
+// implementacion de factory
+class AppointmentFactory
+{
+    public function createFromRequest(array $data): Appointment
+    {
+        $appointment = new Appointment(); // esta es una instancia
+        $appointment->name = $data['name'] ?? ''; // esta es una asignacion
+        $appointment->lastname = $data['lastname'] ?? ''; // esta es una asignacion
+        $appointment->email = $data['email'] ?? ''; // esta es una asignacion
+        $appointment->phone = $data['phone'] ?? ''; // esta es una asignacion
+        $appointment->date = $data['date'] ?? ''; // esta es una asignacion
+        $appointment->schedule = $data['schedule'] ?? ''; // esta es una asignacion
+
+        return $appointment;
+    }
+}
+
 class AppointmentSchedulesController
 {
-    private SchedulesService $service; // inyeccion de dependencias
-    // private Appointment $appointment;
+    /*
+    Nota: la clase SchedulesService la puede encontrar en este punto ya que se importo desde el archivo index.php
+    con la instruccion: require './services/schedules_appointment_service.php';
+    */
+    private SchedulesService $service; // esta es una propiedad tipada
+    private AppointmentFactory $appointmentFactory; // esta es una propiedad tipada
 
-    public function __construct(SchedulesService $service, Appointment $appointment)
+    public function __construct(SchedulesService $service, AppointmentFactory $appointmentFactory) // inyeccion de dependencias
     {
         $this->service = $service;
-        $this->appointment = $appointment;
+        $this->appointmentFactory = $appointmentFactory;
     }
 
     public function getSchedules()
@@ -38,15 +59,18 @@ class AppointmentSchedulesController
         // $date = $_GET['date'] ?? '';
         // $appointment = new Appointment();
 
+        $appointment = $this->appointmentFactory->createFromRequest($_POST);
+        /*
         $this->appointment->name = $_POST['name'] ?? '';
         $this->appointment->lastname = $_POST['lastname'] ?? '';
         $this->appointment->email = $_POST['email'] ?? '';
         $this->appointment->phone = $_POST['phone'] ?? '';
         $this->appointment->date = $_POST['date'] ?? '';
         $this->appointment->schedule = $_POST['schedule'] ?? '';
+        */
 
         echo json_encode(
-            $this->service->saveAppointment($this->appointment)
+            $this->service->saveAppointment($appointment)
         );
     }
 }
