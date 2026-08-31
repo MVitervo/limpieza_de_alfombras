@@ -40,6 +40,18 @@ npm install select2
 instalacion de los estilos para el select2:
 npm install select2-bootstrap-5-theme
 
+instalacion de tailwind plus:
+npm install @tailwindplus/elements
+
+
+Nota: comandos para poder moverme entre versiones de github
+git log --oneline --decorate --graph --all
+git reset --hard 4f52a10
+npm install
+
+explicacion el primer comando sirve para ver todos los commits, el segundo es para regresar todo el proyecto a ese commit y el tercero sirve para que tanto package.json
+y package-lock.json tambien regresaran a las versiones que tenian en ese momento y pueda funcionar correctamente el proyecto
+
 continuar con el color del select2 en el modo oscuro
 ya funciona el guardar continuar con limitar los numeros en el input de phone, crear el objeto respetando los campos del modelo
 para tenerlo como un estandar y continuar con la validacion al momento de guardar que no se pueda si la fecha y el horario ya

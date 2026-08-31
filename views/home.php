@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+<!-- <html
+    lang="en"
+    class="dark dark:bg-gray-950 scheme-light dark:scheme-dark"> -->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina principal</title>
     <link rel="stylesheet" href="/public/css/style.css">
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
+        type="module">
+    </script>
 
     <!-- STANDARD JS -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/all/global.js"></script> -->
@@ -24,9 +32,9 @@
     <link rel="stylesheet" href="/public/css/select2-bootstrap-5-theme.min.css">
     <link rel="stylesheet" href="/public/css/especificSelect2.css">
     <script src="/public/js/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="/public/css/bootstrap.min.css"> -->
     <script src="/public/js/bootstrap.bundle.min.js"></script>
     <script src="/public/js/select2.min.js"></script>
-
 
 </head>
 <!-- continuar con el modo oscuro del calendario y trabajar con el calendario -->
@@ -50,7 +58,7 @@
 
 
 </body>
-<!-- <link rel="stylesheet" href="/public/css/bootstrap.min.css"> -->
+
 
 </html>
 
