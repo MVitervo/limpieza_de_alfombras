@@ -48,6 +48,18 @@ class SchedulesService
     {
         try {
             // falta la validacion de que no este ocupado esta fecha con el horario para que no haya repetidos
+            $queryValidationAppointment = 'SELECT * FROM appointment WHERE Date = :date AND Schedule = :Schedule';
+
+            $stmtValidationAppointment = $this->conn->prepare($queryValidationAppointment);
+            $stmtValidationAppointment->bindParam(':date', $appointment->date, PDO::PARAM_STR);
+            $stmtValidationAppointment->bindParam(':Schedule', $appointment->schedule, PDO::PARAM_STR);
+            $stmtValidationAppointment->execute();
+
+            $resultValidationAppointment = $stmtValidationAppointment->fetch(PDO::FETCH_ASSOC);
+
+            if ($resultValidationAppointment) {
+                throw new Exception('No es posible hacer la cita, esta fecha y hora ya estan ocupadas');
+            }
 
 
             $querySaveAppointment = "INSERT INTO appointment (

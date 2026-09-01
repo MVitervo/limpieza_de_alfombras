@@ -1,6 +1,6 @@
 <form class="px-4" id="appointmentForm">
     <div class="w-full md:w-1/2 mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-3">
             <div>
                 <label for="first_name" class="block mb-2.5 text-sm font-medium text-heading text-gray-700 dark:text-gray-200">First name</label>
                 <input
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-3">
             <div>
                 <div class="mb-4">
                     <label for="email"
@@ -68,7 +68,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-3">
             <div>
                 <div class="mb-4">
                     <label for="expectDate"
@@ -180,7 +180,6 @@
             },
             dataType: 'json',
             success: function(response) {
-                debugger;
                 const schedules = response.data;
                 $('.expectHour').html();
                 const fieldSchedules = $('.expectHour');
@@ -189,7 +188,6 @@
                 });
             },
             error: function(response) {
-                debugger;
                 document.querySelector('.dialogErrorDatabaseButton').click();
             }
         });
@@ -205,7 +203,7 @@
 
         // retroalimentacion ya busque y me quedare siemopre con esta forma de manera estandar si por alguna razon los nombres de los campos del formulario
         // con diferentes a los del modelo entonces los voy a mappear directamente en el contrador
-
+        debugger;
         $.ajax({
             method: 'POST',
             url: '/api/saveAppointment',
@@ -213,11 +211,17 @@
             dataType: 'json',
             success: function(response) {
                 debugger;
-                // mensaje de que todo funciono
+                if (response.status) {
+
+                }
+                else {
+                    // continuar 
+                    document.querySelector('.dialogErrorDatabaseButton').click();    
+                }
             },
             error: function(response) {
                 debugger;
-                // mensaje de que hubo un error
+                document.querySelector('.dialogErrorDatabaseButton').click();
             }
         });
 
