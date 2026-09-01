@@ -36,6 +36,7 @@
     <script src="/public/js/bootstrap.bundle.min.js"></script>
     <script src="/public/js/select2.min.js"></script>
 
+
 </head>
 <!-- continuar con el modo oscuro del calendario y trabajar con el calendario -->
 
@@ -53,6 +54,7 @@
     <main>
 
         <?php require __DIR__ . '/information.php'; ?>
+        <?php require __DIR__ . '/modal_error.php'; ?>
 
     </main>
 
