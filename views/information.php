@@ -136,7 +136,7 @@
 
 <div class="modalError">
 </div>
-<button class="dialogErrorDatabaseButton" command="show-modal" commandfor="dialogErrorDatabase"></button>
+<!-- <button class="dialogErrorDatabaseButton" command="show-modal" commandfor="dialogErrorDatabase"></button> -->
 
 
 <script>
@@ -203,7 +203,7 @@
 
         // retroalimentacion ya busque y me quedare siemopre con esta forma de manera estandar si por alguna razon los nombres de los campos del formulario
         // con diferentes a los del modelo entonces los voy a mappear directamente en el contrador
-        debugger;
+
         $.ajax({
             method: 'POST',
             url: '/api/saveAppointment',
@@ -215,10 +215,13 @@
 
                 } else {
                     // continuar 
-                    const modal = modalError('Alguien mas acaba de agendar, favor de recargar la pagina y volver agendar');
-                    document.querySelector('.modalError').innerHTML = modal;
-                    const dialog = document.querySelector('el-dialog');
-                    dialog.show(); // continuar revisar por que no funciona esta instruccion
+                    // const modal = modalError('Alguien mas acaba de agendar, favor de recargar la pagina y volver agendar');
+                    // document.querySelector('.modalError').innerHTML = modal;
+                    // const dialog = document.querySelector('el-dialog');
+                    // dialog.show(); // continuar revisar por que no funciona esta instruccion
+                    modalError(
+                        'Alguien más acaba de agendar, favor de recargar la página y volver a agendar'
+                    );
                 }
             },
             error: function(response) {
