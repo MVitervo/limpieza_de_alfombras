@@ -103,7 +103,7 @@ class SchedulesService
             $this->conn->commit();
         } catch (Exception $e) {
             // $this->conn->rollBack();
-            return ['status' => false, 'message' => "Ocurrio un error " . $e->getMessage()];
+            return ['status' => false, 'message' => $e->getMessage()];
         }
         catch (PDOException $e) {
             $this->conn->rollBack();

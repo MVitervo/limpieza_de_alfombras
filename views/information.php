@@ -121,8 +121,8 @@
             <div id="calendar"></div>
         </div> -->
 
-        <button type="submit" 
-        class="w-full py-2 px-4
+        <button type="submit"
+            class="w-full py-2 px-4
         bg-white-500/10 text-black
         dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
         ">
@@ -134,7 +134,8 @@
     </div>
 </form>
 
-
+<div class="modalError">
+</div>
 <button class="dialogErrorDatabaseButton" command="show-modal" commandfor="dialogErrorDatabase"></button>
 
 
@@ -170,7 +171,6 @@
     }
 
     function loadSchedules() {
-        debugger;
         // esta funcion debera de mandarse a llamar cuando se seleccione una fecha antes no para no consumir recursos
         $.ajax({
             method: 'GET',
@@ -213,15 +213,20 @@
                 debugger;
                 if (response.status) {
 
-                }
-                else {
+                } else {
                     // continuar 
-                    document.querySelector('.dialogErrorDatabaseButton').click();    
+                    const modal = modalError('Alguien mas acaba de agendar, favor de recargar la pagina y volver agendar');
+                    document.querySelector('.modalError').innerHTML = modal;
+                    const dialog = document.querySelector('el-dialog');
+                    dialog.show(); // continuar revisar por que no funciona esta instruccion
                 }
             },
             error: function(response) {
                 debugger;
-                document.querySelector('.dialogErrorDatabaseButton').click();
+                const modal = modalError('Error en la base de datos');
+                document.querySelector('.modalError').innerHTML = modal;
+                const dialog = document.querySelector('el-dialog');
+                dialog.show();
             }
         });
 

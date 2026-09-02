@@ -1,6 +1,9 @@
+function modalError(message) {
+
+    return `
 <el-dialog>
     <dialog
-        id="dialogErrorDatabase"
+        id="dialogErrorGeneral"
         aria-labelledby="dialog-title"
         class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
 
@@ -82,7 +85,7 @@
                                 id="dialog-title"
                                 class="text-base font-semibold
                                        text-gray-900 dark:text-white">
-                                Error al buscar la informacion
+                                ${message}
                             </h3>
 
                             <!-- <div class="mt-2">
@@ -105,7 +108,7 @@
                     <button
                         type="button"
                         command="close"
-                        commandfor="dialogErrorDatabase"
+                        commandfor="dialogErrorGeneral"
                         class="inline-flex w-full
                                justify-center
                                rounded-md
@@ -125,3 +128,5 @@
         </div>
     </dialog>
 </el-dialog>
+    `;
+}
