@@ -37,6 +37,7 @@
     <script src="/public/js/select2.min.js"></script>
 
     <script src="/views/modal_error.js"></script>
+    <script src="/views/modal_success.js"></script>
 
 </head>
 <!-- continuar con el modo oscuro del calendario y trabajar con el calendario -->

@@ -96,7 +96,7 @@ class SchedulesService
             if ($stmtSaveAppointment->execute()) {
                 return [
                     'status' => 'success',
-                    'message' => 'Registro guardado'
+                    'message' => 'Cita agendada con exito!'
                 ];
             }
 

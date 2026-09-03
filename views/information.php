@@ -136,6 +136,9 @@
 
 <div class="modalError">
 </div>
+
+<div class="modalSuccess">
+</div>
 <!-- <button class="dialogErrorDatabaseButton" command="show-modal" commandfor="dialogErrorDatabase"></button> -->
 
 
@@ -212,6 +215,7 @@
             success: function(response) {
                 debugger;
                 if (response.status) {
+                    modalSuccess('Cita agendada con exito');
 
                 } else {
                     // continuar 
@@ -225,13 +229,11 @@
                 }
             },
             error: function(response) {
-                debugger;
-                const modal = modalError('Error en la base de datos');
-                document.querySelector('.modalError').innerHTML = modal;
-                const dialog = document.querySelector('el-dialog');
-                dialog.show();
+                modalError('Error en la base de datos');
             }
         });
 
     });
+
+
 </script>

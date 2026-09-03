@@ -1,11 +1,11 @@
-function modalError(message) {
+function modalSuccess(message) {
 
-    const container = document.querySelector('.modalError');
+    const container = document.querySelector('.modalSuccess');
 
     container.innerHTML = `
         <el-dialog>
             <dialog
-                id="dialogErrorGeneral"
+                id="dialogSuccessGeneral"
                 aria-labelledby="dialog-title"
                 class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
 
@@ -51,7 +51,7 @@ function modalError(message) {
                                     class="mx-auto flex size-12 shrink-0
                                            items-center justify-center
                                            rounded-full
-                                           bg-red-100 dark:bg-red-900/30
+                                           bg-green-100 dark:bg-green-900/30
                                            sm:mx-0 sm:size-10">
 
                                     <svg
@@ -59,11 +59,11 @@ function modalError(message) {
                                         fill="none"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        class="size-6 text-red-600 dark:text-red-400"
+                                        class="size-6 text-green-600 dark:text-green-400"
                                         aria-hidden="true">
 
                                         <path
-                                            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-.866-3.032-.866-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+                                            d="m4.5 12.75 6 6 9-13.5"
                                             stroke-linecap="round"
                                             stroke-linejoin="round" />
 
@@ -96,16 +96,17 @@ function modalError(message) {
                             <button
                                 type="button"
                                 command="close"
-                                commandfor="dialogErrorGeneral"
+                                commandfor="dialogSuccessGeneral"
                                 class="inline-flex w-full
                                        justify-center
                                        rounded-md
-                                       bg-red-600
+                                       bg-green-600
                                        px-3 py-2
                                        text-sm font-semibold text-white
                                        shadow-xs
-                                       hover:bg-red-500
-                                       sm:ml-3 sm:w-auto">
+                                       hover:bg-green-500
+                                       sm:ml-3 sm:w-auto
+                                       btnDialogSuccess">
 
                                 Aceptar
 
@@ -120,6 +121,14 @@ function modalError(message) {
             </dialog>
         </el-dialog>
     `;
+
+    document.querySelector('.btnDialogSuccess').addEventListener('click', function () {
+        debugger;
+        location.reload();
+    });
+
+    // continuar hacer que se recargue la pagina una vez que el dialog de success se muestre y se le de click fuera del dialog
+    // se me ocurre forzar a que presionen el boton de aceptar
 
     customElements.whenDefined('el-dialog').then(() => {
 
