@@ -40,24 +40,43 @@
     <script src="/views/modal_success.js"></script>
 
 </head>
-<!-- continuar con el modo oscuro del calendario y trabajar con el calendario -->
 
 <body class="bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
-    <div class="w-full md:w-1/2 mx-auto px-4">
-        <div class="grid grid-cols-1 gap-6 mb-3">
-            <!-- Cambio de tema -->
-            <button id="toggle-theme" class="px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
-                🌙
-            </button>
-        </div>
-    </div>
 
     <!-- <div id="renderPage"></div> -->
     <main>
 
         <?php require __DIR__ . '/information.php'; ?>
 
+
     </main>
+
+    <a href="/login"
+        class="
+        fixed bottom-4 left-4
+        flex items-center gap-2
+        bg-blue-500 hover:bg-blue-700
+        text-white font-bold
+        py-2 px-4
+        rounded-full
+        shadow-md
+        transition-colors duration-200
+   ">
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-6">
+
+            <path fill-rule="evenodd"
+                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                clip-rule="evenodd" />
+
+        </svg>
+
+        <!-- <span>Ir al login</span> -->
+
+    </a>
 
 
 </body>
@@ -67,6 +86,7 @@
 
 
 <script>
+    /*
     $(function() {
         // loadPage("/");
     });
@@ -77,6 +97,9 @@
             case "/":
                 page = "/views/information.php";
                 break;
+            case "/login":
+                page = "/views/login.php";
+                break;
             default:
                 page = "/views/404.php";
         }
@@ -86,6 +109,7 @@
         });
 
     }
+    */
 
     const themeButton = document.getElementById('toggle-theme');
     const html = document.documentElement;

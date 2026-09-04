@@ -123,16 +123,17 @@ function modalSuccess(message) {
     `;
 
     document.querySelector('.btnDialogSuccess').addEventListener('click', function () {
-        debugger;
         location.reload();
     });
-
-    // continuar hacer que se recargue la pagina una vez que el dialog de success se muestre y se le de click fuera del dialog
-    // se me ocurre forzar a que presionen el boton de aceptar
 
     customElements.whenDefined('el-dialog').then(() => {
 
         const dialog = container.querySelector('el-dialog');
+
+        // Evita que el diálogo se cierre al hacer click fuera o presionar Escape
+        dialog.addEventListener('cancel', function (event) {
+            event.preventDefault();
+        });
 
         dialog.show();
 

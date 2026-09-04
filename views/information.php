@@ -1,6 +1,15 @@
+<div class="w-full md:w-1/2 mx-auto px-4">
+    <div class="grid grid-cols-1 gap-6 mb-3">
+        <!-- Cambio de tema -->
+        <button id="toggle-theme" class="px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
+            🌙
+        </button>
+    </div>
+</div>
+
 <form class="px-4" id="appointmentForm">
     <div class="w-full md:w-1/2 mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
             <div>
                 <label for="first_name" class="block mb-2.5 text-sm font-medium text-heading text-gray-700 dark:text-gray-200">First name</label>
                 <input
@@ -30,7 +39,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
             <div>
                 <div class="mb-4">
                     <label for="email"
@@ -68,7 +77,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
             <div>
                 <div class="mb-4">
                     <label for="expectDate"
@@ -213,7 +222,6 @@
             data: appointment,
             dataType: 'json',
             success: function(response) {
-                debugger;
                 if (response.status) {
                     modalSuccess('Cita agendada con exito');
 
@@ -234,6 +242,4 @@
         });
 
     });
-
-
 </script>
