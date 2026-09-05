@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-<!-- <html
-    lang="en"
-    class="dark dark:bg-gray-950 scheme-light dark:scheme-dark"> -->
 
 <head>
     <meta charset="UTF-8">
@@ -43,41 +40,9 @@
 
 <body class="bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
-    <!-- <div id="renderPage"></div> -->
     <main>
-
-        <?php require __DIR__ . '/information.php'; ?>
-
-
+        <div id="renderPage"></div>
     </main>
-
-    <a href="/login"
-        class="
-        fixed bottom-4 left-4
-        flex items-center gap-2
-        bg-blue-500 hover:bg-blue-700
-        text-white font-bold
-        py-2 px-4
-        rounded-full
-        shadow-md
-        transition-colors duration-200
-   ">
-
-        <svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-6">
-
-            <path fill-rule="evenodd"
-                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                clip-rule="evenodd" />
-
-        </svg>
-
-        <!-- <span>Ir al login</span> -->
-
-    </a>
-
 
 </body>
 
@@ -86,12 +51,11 @@
 
 
 <script>
-    /*
     $(function() {
-        // loadPage("/");
+        loadPage("/");
     });
 
-    function loadPage(route) {
+    function loadPage(route, updateUrl = true) {
         let page = "";
         switch (route) {
             case "/":
@@ -106,10 +70,18 @@
 
         $.get(page, function(response) {
             $("#renderPage").html(response);
+
+            if (updateUrl) {
+                history.pushState({}, "", route);
+            }
         });
 
     }
-    */
+
+    window.addEventListener("popstate", function() {
+        loadPage(location.pathname, false);
+    });
+
 
     const themeButton = document.getElementById('toggle-theme');
     const html = document.documentElement;

@@ -1,3 +1,7 @@
+<button>
+    
+</button>
+
 <form class="px-4" id="loginForm">
     <div class="w-full md:w-1/2 mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
