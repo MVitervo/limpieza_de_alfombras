@@ -52,7 +52,14 @@ npm install
 explicacion el primer comando sirve para ver todos los commits, el segundo es para regresar todo el proyecto a ese commit y el tercero sirve para que tanto package.json
 y package-lock.json tambien regresaran a las versiones que tenian en ese momento y pueda funcionar correctamente el proyecto
 
-continuar con el color del select2 en el modo oscuro
+Nota:
+home.php funciona como shell principal.
+Router.php entrega home.php tanto para / como para /login.
+loadPage() carga dinámicamente las vistas.
+history.pushState() mantiene la URL sincronizada.
+popstate permite manejar Atrás/Adelante.
+Una navegación directa a /login también carga correctamente Tailwind, jQuery y los demás recursos.
+
 ya funciona el guardar continuar con limitar los numeros en el input de phone, crear el objeto respetando los campos del modelo
 para tenerlo como un estandar y continuar con la validacion al momento de guardar que no se pueda si la fecha y el horario ya
 existen
@@ -86,6 +93,16 @@ INSERT INTO schedules (Schedule)
 VALUES ('8:00 AM - 10:00 AM'), ('10:00 AM - 12:00 PM'), ('12:00 PM - 2:00 PM'), ('2:00 PM - 4:00 PM'),
 ('4:00 PM - 6:00 PM'), ('6:00 PM - 8:00 PM')
 
+CREATE TABLE usernames (
+	Id INT IDENTITY,
+	Username VARCHAR(100),
+	[Password] VARCHAR(100),
+	LastEditBy VARCHAR(100),
+	LastEditDt DATETIME
+)
+
+INSERT INTO usernames (Username, [Password])
+VALUES ('miguel', 'ovretiv')
 
 la idea es que cuando la persona escoja un dia ire a revisar la tabla de appointment para saber
 que horarios deshabilitar que seran los que ya exista un registro para ese dia esos se mostraran pero

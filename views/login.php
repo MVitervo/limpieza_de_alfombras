@@ -1,10 +1,13 @@
-<button>
-    
-</button>
-
-<form class="px-4" id="loginForm">
+<form id="loginForm"
+    class="
+        min-h-screen
+        flex
+        items-center
+        justify-center
+        px-4
+    ">
     <div class="w-full md:w-1/2 mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-3">
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mb-3">
             <div>
                 <label for="user_name" class="block mb-2.5 text-sm font-medium text-heading text-gray-700 dark:text-gray-200">Usuario</label>
                 <input
@@ -33,13 +36,30 @@
                     " type="text" id="password" autocomplete="off" name="password" required />
             </div>
 
-            <button type="submit"
-                class="w-full py-2 px-4
-                bg-white-500/10 text-black
-                dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
-                ">
-                Ingresar
-            </button>
         </div>
+        <br />
+        <button type="submit"
+            class="w-full py-2 px-4
+            bg-white-500/10 text-black
+            dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
+            ">
+            Ingresar
+        </button>
     </div>
 </form>
+
+<script>
+    const formLogin = document.querySelector('#loginForm');
+
+    formLogins.addEventListener('submit', function(event) {
+
+        event.preventDefault(); // evita que la pagina recargue
+
+        const login = $('#loginForm').serialize(); // toma todos los valores de los campos
+
+        $.ajax({
+            
+        });
+    });
+
+</script>

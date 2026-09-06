@@ -52,7 +52,7 @@
 
 <script>
     $(function() {
-        loadPage("/");
+        loadPage(location.pathname, false);
     });
 
     function loadPage(route, updateUrl = true) {
