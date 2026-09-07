@@ -49,17 +49,34 @@
 </form>
 
 <script>
-    const formLogin = document.querySelector('#loginForm');
+    document.querySelector('#contentButtonTheme').style.display = 'none';
 
-    formLogins.addEventListener('submit', function(event) {
+    var formLogin = document.querySelector('#loginForm');
+
+    formLogin.addEventListener('submit', function(event) {
 
         event.preventDefault(); // evita que la pagina recargue
 
         const login = $('#loginForm').serialize(); // toma todos los valores de los campos
 
         $.ajax({
-            
+            method: 'GET',
+            url: '/api/login',
+            data: login,
+            dataType: 'json',
+            success: function(response) {
+                debugger;
+                if (response.status === 'success') {
+                    loadPage('/list_register');
+                } else {
+                    modalError(response.message);
+                }
+            },
+            error: function(error) {
+                debugger;
+                modalError(error);
+            }
+
         });
     });
-
 </script>

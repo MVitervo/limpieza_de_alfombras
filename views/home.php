@@ -7,10 +7,10 @@
     <title>Pagina principal</title>
     <link rel="stylesheet" href="/public/css/style.css">
 
-    <script
+    <!-- <script
         src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
         type="module">
-    </script>
+    </script> -->
 
     <!-- STANDARD JS -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/all/global.js"></script> -->
@@ -40,6 +40,15 @@
 
 <body class="bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
+    <div id="contentButtonTheme" class="w-full md:w-1/2 mx-auto px-4">
+        <div class="grid grid-cols-1 gap-6 mb-3">
+            <!-- Cambio de tema -->
+            <button id="toggle-theme" class="px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
+                🌙
+            </button>
+        </div>
+    </div>
+
     <main>
         <div id="renderPage"></div>
     </main>
@@ -49,11 +58,18 @@
 
 </html>
 
+<div class="modalError">
+</div>
+
+<div class="modalSuccess">
+</div>
+
 
 <script>
     $(function() {
         loadPage(location.pathname, false);
     });
+    debugger;
 
     function loadPage(route, updateUrl = true) {
         let page = "";
@@ -63,6 +79,9 @@
                 break;
             case "/login":
                 page = "/views/login.php";
+                break;
+            case "/list_register":
+                page = "/views/list_register.php";
                 break;
             default:
                 page = "/views/404.php";
@@ -81,7 +100,6 @@
     window.addEventListener("popstate", function() {
         loadPage(location.pathname, false);
     });
-
 
     const themeButton = document.getElementById('toggle-theme');
     const html = document.documentElement;

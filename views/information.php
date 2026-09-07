@@ -1,11 +1,3 @@
-<div class="w-full md:w-1/2 mx-auto px-4">
-    <div class="grid grid-cols-1 gap-6 mb-3">
-        <!-- Cambio de tema -->
-        <button id="toggle-theme" class="px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
-            🌙
-        </button>
-    </div>
-</div>
 
 <form class="px-4" id="appointmentForm">
     <div class="w-full md:w-1/2 mx-auto">
@@ -168,11 +160,7 @@
     </svg>
 </a>
 
-<div class="modalError">
-</div>
 
-<div class="modalSuccess">
-</div>
 <!-- <button class="dialogErrorDatabaseButton" command="show-modal" commandfor="dialogErrorDatabase"></button> -->
 
 
@@ -199,7 +187,7 @@
             placeholder: 'first select a date',
             width: '100%'
         });
-        // loadSchedules();
+        document.querySelector('#contentButtonTheme').style.display = 'block';
     });
 
     // cuando seleccione una fecha entonces buscara los horarios disponibles de esa fecha en especifico
@@ -244,7 +232,7 @@
         });
     }
 
-    const form = document.querySelector('#appointmentForm');
+    var form = document.querySelector('#appointmentForm');
 
     form.addEventListener('submit', function(event) {
 

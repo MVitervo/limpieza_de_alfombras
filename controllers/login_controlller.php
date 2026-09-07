@@ -1,7 +1,7 @@
 <?php
 require './models/login_model.php';
 
-class LoginFactory 
+class LoginFactory
 {
     public function createFromRequest(array $data): Login
     {
@@ -12,16 +12,19 @@ class LoginFactory
     }
 }
 
-class LoginController 
+class LoginController
 {
     private LoginFactory $loginFactory;
     private LoginService $loginService;
 
-    public function __controller(LoginFactory $loginFactory) {
+    public function __controller(LoginService $loginService, LoginFactory $loginFactory)
+    {
+        $this->loginService = $loginService;
         $this->loginFactory = $loginFactory;
     }
 
-    function singIn() {
+    function singIn()
+    {
         $login = $this->loginFactory->createFromRequest($_POST);
 
         echo json_encode(
@@ -29,5 +32,3 @@ class LoginController
         );
     }
 }
-
-?>
