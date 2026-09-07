@@ -7,10 +7,10 @@
     <title>Pagina principal</title>
     <link rel="stylesheet" href="/public/css/style.css">
 
-    <!-- <script
+    <script
         src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
         type="module">
-    </script> -->
+    </script>
 
     <!-- STANDARD JS -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.1/all/global.js"></script> -->
@@ -53,23 +53,22 @@
         <div id="renderPage"></div>
     </main>
 
+    <div class="modalError">
+    </div>
+
+    <div class="modalSuccess">
+    </div>
+
 </body>
 
 
 </html>
-
-<div class="modalError">
-</div>
-
-<div class="modalSuccess">
-</div>
 
 
 <script>
     $(function() {
         loadPage(location.pathname, false);
     });
-    debugger;
 
     function loadPage(route, updateUrl = true) {
         let page = "";

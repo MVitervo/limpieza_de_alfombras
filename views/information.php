@@ -160,9 +160,7 @@
     </svg>
 </a>
 
-
 <!-- <button class="dialogErrorDatabaseButton" command="show-modal" commandfor="dialogErrorDatabase"></button> -->
-
 
 <script>
     $("#renderPage").on("click", "a[data-route]", function(event) {
@@ -251,9 +249,8 @@
             success: function(response) {
                 if (response.status) {
                     modalSuccess('Cita agendada con exito');
-
                 } else {
-                    // continuar 
+                    // continuar
                     // const modal = modalError('Alguien mas acaba de agendar, favor de recargar la pagina y volver agendar');
                     // document.querySelector('.modalError').innerHTML = modal;
                     // const dialog = document.querySelector('el-dialog');

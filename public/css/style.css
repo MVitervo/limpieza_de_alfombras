@@ -465,9 +465,6 @@
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
-  .px-5 {
-    padding-inline: calc(var(--spacing) * 5);
-  }
   .py-1 {
     padding-block: var(--spacing);
   }
@@ -511,6 +508,9 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
+  }
+  .tab-1 {
+    tab-size: 1;
   }
   .text-black {
     color: var(--color-black);

@@ -6,6 +6,7 @@ class LoginFactory
     public function createFromRequest(array $data): Login
     {
         $login = new Login();
+        // los nombres que estan en el data son los nombre que tiene la propiedad de name en el formulario
         $login->username = $data['username'] ?? ''; // esta es una asignacion
         $login->password = $data['password'] ?? ''; // esta es una asignacion
         return $login;
@@ -17,7 +18,7 @@ class LoginController
     private LoginFactory $loginFactory;
     private LoginService $loginService;
 
-    public function __controller(LoginService $loginService, LoginFactory $loginFactory)
+    public function __construct(LoginService $loginService, LoginFactory $loginFactory)
     {
         $this->loginService = $loginService;
         $this->loginFactory = $loginFactory;
@@ -25,7 +26,7 @@ class LoginController
 
     function singIn()
     {
-        $login = $this->loginFactory->createFromRequest($_POST);
+        $login = $this->loginFactory->createFromRequest($_GET);
 
         echo json_encode(
             $this->loginService->login($login)
