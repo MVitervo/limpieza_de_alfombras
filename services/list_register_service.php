@@ -13,12 +13,12 @@ class ListRegisterService {
         try {
             $queryAppointment = "SELECT 
                                 Name AS [name]
-                                Lastname AS [lastname]
-                                Email AS [email]
-                                Phone AS [phone]
-                                Date AS [date]
-                                Schedule AS [schedule]
-                                LastEditDt AS [lastEditDt]
+                                ,Lastname AS [lastname]
+                                ,Email AS [email]
+                                ,Phone AS [phone]
+                                ,Date AS [date]
+                                ,Schedule AS [schedule]
+                                ,LastEditDt AS [lastEditDt]
                                 FROM appointment";
 
             $stmtAppointment = $this->conn->prepare($queryAppointment);

@@ -72,12 +72,10 @@
                 //     value.fecha_inicial = $('#fecha_inicial').val() || '2000-01-01';
                 //     value.fecha_final = $('#fecha_final').val() || new Date().toISOString().split('T')[0];
                 // },
-                dataSrc: '' // Indica que los datos están en la raíz del JSON
+                dataSrc: 'data' // Indica que los datos están en la raíz del JSON
             },
             // los valores que recibira data estan pendientes de la tabla en la bd
-            columns: [{
-                    data: 'id'
-                },
+            columns: [
                 {
                     data: 'name'
                 },
