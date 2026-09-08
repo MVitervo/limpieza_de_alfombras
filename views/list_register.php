@@ -8,6 +8,7 @@
                 <th>Telefono</th>
                 <th>Fecha</th>
                 <th>Horario</th>
+                <th>Ultima fecha de modificacion</th>
             </tr>
         </thead>
         <tbody>
@@ -21,14 +22,14 @@
     });
 
     function loadRegister() {
-        // continaur con el datatable
-        $('#tabla_historial').DataTable({
+        $('.appoinmentTable').DataTable({
             language: {
-                url: '/config/datatables-bs5/language-spanish.json',
+                // url: '/config/datatables-bs5/language-spanish.json',
                 emptyTable: 'No hay datos disponibles'
             },
             ordering: false,
-            dom: '<"row mb-2"<"col-md-5"f><"col-md-7 d-flex justify-content-end switch"B>>rt<"row"<"col-md-6"i><"col-md-6 d-flex justify-content-end"p>>',
+            // dom: '<"row mb-2"<"col-md-5"f><"col-md-7 d-flex justify-content-end switch"B>>rt<"row"<"col-md-6"i><"col-md-6 d-flex justify-content-end"p>>',
+            /*
             buttons: [{
                     text: 'Imprimir <span class="material-symbols-rounded" style="font-size:20px;top:5px;">print</span>',
                     className: 'registrosDataTables',
@@ -61,51 +62,49 @@
                     className: 'btn-danger',
                 },
             ],
+            */
             // colReorder: true,
             // keys: false,
             ajax: {
-                url: '/src/pages/materiales/etiqueta_general/controllers/listar_etiquetas_controller.php',
-                type: 'GET',
-                data: function(value) {
-                    value.fecha_inicial = $('#fecha_inicial').val() || '2000-01-01';
-                    value.fecha_final = $('#fecha_final').val() || new Date().toISOString().split('T')[0];
-                },
+                method: 'GET',
+                url: '/api/listRegister',
+                // data: function(value) {
+                //     value.fecha_inicial = $('#fecha_inicial').val() || '2000-01-01';
+                //     value.fecha_final = $('#fecha_final').val() || new Date().toISOString().split('T')[0];
+                // },
                 dataSrc: '' // Indica que los datos están en la raíz del JSON
             },
             // los valores que recibira data estan pendientes de la tabla en la bd
             columns: [{
                     data: 'id'
                 },
-                // {
-                //     data: 'id_inspeccion'
-                // },
                 {
-                    data: 'fecha'
+                    data: 'name'
                 },
                 {
-                    data: 'usuario'
+                    data: 'lastname'
                 },
                 {
-                    data: 'cantidad'
+                    data: 'email'
                 },
                 {
-                    data: 'gloss'
+                    data: 'phone'
                 },
                 {
-                    data: 'id_recibo'
+                    data: 'date'
                 },
                 {
-                    data: 'tipo'
+                    data: 'schedule'
                 },
                 {
-                    data: 'opcion',
-                    render: function(data, type, row) {
-                        return `
-                            <div class="registrosDataTables" style="display: flex;">
-                                ${data}
-                            </div>
-                        `;
-                    }
+                    data: 'lastEditDt',
+                    // render: function(data, type, row) {
+                    //     return `
+                    //         <div class="registrosDataTables" style="display: flex;">
+                    //             ${data}
+                    //         </div>
+                    //     `;
+                    // }
                 }
             ],
             // order: [[0, 'desc']],
@@ -113,11 +112,11 @@
             //     dataSrc: 'folio' // Aquí le indicas que agrupe por "folio"
             // },
             initComplete: function(settings, json) {
-                let windowHeight = $(window).height();
-                let pagelen = (windowHeight * 0.64) / 29;
-                $('#tabla_historial').DataTable().page.len(pagelen).draw();
-                $('.loader').remove();
-                $('.tab-1').fadeIn();
+                // let windowHeight = $(window).height();
+                // let pagelen = (windowHeight * 0.64) / 29;
+                // $('#tabla_historial').DataTable().page.len(pagelen).draw();
+                // $('.loader').remove();
+                // $('.tab-1').fadeIn();
                 // $('.registrosDataTables').eq(0).css('display', ''); // remueve el display: flex solo de la primera fila
             }
         });

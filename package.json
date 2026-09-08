@@ -28,6 +28,8 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "datatables.net": "^3.0.3",
+    "datatables.net-dt": "^3.0.3",
     "fullcalendar": "^7.0.2",
     "jquery": "^3.7.1",
     "select2": "^4.0.13",

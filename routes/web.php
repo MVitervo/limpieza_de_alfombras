@@ -10,3 +10,7 @@ $router->get('/', function () {
 $router->get('/login', function () {
     require './views/home.php';
 });
+
+$router->get('/list_register', function () {
+    require './views/home.php';
+});

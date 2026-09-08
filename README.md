@@ -64,6 +64,20 @@ ya funciona el guardar continuar con limitar los numeros en el input de phone, c
 para tenerlo como un estandar y continuar con la validacion al momento de guardar que no se pueda si la fecha y el horario ya
 existen
 
+instalacion de datatables:
+npm install datatables.net datatables.net-dt
+
+y de igual forma se agrego esto al archivo home.php:
+<link rel="stylesheet" href="/node_modules/datatables.net-dt/css/dataTables.dataTables.min.css">
+
+<script src="/node_modules/datatables.net/js/dataTables.min.js"></script>
+
+pero no es recomendado poner la ruta del nodemodules, entonces mejor buscar esos archivos y moverlos a la carpeta de public css y js segun corresponda
+
+para de esta forma ahora si poner:
+<link rel="stylesheet" href="/public/css/dataTables.dataTables.min.css">
+<script src="/public/js/dataTables.min.js"></script>
+
 /*
 
 Base de datos

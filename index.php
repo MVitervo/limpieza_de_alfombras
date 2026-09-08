@@ -3,6 +3,7 @@ require './core/router.php';
 require './core/container.php';
 require './services/schedules_appointment_service.php';
 require './services/login_service.php';
+require './services/list_register_service.php';
 require './controllers/schedules_appointment_controller.php';
 require './controllers/login_controlller.php';
 

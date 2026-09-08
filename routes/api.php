@@ -33,5 +33,10 @@ $router->get('/api/login', [
     'singIn'
 ]);
 
+$router->get('/api/listRegister', [
+    listRegisterController::class,
+    'listRegister'
+]);
+
 
 ?>

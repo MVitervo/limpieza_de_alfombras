@@ -7,8 +7,9 @@ class Appointment {
     public string $phone;
     public string $date;
     public string $schedule;
+    public string $lastEditBy;
 
-    public function __construct($name = "", $lastname = "", $email = "", $phone = "", $date = '', $schedule= "")
+    public function __construct($name = "", $lastname = "", $email = "", $phone = "", $date = '', $schedule= "", $lastEditBy = "")
     {
         $this->name = $name;
         $this->lastname = $lastname;
@@ -16,6 +17,7 @@ class Appointment {
         $this->phone = $phone;
         $this->date = $date;
         $this->schedule = $schedule;
+        $this->lastEditBy = $lastEditBy;
     }
 }
 
