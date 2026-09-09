@@ -1,5 +1,5 @@
-<div class="containerTable">
-    <table class="appoinmentTable">
+<div class="containerTable w-10/12 mx-auto">
+    <table class="appoinmentTable w-full">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -9,6 +9,7 @@
                 <th>Fecha</th>
                 <th>Horario</th>
                 <th>Ultima fecha de modificacion</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,8 @@
     $(function() {
         loadRegister();
     });
+
+    document.querySelector('#contentButtonTheme').style.display = 'none';
 
     function loadRegister() {
         $('.appoinmentTable').DataTable({
@@ -89,10 +92,16 @@
                     data: 'phone'
                 },
                 {
-                    data: 'date'
+                    data: 'date',
+                    width: '10%'
                 },
                 {
-                    data: 'schedule'
+                    data: 'schedule',
+                    render: function(data, type, row) {
+                        return `<div class="whitespace-normal">
+                            ${data}
+                        </div>`;
+                    }
                 },
                 {
                     data: 'lastEditDt',
@@ -103,6 +112,9 @@
                     //         </div>
                     //     `;
                     // }
+                },
+                {
+                    data: 'options'
                 }
             ],
             // order: [[0, 'desc']],
@@ -118,5 +130,15 @@
                 // $('.registrosDataTables').eq(0).css('display', ''); // remueve el display: flex solo de la primera fila
             }
         });
+    }
+
+    function editRegister(id) {
+        alert('editar registro ' + id)
+        // continuar
+    }
+
+    function deleteRegister(id) {
+        alert('eliminar registro ' + id)
+        // continuar
     }
 </script>
