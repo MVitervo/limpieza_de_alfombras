@@ -11,8 +11,6 @@
 // $function = $_GET['function'] ?? '';
 // $date = $_GET['date'] ?? '';
 
-require './models/appointment_model.php';
-
 // implementacion de factory
 class AppointmentFactory
 {

@@ -1,28 +1,43 @@
-<div class="containerTable w-10/12 mx-auto">
-    <table class="appoinmentTable w-full">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Fecha</th>
-                <th>Horario</th>
-                <th>Ultima fecha de modificacion</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+<div class="rounded-lg border border-gray-200 bg-white shadow-sm
+        dark:border-gray-700 dark:bg-gray-900">
+
+    <div class="border-b border-gray-200 px-4 py-3 font-semibold
+            dark:border-gray-700 dark:text-white
+            w-10/12 mx-auto">
+        <h2>Lista de registros</h2>
+    </div>
+
+    <div class="p-4">
+        <div class="containerTable w-10/12 mx-auto">
+            <table class="appoinmentTable w-full">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Fecha</th>
+                        <th>Horario</th>
+                        <th>Ultima fecha de modificacion</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
+
+
 
 <script>
     $(function() {
         loadRegister();
     });
 
-    document.querySelector('#contentButtonTheme').style.display = 'none';
+    document.querySelector('#contentButtonTheme').style.display = 'block';
 
     function loadRegister() {
         $('.appoinmentTable').DataTable({
@@ -78,8 +93,7 @@
                 dataSrc: 'data' // Indica que los datos están en la raíz del JSON
             },
             // los valores que recibira data estan pendientes de la tabla en la bd
-            columns: [
-                {
+            columns: [{
                     data: 'name'
                 },
                 {
@@ -138,7 +152,26 @@
     }
 
     function deleteRegister(id) {
-        alert('eliminar registro ' + id)
+        // alert('eliminar registro ' + id)
         // continuar
+        // /api/deleteRegister
+        $.ajax({
+            method: 'POST',
+            url: '/api/deleteRegister',
+            data: id,
+            success: function(response) {
+                debugger;
+                if (response.status === 'success') {
+                    modalSuccess(response.message);
+                }
+                else {
+                    modalSuccess(response.message);
+                }
+            },
+            error: function (error) {
+                debugger;
+                modalSuccess(error.message);
+            }
+        });
     }
 </script>

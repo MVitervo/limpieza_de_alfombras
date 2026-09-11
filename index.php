@@ -8,6 +8,8 @@ require './controllers/schedules_appointment_controller.php';
 require './controllers/login_controlller.php';
 require './controllers/list_register_controller.php';
 
+require './models/appointment_model.php';
+
 $container = new Container();
 
 $container->set(PDO::class, function () {

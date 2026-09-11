@@ -66,4 +66,39 @@ class ListRegisterService
             return ['status' => false, 'message' => $e->getMessage()];
         }
     }
+
+    public function deleteRegister(int $id)
+    {
+        var_dump($id);
+        return;
+        try {
+            $queryValidateRegister = "SELECT * FROM appointment WHERE Id = :id";
+
+            $stmtValidateRegister = $this->conn->prepare($queryValidateRegister);
+            $stmtValidateRegister->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmtValidateRegister->execute();
+
+            $resultValidateRegister = $stmtValidateRegister->fetch(PDO::FETCH_ASSOC);
+
+            // validar que no haya ningun resultado
+            if (!$resultValidateRegister) {
+                throw new Exception('Este registro ya fue eliminado favor de recargar la pagina');
+            }
+
+            $queryDeleteRegister = "DELETE TOP(1) FROM appointment WHERE Id = :id";
+
+            $stmtDeleteRegister = $this->conn->prepare($queryDeleteRegister);
+            $stmtDeleteRegister->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmtDeleteRegister->execute();
+
+            $this->conn->commit();
+
+            return [
+                'status' => 'success',
+                'message' => 'Registro eliminado correctamente'
+            ];
+        } catch (Exception $e) {
+            return ["status" => "error", "message" => $e];
+        }
+    }
 }

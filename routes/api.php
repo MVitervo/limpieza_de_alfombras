@@ -38,5 +38,10 @@ $router->get('/api/listRegister', [
     'listRegister'
 ]);
 
+$router->post('/api/deleteRegister', [
+    listRegisterController::class,
+    'deleteRegister'
+]);
+
 
 ?>
