@@ -69,9 +69,8 @@ class ListRegisterService
 
     public function deleteRegister(int $id)
     {
-        var_dump($id);
-        return;
         try {
+            $this->conn->beginTransaction();
             $queryValidateRegister = "SELECT * FROM appointment WHERE Id = :id";
 
             $stmtValidateRegister = $this->conn->prepare($queryValidateRegister);
@@ -81,7 +80,7 @@ class ListRegisterService
             $resultValidateRegister = $stmtValidateRegister->fetch(PDO::FETCH_ASSOC);
 
             // validar que no haya ningun resultado
-            if (!$resultValidateRegister) {
+            if (!$resultValidateRegister['Id']) {
                 throw new Exception('Este registro ya fue eliminado favor de recargar la pagina');
             }
 
@@ -97,6 +96,8 @@ class ListRegisterService
                 'status' => 'success',
                 'message' => 'Registro eliminado correctamente'
             ];
+        } catch (PDOException $e) {
+            return ["status" => "error", "message" => $e];
         } catch (Exception $e) {
             return ["status" => "error", "message" => $e];
         }

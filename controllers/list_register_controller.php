@@ -8,7 +8,7 @@ class AppointmentFactory2
     public function createFromRequest(array $data): Appointment
     {
         $appointment = new Appointment(); // esta es una instancia
-        $appointment->name = $data['id'] ?? ''; // esta es una asignacion
+        $appointment->id = $data['id'] ?? ''; // esta es una asignacion
 
         return $appointment;
     }

@@ -147,18 +147,19 @@
     }
 
     function editRegister(id) {
-        alert('editar registro ' + id)
-        // continuar
+        loadPage('/edit_register'); // ya muestra la vista
+        // continuar cargar los datos con un ajax
+        // solo como nota hay que revisar la parte del factory para solo manejar uno y tambien los botones 
+        // de hacia atras como en el login y en el editar registro
     }
 
     function deleteRegister(id) {
-        // alert('eliminar registro ' + id)
-        // continuar
-        // /api/deleteRegister
+        const idFormatter = `id=${id}`;
         $.ajax({
             method: 'POST',
             url: '/api/deleteRegister',
-            data: id,
+            data: idFormatter,
+            dataType: 'json',
             success: function(response) {
                 debugger;
                 if (response.status === 'success') {

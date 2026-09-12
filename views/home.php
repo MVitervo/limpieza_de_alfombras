@@ -85,6 +85,9 @@
             case "/list_register":
                 page = "/views/list_register.php";
                 break;
+            case "/edit_register":
+                page = "/views/edit_register.php";
+                break;
             default:
                 page = "/views/404.php";
         }
