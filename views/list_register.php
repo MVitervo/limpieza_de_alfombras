@@ -147,10 +147,9 @@
     }
 
     function editRegister(id) {
+        // window.id = id;
+        sessionStorage.setItem('editRegisterId', id);
         loadPage('/edit_register'); // ya muestra la vista
-        // continuar cargar los datos con un ajax
-        // solo como nota hay que revisar la parte del factory para solo manejar uno y tambien los botones 
-        // de hacia atras como en el login y en el editar registro
     }
 
     function deleteRegister(id) {

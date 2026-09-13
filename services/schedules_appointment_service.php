@@ -35,7 +35,7 @@ class SchedulesService
             ];
         } catch (PDOException $e) {
             $this->conn->rollBack();
-            return ['status' => false, 'message' => "Error de base de datos " . $e->getMessage()];
+            return ['status' => false, 'message' => $e->getMessage()];
         }
         // como se esta usando una inyeccion de dependencias no es necesario destruir la conexion, pero php liberara
         // automaticamente al terminar la peticion

@@ -67,6 +67,41 @@ class ListRegisterService
         }
     }
 
+    public function getInformation(int $id)
+    {
+        $this->conn->beginTransaction();
+        $resultInformation = array();
+        try {
+            $queryInformation = "SELECT
+                                Id AS [id]
+                                ,Name AS [name]
+                                ,Lastname AS [lastname]
+                                ,Email AS [email]
+                                ,Phone AS [phone]
+                                ,Date AS [date]
+                                ,Schedule AS [schedule]
+                                ,LastEditDt AS [lastEditDt]
+                                FROM appointment
+                                WHERE Id = :id";
+
+            $stmtInformation = $this->conn->prepare($queryInformation);
+            $stmtInformation->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmtInformation->execute();
+
+            $resultInformation = $stmtInformation->fetch(PDO::FETCH_ASSOC);
+
+            $this->conn->commit();
+
+            return [
+                'status' => 'success',
+                'data' => $resultInformation
+            ];
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return ['status' => false, 'message' => $e->getMessage()];
+        }
+    }
+
     public function deleteRegister(int $id)
     {
         try {

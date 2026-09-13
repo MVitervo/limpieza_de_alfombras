@@ -109,9 +109,69 @@
                             dark:text-white
                             dark:focus:border-indigo-400
                             dark:focus:ring-indigo-400
-                        " name="schedule" required>
+                        " name="schedule" id="expectHour" required>
                 <option value=""></option>
             </select>
         </div>
     </div>
 </div>
+
+<script>
+    $(function() {
+        // findAppointments();
+        $('.expectHour').select2({
+            theme: 'bootstrap-5',
+            placeholder: 'first select a date',
+            width: '100%'
+        });
+    });
+
+    // cuando seleccione una fecha entonces buscara los horarios disponibles de esa fecha en especifico
+    document.querySelector('#expectDate').addEventListener('change', function() {
+        loadSchedules();
+    });
+
+    async function loadSchedules() {
+        // esta funcion debera de mandarse a llamar cuando se seleccione una fecha antes no para no consumir recursos
+        const schedules = await $.ajax({
+            method: 'GET',
+            url: '/api/schedules',
+            dataType: 'json',
+        });
+
+        if (schedules.status === 'success') {
+            // const schedules = response.data;
+            $('.expectHour').empty();
+            $('.expectHour').append('<option value=""></option>')
+            const fieldSchedules = $('.expectHour');
+            schedules.data.forEach(element => {
+                fieldSchedules.append(`<option value='${element.Schedule}'>${element.Schedule}</option>`);
+            });
+        } else {
+            modalError(schedules.message);
+        }
+        /*
+        $.ajax({
+            method: 'GET',
+            url: '/api/schedules',
+            data: {
+                // date: document.querySelector('#expectDate').value
+            },
+            dataType: 'json',
+            success: function(response) {
+                debugger;
+                const schedules = response.data;
+                $('.expectHour').empty();
+                $('.expectHour').append('<option value=""></option>')
+                const fieldSchedules = $('.expectHour');
+                schedules.forEach(element => {
+                    fieldSchedules.append(`<option value='${element.Schedule}'>${element.Schedule}</option>`);
+                });
+            },
+            error: function(response) {
+                document.querySelector('.dialogErrorDatabaseButton').click();
+            }
+        });
+        */
+    }
+</script>

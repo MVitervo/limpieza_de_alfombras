@@ -38,6 +38,14 @@ class listRegisterController {
             $this->listRegister->deleteRegister($appointment->id)
         );
     }
+
+    public function getInformation() {
+        $appointment = $this->appointmentFactory->createFromRequest($_GET);
+
+        echo json_encode(
+            $this->listRegister->getInformation($appointment->id)
+        );
+    }
 }
 
 ?>

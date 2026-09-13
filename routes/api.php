@@ -38,6 +38,11 @@ $router->get('/api/listRegister', [
     'listRegister'
 ]);
 
+$router->get('/api/getInformation', [
+    listRegisterController::class,
+    'getInformation'
+]);
+
 $router->post('/api/deleteRegister', [
     listRegisterController::class,
     'deleteRegister'

@@ -69,6 +69,9 @@
 
 
 <script>
+    // Variables globales || BEGIN
+    window.id = 0;
+    // Variables globales || END
     $(function() {
         loadPage(location.pathname, false);
     });

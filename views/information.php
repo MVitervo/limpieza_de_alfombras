@@ -64,17 +64,14 @@
 
     $(function() {
         // findAppointments();
+        /*
         $('.expectHour').select2({
             theme: 'bootstrap-5',
             placeholder: 'first select a date',
             width: '100%'
         });
+        */
         document.querySelector('#contentButtonTheme').style.display = 'block';
-    });
-
-    // cuando seleccione una fecha entonces buscara los horarios disponibles de esa fecha en especifico
-    document.querySelector('#expectDate').addEventListener('change', function() {
-        loadSchedules();
     });
 
     function findAppointments() {
@@ -87,29 +84,6 @@
             },
             error: function(response) {
 
-            }
-        });
-    }
-
-    function loadSchedules() {
-        // esta funcion debera de mandarse a llamar cuando se seleccione una fecha antes no para no consumir recursos
-        $.ajax({
-            method: 'GET',
-            url: '/api/schedules',
-            data: {
-                // date: document.querySelector('#expectDate').value
-            },
-            dataType: 'json',
-            success: function(response) {
-                const schedules = response.data;
-                $('.expectHour').html();
-                const fieldSchedules = $('.expectHour');
-                schedules.forEach(element => {
-                    fieldSchedules.append(`<option value='${element.Schedule}'>${element.Schedule}</option>`);
-                });
-            },
-            error: function(response) {
-                document.querySelector('.dialogErrorDatabaseButton').click();
             }
         });
     }

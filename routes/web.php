@@ -14,3 +14,7 @@ $router->get('/login', function () {
 $router->get('/list_register', function () {
     require './views/home.php';
 });
+
+$router->get('/edit_register', function () {
+    require './views/home.php';
+});
