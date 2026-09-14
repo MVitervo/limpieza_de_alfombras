@@ -10,6 +10,8 @@ require './controllers/list_register_controller.php';
 
 require './models/appointment_model.php';
 
+require './factory/appoinment_factory.php';
+
 $container = new Container();
 
 $container->set(PDO::class, function () {

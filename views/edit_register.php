@@ -1,6 +1,7 @@
 <form class="px-4" id="editAppointmentForm">
     <div class="w-full md:w-1/2 mx-auto">
-        <?php require __DIR__ . '/form.php'?>
+        <input type="number" id="id" autocomplete="off" name="id" style="display: none;" />
+        <?php require __DIR__ . '/form.php' ?>
         <!-- <div class="grid grid-cols-1 gap-6 relative">
             <div id="calendar"></div>
         </div> -->
@@ -33,6 +34,7 @@
         });
 
         if (information.status === 'success') {
+            document.querySelector('#id').value = information.data.id;
             document.querySelector('#first_name').value = information.data.name;
             document.querySelector('#lastname').value = information.data.lastname;
             document.querySelector('#email').value = information.data.email;
@@ -40,10 +42,36 @@
             document.querySelector('#expectDate').value = information.data.date;
             await loadSchedules(); // sirve para disparar el evento de los horarios y asi poder asignar el valor con la instruccion de abajo
             $('#expectHour').val(information.data.schedule).trigger('change');
-        }
-        else {
+        } else {
             modalError(information.message);
         }
-        
     }
+
+    var form = document.querySelector('#editAppointmentForm');
+
+    form.addEventListener('submit', function(event) {
+
+        event.preventDefault(); // evita que la pagina recargue
+
+        const appointment = $('#editAppointmentForm').serialize(); // toma todos los valores de los campos
+        debugger;
+
+        $.ajax({
+            method: 'POST',
+            url: '/api/editRegister',
+            data: appointment,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    modalSuccess(response.message);
+                } else {
+                    modalError(response.message);
+                }
+            },
+            error: function(response) {
+                modalError(response.message);
+            }
+        });
+
+    });
 </script>

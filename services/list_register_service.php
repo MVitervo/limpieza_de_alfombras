@@ -102,6 +102,61 @@ class ListRegisterService
         }
     }
 
+    public function editRegister(Appointment $appointment)
+    {
+        try {
+            $this->conn->beginTransaction();
+
+            // validar que la fecha y horario esten disponibles
+            $queryValidateAvailability = "SELECT * FROM appointment WHERE Date = :date AND Schedule = :schedule AND Id != :id";
+
+            $stmtValidateAvailability = $this->conn->prepare($queryValidateAvailability);
+            $stmtValidateAvailability->bindParam(':date', $appointment->date, PDO::PARAM_STR);
+            $stmtValidateAvailability->bindParam(':schedule', $appointment->schedule, PDO::PARAM_STR);
+            $stmtValidateAvailability->bindValue(':id', $appointment->id, PDO::PARAM_INT);
+            $stmtValidateAvailability->execute();
+
+            $resultValidateAvailability = $stmtValidateAvailability->fetch(PDO::FETCH_ASSOC);
+
+            // validar que si ya esta ocupada esta fecha entonces no es posible reagendarla con estos datos
+            if ($resultValidateAvailability) {
+                throw new Exception('Este fecha y horario ya estan ocupados');
+            }
+
+            $queryEditRegister = "UPDATE TOP (1) appointment 
+                                SET Name = :name
+                                ,Lastname = :lastname
+                                ,Email = :email
+                                ,Phone = :phone
+                                ,Date = :date
+                                ,Schedule = :schedule
+                                ,LastEditDt = GETDATE()
+                                WHERE Id = :id";
+
+            $stmtEditRegister = $this->conn->prepare($queryEditRegister);
+            $stmtEditRegister->bindParam(':name', $appointment->name, PDO::PARAM_STR);
+            $stmtEditRegister->bindParam(':lastname', $appointment->lastname, PDO::PARAM_STR);
+            $stmtEditRegister->bindParam(':email', $appointment->email, PDO::PARAM_STR);
+            $stmtEditRegister->bindParam(':phone', $appointment->phone, PDO::PARAM_STR);
+            $stmtEditRegister->bindParam(':date', $appointment->date, PDO::PARAM_STR);
+            $stmtEditRegister->bindParam(':schedule', $appointment->schedule, PDO::PARAM_STR);
+            $stmtEditRegister->bindValue(':id', $appointment->id, PDO::PARAM_INT);
+            $stmtEditRegister->execute();
+
+            $this->conn->commit();
+
+            return [
+                'status' => 'success',
+                'message' => 'Registro actualizado correctamente'
+            ];
+
+        } catch (Exception $e) {
+            return ["status" => "error", "message" => $e->getMessage()];
+        } catch (PDOException $e) {
+            return ["status" => "error", "message" => $e->getMessage()];
+        }
+    }
+
     public function deleteRegister(int $id)
     {
         try {
