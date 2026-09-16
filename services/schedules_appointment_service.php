@@ -47,6 +47,7 @@ class SchedulesService
     public function saveAppointment(Appointment $appointment) // el modelo de Appointment ya existe en el controlador, por lo tanto, ya lo conoce
     {
         try {
+            $this->conn->beginTransaction();
             // falta la validacion de que no este ocupado esta fecha con el horario para que no haya repetidos
             $queryValidationAppointment = 'SELECT * FROM appointment WHERE Date = :date AND Schedule = :Schedule';
 

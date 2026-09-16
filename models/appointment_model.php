@@ -1,7 +1,7 @@
 <?php
 
 class Appointment {
-    public int $id;
+    public ?int $id = null;
     public string $name;
     public string $lastname;
     public string $email;

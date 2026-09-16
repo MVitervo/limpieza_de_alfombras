@@ -1,5 +1,19 @@
 <div class="rounded-lg border border-gray-200 bg-white shadow-sm
         dark:border-gray-700 dark:bg-gray-900">
+    <div class="w-10/12 mx-auto">
+        <button onclick="loadPage('/add_register')" class="py-2 px-4 mt-2
+            bg-white-500/10 text-black
+            dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
+            ">
+            Agregar
+        </button>
+        <button class="py-2 px-4 mt-2
+            bg-white-500/10 text-black
+            dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
+            ">
+            Editar horarios
+        </button>
+    </div>
 
     <div class="border-b border-gray-200 px-4 py-3 font-semibold
             dark:border-gray-700 dark:text-white
@@ -163,12 +177,11 @@
                 debugger;
                 if (response.status === 'success') {
                     modalSuccess(response.message);
-                }
-                else {
+                } else {
                     modalSuccess(response.message);
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 debugger;
                 modalSuccess(error.message);
             }

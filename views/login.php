@@ -33,7 +33,7 @@
                         dark:text-white
                         dark:border-gray-600
                         dark:placeholder-gray-400
-                    " type="text" id="password" autocomplete="off" name="password" required />
+                    " type="password" id="password" autocomplete="off" name="password" required />
             </div>
 
         </div>
