@@ -95,20 +95,19 @@ class SchedulesService
             // $resultSaveAppointment = $stmtSaveAppointment->fetch(PDO::FETCH_ASSOC); // esta linea aplica solo los SELECT
 
             if ($stmtSaveAppointment->execute()) {
+                $this->conn->commit();
                 return [
                     'status' => 'success',
                     'message' => 'Cita agendada con exito!'
                 ];
             }
 
-            $this->conn->commit();
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return ['status' => 'error', 'message' => "Error de base de datos " . $e->getMessage()];
         } catch (Exception $e) {
             // $this->conn->rollBack();
-            return ['status' => false, 'message' => $e->getMessage()];
-        }
-        catch (PDOException $e) {
-            $this->conn->rollBack();
-            return ['status' => false, 'message' => "Error de base de datos " . $e->getMessage()];
+            return ['status' => 'error', 'message' => $e->getMessage()];
         }
     }
 }

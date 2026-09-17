@@ -36,7 +36,7 @@
             data: appointment,
             dataType: 'json',
             success: function(response) {
-                if (response.status) {
+                if (response.status === 'success') {
                     modalSuccess(response.message);
                 } else {
                     modalError(
@@ -45,7 +45,7 @@
                 }
             },
             error: function(response) {
-                modalError('Error en la base de datos');
+                modalError(response.message);
             }
         });
 

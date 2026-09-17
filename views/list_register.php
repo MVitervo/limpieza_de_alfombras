@@ -7,7 +7,7 @@
             ">
             Agregar
         </button>
-        <button class="py-2 px-4 mt-2
+        <button onclick="loadPage('/modify_dates_schedules')" class="py-2 px-4 mt-2
             bg-white-500/10 text-black
             dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
             ">

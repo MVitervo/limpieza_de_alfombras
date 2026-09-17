@@ -22,3 +22,7 @@ $router->get('/edit_register', function () {
 $router->get('/add_register', function () {
     require './views/home.php';
 });
+
+$router->get('/modify_dates_schedules', function () {
+    require './views/home.php';
+});

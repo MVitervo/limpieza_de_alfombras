@@ -94,6 +94,9 @@
             case "/add_register":
                 page = "/views/add_register.php";
                 break;
+            case "/modify_dates_schedules":
+                page = "/views/modify_dates_schedules.php";
+                break;
             default:
                 page = "/views/404.php";
         }
