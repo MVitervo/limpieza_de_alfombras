@@ -44,9 +44,19 @@
 <body class="bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
     <div id="contentButtonTheme" class="w-full md:w-1/2 mx-auto px-4">
-        <div class="grid grid-cols-1 gap-6 mb-3">
+        <div class="relative w-full mx-auto px-4 gap-4">
+            <button class="btnBack absolute left-1 top-1/2 -translate-y-1/2">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="size-6">
+                    <path fill-rule="evenodd"
+                        d="M9.53 2.47a.75.75 0 0 1 0 1.06L4.81 8.25H15a6.75 6.75 0 0 1 0 13.5h-3a.75.75 0 0 1 0-1.5h3a5.25 5.25 0 1 0 0-10.5H4.81l4.72 4.72a.75.75 0 1 1-1.06 1.06l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.06 0Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
             <!-- Cambio de tema -->
-            <button id="toggle-theme" class="px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
+            <button id="toggle-theme" class="w-full md:w-3/5 mx-auto px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
                 🌙
             </button>
         </div>
