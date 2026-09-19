@@ -44,9 +44,8 @@
 
 </div>
 
-
-
 <script>
+
     $(function() {
         loadRegister();
     });

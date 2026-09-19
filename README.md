@@ -75,6 +75,8 @@ para de esta forma ahora si poner:
 <link rel="stylesheet" href="/public/css/dataTables.dataTables.min.css">
 <script src="/public/js/dataTables.min.js"></script>
 
+
+continuar: debo de poner un aviso de confirmacion antes de eliminar un registro
 /*
 
 Base de datos

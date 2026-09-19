@@ -125,6 +125,10 @@
         loadPage(location.pathname, false);
     });
 
+    document.querySelector('.btnBack').addEventListener('click', function() {
+        history.back();
+    });
+
     const themeButton = document.getElementById('toggle-theme');
     const html = document.documentElement;
 

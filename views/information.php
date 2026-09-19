@@ -55,6 +55,8 @@
         loadPage(route);
     });
 
+    document.querySelector('.btnBack').style.display = 'none';
+
     $(function() {
         // findAppointments();
         /*

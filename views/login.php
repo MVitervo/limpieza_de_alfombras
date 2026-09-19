@@ -49,7 +49,9 @@
 </form>
 
 <script>
-    document.querySelector('#contentButtonTheme').style.display = 'none';
+    // document.querySelector('.btnBack').style.display = 'block';
+    // sdocument.querySelector('#contentButtonTheme').style.display = 'none';
+    document.querySelector('.btnBack').style.display = 'block';
 
     var formLogin = document.querySelector('#loginForm');
 
