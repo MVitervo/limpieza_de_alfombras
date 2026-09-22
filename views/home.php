@@ -83,10 +83,12 @@
     window.id = 0;
     // Variables globales || END
     $(function() {
-        loadPage(location.pathname, false);
+        loadPage(location.pathname);
     });
 
-    function loadPage(route, updateUrl = true) {
+    const NAVIGATION_EVENT= 'pushstate';
+
+    function loadPage(route) {
         let page = "";
         switch (route) {
             case "/":
@@ -114,19 +116,17 @@
         $.get(page, function(response) {
             $("#renderPage").html(response);
 
-            if (updateUrl) {
-                history.pushState({}, "", route);
-            }
         });
 
     }
 
-    window.addEventListener("popstate", function() {
-        loadPage(location.pathname, false);
-    });
 
     document.querySelector('.btnBack').addEventListener('click', function() {
-        history.back();
+        // history.back();
+
+        window.history.pushState({}, '', route);
+        const navigationEvent = new Event(NAVIGATION_EVENT);
+        window.dispatchEvent(navigationEvent);
     });
 
     const themeButton = document.getElementById('toggle-theme');
