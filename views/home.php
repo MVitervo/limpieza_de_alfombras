@@ -45,16 +45,6 @@
 
     <div id="contentButtonTheme" class="w-full md:w-1/2 mx-auto px-4">
         <div class="relative w-full mx-auto px-4 gap-4">
-            <button class="btnBack absolute left-1 top-1/2 -translate-y-1/2">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    class="size-6">
-                    <path fill-rule="evenodd"
-                        d="M9.53 2.47a.75.75 0 0 1 0 1.06L4.81 8.25H15a6.75 6.75 0 0 1 0 13.5h-3a.75.75 0 0 1 0-1.5h3a5.25 5.25 0 1 0 0-10.5H4.81l4.72 4.72a.75.75 0 1 1-1.06 1.06l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.06 0Z"
-                        clip-rule="evenodd" />
-                </svg>
-            </button>
             <!-- Cambio de tema -->
             <button id="toggle-theme" class="w-full md:w-3/5 mx-auto px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
                 🌙
@@ -86,8 +76,11 @@
         loadPage(location.pathname);
     });
 
-    const NAVIGATION_EVENT= 'pushstate';
+    /* 
 
+    const EVENT_PUSH = 'pushstate';
+    const EVENT_POP = 'popstate';
+    
     function loadPage(route) {
         let page = "";
         switch (route) {
@@ -118,15 +111,83 @@
 
         });
 
+
+        window.history.pushState({}, '', route);
+        const navigationEvent = new Event(EVENT_PUSH);
+        window.dispatchEvent(navigationEvent);
+
     }
+
+    */
+    const NAVIGATION_EVENT = 'navigation';
+
+    let currentPath = window.location.pathname;
+
+    function loadPage(route) {
+
+        history.pushState({}, '', route);
+
+        window.dispatchEvent(
+            new Event(NAVIGATION_EVENT)
+        );
+    }
+
+    function onLocationChange() {
+
+        currentPath = window.location.pathname;
+
+        renderPage(currentPath);
+    }
+
+    function renderPage(route) {
+
+        let page = "";
+
+        switch (route) {
+            case "/":
+                page = "/views/information.php";
+                break;
+
+            case "/login":
+                page = "/views/login.php";
+                break;
+
+            case "/list_register":
+                page = "/views/list_register.php";
+                break;
+
+            case "/edit_register":
+                page = "/views/edit_register.php";
+                break;
+
+            case "/add_register":
+                page = "/views/add_register.php";
+                break;
+
+            case "/modify_dates_schedules":
+                page = "/views/modify_dates_schedules.php";
+                break;
+
+            default:
+                page = "/views/404.php";
+        }
+
+        $.get(page, function(response) {
+            $("#renderPage").html(response);
+        });
+    }
+
+    window.addEventListener(NAVIGATION_EVENT, onLocationChange);
+
+    window.addEventListener('popstate', onLocationChange);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        onLocationChange();
+    });
 
 
     document.querySelector('.btnBack').addEventListener('click', function() {
-        // history.back();
-
-        window.history.pushState({}, '', route);
-        const navigationEvent = new Event(NAVIGATION_EVENT);
-        window.dispatchEvent(navigationEvent);
+        history.back();
     });
 
     const themeButton = document.getElementById('toggle-theme');
