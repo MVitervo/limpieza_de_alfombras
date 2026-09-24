@@ -35,6 +35,7 @@
     <script src="/public/js/select2.min.js"></script>
 
     <script src="/public/js/dataTables.min.js"></script>
+    <script src="/public/js/flatpickr.min.js"></script>
 
     <script src="/views/modal_error.js"></script>
     <script src="/views/modal_success.js"></script>

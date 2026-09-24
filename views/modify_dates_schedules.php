@@ -8,3 +8,17 @@
             clip-rule="evenodd" />
     </svg>
 </button>
+
+<div>
+    <input type="date" id="dateManagement" />
+</div>
+    
+<script>
+    flatpickr("#dateManagement", {
+        disable: [
+            function(date) {
+                return date.getDay() !== 0 && date.getDay() !== 6;
+            }
+        ]
+    });
+</script>

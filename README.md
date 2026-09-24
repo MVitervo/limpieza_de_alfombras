@@ -75,6 +75,8 @@ para de esta forma ahora si poner:
 <link rel="stylesheet" href="/public/css/dataTables.dataTables.min.css">
 <script src="/public/js/dataTables.min.js"></script>
 
+instalacion de datepickr:
+npm install flatpickr
 
 continuar: debo de poner un aviso de confirmacion antes de eliminar un registro
 /*
@@ -123,6 +125,14 @@ deshabilitados
 
 nota: algo que tengo pensado para deshabilitar el dia es que por cada dis haya cierto numeros de citas y una vez alcado
 ese numero entonces ya podre deshabilitar ese dia
+
+CREATE TABLE calendar_exceptions (
+    Id INT IDENTITY(1,1),
+    Date DATE,
+    Status VARCHAR(20),
+    LastEditBy VARCHAR(100),
+	 LastEditDt DATETIME
+);
 
 */
 
