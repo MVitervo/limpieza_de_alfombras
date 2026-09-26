@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/public/css/select2-bootstrap-5-theme.min.css">
     <link rel="stylesheet" href="/public/css/especificSelect2.css">
     <link rel="stylesheet" href="/public/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="/public/css/flatpickr.min.css">
     <script src="/public/js/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="/public/css/bootstrap.min.css"> -->
     <script src="/public/js/bootstrap.bundle.min.js"></script>
@@ -186,10 +187,11 @@
         onLocationChange();
     });
 
-
-    document.querySelector('.btnBack').addEventListener('click', function() {
-        history.back();
-    });
+    if (document.querySelector('.btnBack')) {
+        document.querySelector('.btnBack').addEventListener('click', function() {
+            history.back();
+        });
+    }
 
     const themeButton = document.getElementById('toggle-theme');
     const html = document.documentElement;

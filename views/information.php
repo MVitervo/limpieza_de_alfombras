@@ -91,6 +91,8 @@
 
         const appointment = $('#appointmentForm').serialize(); // toma todos los valores de los campos
 
+        debugger;
+
         // retroalimentacion ya busque y me quedare siemopre con esta forma de manera estandar si por alguna razon los nombres de los campos del formulario
         // con diferentes a los del modelo entonces los voy a mappear directamente en el contrador
 
@@ -100,16 +102,16 @@
             data: appointment,
             dataType: 'json',
             success: function(response) {
-                if (response.status) {
-                    modalSuccess('Cita agendada con exito');
+                if (response.status === 'success') {
+                    modalSuccess(response.message);
                 } else {
                     modalError(
-                        'Alguien más acaba de agendar, favor de recargar la página y volver a agendar'
+                        response.message
                     );
                 }
             },
             error: function(response) {
-                modalError('Error en la base de datos');
+                modalError(response);
             }
         });
 
