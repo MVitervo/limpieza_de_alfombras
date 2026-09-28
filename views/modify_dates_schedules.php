@@ -16,15 +16,26 @@
             Seleccione la fecha para habilitarla o deshabilitarla
         </label>
 
-        <input
-            type="date"
-            id="expectDate"
-            class="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm text-gray-900 shadow-sm
-                focus:border-blue-500 focus:ring-2 focus:ring-blue-500
-                dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:focus:border-blue-400" name="date" required>
+        <input class="dateAvailable
+            w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500
+            bg-white
+
+            dark:bg-gray-800
+            dark:text-white
+            dark:border-gray-600
+            dark:placeholder-gray-400"
+            type="date" id="dateAvailable" name="date" required />
     </div>
 </div>
 
 <script>
-    
+    flatpickr(".dateAvailable", {
+        dateFormat: "Y/m/d",
+
+        // disable: [
+        //     function(date) {
+        //         return date.getDay() !== 0 && date.getDay() !== 6;
+        //     }
+        // ]
+    });
 </script>
