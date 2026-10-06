@@ -26,6 +26,36 @@
             dark:placeholder-gray-400"
             type="date" id="dateAvailable" name="date" required />
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mb-3">
+        <label for="expectDate"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            Estatus
+        </label>
+
+        <select
+            class="statusDate
+                            w-full
+                            rounded-lg
+                            border border-gray-300
+                            bg-white
+                            px-4 py-2
+                            text-sm text-gray-900
+                            shadow-sm
+                            focus:border-indigo-500
+                            focus:outline-none
+                            focus:ring-2
+                            focus:ring-indigo-500
+
+                            dark:bg-gray-800
+                            dark:border-gray-600
+                            dark:text-white
+                            dark:focus:border-indigo-400
+                            dark:focus:ring-indigo-400
+                        " name="statusDate" id="statusDate" required>
+            <option value="1">Habilitado</option>
+            <option value="0">Deshabilitado</option>
+    </div>
 </div>
 
 <script>

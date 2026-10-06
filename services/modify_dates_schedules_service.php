@@ -1,5 +1,5 @@
 <?php
-class ListRegisterService
+class ModifyDatesSchedulesService
 {
     private PDO $conn;
 

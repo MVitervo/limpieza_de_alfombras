@@ -9,8 +9,10 @@ require './controllers/login_controlller.php';
 require './controllers/list_register_controller.php';
 
 require './models/appointment_model.php';
+require './models/modify_dates_schedules_model.php';
 
 require './factory/appoinment_factory.php';
+require './factory/modify_dates_schedules_factory.php';
 
 $container = new Container();
 
