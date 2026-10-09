@@ -45,8 +45,10 @@
 
 <body class="bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
-    <div id="contentButtonTheme" class="w-full md:w-1/2 mx-auto px-4">
-        <div class="relative w-full mx-auto px-4 gap-4">
+    <!-- <div id="contentButtonTheme" class="w-full md:w-1/2 mx-auto px-4"> -->
+    <div id="contentButtonTheme" class="relative flex items-center justify-between w-full px-4">
+        <!-- <div class="relative w-full mx-auto px-4 gap-4"> -->
+        <div class="btnToggleTheme w-full mx-auto px-4 gap-4">
             <!-- Cambio de tema -->
             <button id="toggle-theme" class="w-full md:w-3/5 mx-auto px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
                 🌙

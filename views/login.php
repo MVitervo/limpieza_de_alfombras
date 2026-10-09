@@ -1,4 +1,4 @@
-<button class="btnBack absolute left-1 top-1/2 -translate-y-1/2" onclick="loadPage('/')">
+<button class="btnBack" onclick="loadPage('/')">
     <svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
@@ -62,7 +62,13 @@
 <script>
     // document.querySelector('.btnBack').style.display = 'block';
     // sdocument.querySelector('#contentButtonTheme').style.display = 'none';
-    document.querySelector('.btnBack').style.display = 'block';
+
+    $(function() {
+        debugger;
+        document.querySelector('.btnBack').style.display = 'block';
+        document.querySelector('#contentButtonTheme').appendChild(document.querySelector('.btnBack'));
+        document.querySelector('#contentButtonTheme').appendChild(document.querySelector('.btnToggleTheme'));
+    });
 
     var formLogin = document.querySelector('#loginForm');
 
