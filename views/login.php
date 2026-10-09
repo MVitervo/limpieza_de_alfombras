@@ -62,13 +62,7 @@
 <script>
     // document.querySelector('.btnBack').style.display = 'block';
     // sdocument.querySelector('#contentButtonTheme').style.display = 'none';
-
-    $(function() {
-        debugger;
-        document.querySelector('.btnBack').style.display = 'block';
-        document.querySelector('#contentButtonTheme').appendChild(document.querySelector('.btnBack'));
-        document.querySelector('#contentButtonTheme').appendChild(document.querySelector('.btnToggleTheme'));
-    });
+    // document.querySelector('.btnBack').style.display = 'block';
 
     var formLogin = document.querySelector('#loginForm');
 

@@ -47,6 +47,7 @@
 
     <!-- <div id="contentButtonTheme" class="w-full md:w-1/2 mx-auto px-4"> -->
     <div id="contentButtonTheme" class="relative flex items-center justify-between w-full px-4">
+        <div class="btnBackContainer"></div>
         <!-- <div class="relative w-full mx-auto px-4 gap-4"> -->
         <div class="btnToggleTheme w-full mx-auto px-4 gap-4">
             <!-- Cambio de tema -->
