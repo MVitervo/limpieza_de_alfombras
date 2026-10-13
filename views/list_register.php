@@ -1,4 +1,4 @@
-<button class="btnBack absolute left-1 top-1/2 -translate-y-1/2" onclick="loadPage('/login')">
+<button class="btnBack2" onclick="loadPage('/login')">
     <svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
@@ -59,6 +59,7 @@
 
     $(function() {
         loadRegister();
+        document.querySelector(".btnBackContainer").innerHTML = document.querySelector('.btnBack2');
     });
 
     document.querySelector('#contentButtonTheme').style.display = 'block';
