@@ -157,6 +157,7 @@
     }
 
     function renderPage(route) {
+        debugger;
 
         let page = "";
 
