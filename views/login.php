@@ -53,9 +53,9 @@
     // document.querySelector('.btnBack').style.display = 'block';
     // sdocument.querySelector('#contentButtonTheme').style.display = 'none';
 
-    document.querySelector('.btnBack').addEventListener('click', function() {
-        loadPage('/');
-    });
+    // document.querySelector('.btnBack').addEventListener('click', function() {
+    //     loadPage('/');
+    // });
 
     var formLogin = document.querySelector('#loginForm');
 

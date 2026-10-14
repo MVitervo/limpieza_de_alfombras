@@ -66,7 +66,7 @@
             width: '100%'
         });
         */
-        document.querySelector('#contentButtonTheme').style.display = 'block';
+        // document.querySelector('#contentButtonTheme').style.display = 'block';
     });
 
     function findAppointments() {

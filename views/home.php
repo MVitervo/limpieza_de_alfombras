@@ -46,9 +46,9 @@
 <body class="bg-olive-100 text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
     <!-- <div id="contentButtonTheme" class="w-full md:w-1/2 mx-auto px-4"> -->
-    <div id="contentButtonTheme" class="relative flex items-center justify-between w-full px-4">
-        <div class="btnBackContainer">
-            <button class="btnBack">
+    <div class="w-full">
+        <div id="contentButtonTheme" class="flex">
+            <button class="btnBack mt-4">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
@@ -58,18 +58,24 @@
                         clip-rule="evenodd" />
                 </svg>
             </button>
-        </div>
-        <!-- <div class="relative w-full mx-auto px-4 gap-4"> -->
-        <div class="btnToggleTheme w-full mx-auto px-4 gap-4">
-            <!-- Cambio de tema -->
-            <button id="toggle-theme" class="w-full md:w-3/5 mx-auto px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
-                🌙
-            </button>
+            <!--
+            <div class="btnBackContainer">
+            </div>
+            -->
+            <!-- <div class="relative w-full mx-auto px-4 gap-4"> -->
+            <div class="btnToggleTheme w-full justify-center">
+                <button id="toggle-theme" class="w-full md:w-3/5 mx-auto px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
+                    🌙
+                </button>
+            </div>
         </div>
     </div>
 
+
     <main>
-        <div id="renderPage"></div>
+        <div id="renderPage">
+
+        </div>
     </main>
 
     <div class="modalError">
@@ -136,29 +142,22 @@
 
     */
     const NAVIGATION_EVENT = 'navigation';
-
     let currentPath = window.location.pathname;
 
     function loadPage(route) {
-
         history.pushState({}, '', route);
         onLocationChange();
-
         // window.dispatchEvent(
         //     new Event(NAVIGATION_EVENT)
         // );
     }
 
     function onLocationChange() {
-
         currentPath = window.location.pathname;
-
         renderPage(currentPath);
     }
 
     function renderPage(route) {
-        debugger;
-
         let page = "";
 
         switch (route) {
@@ -203,11 +202,25 @@
         onLocationChange();
     });
 
-    if (document.querySelector('.btnBack')) {
-        document.querySelector('.btnBack').addEventListener('click', function() {
-            history.back();
-        });
+    const previousRoutes = {
+        '/': '/',
+        '/login': '/',
+        '/list_register': '/login',
+        '/add_register': '/list_register',
+        '/edit_register': '/list_register',
+        '/modify_dates_schedules': '/list_register'
+    };
+
+    function goBack() {
+        const currentRoute = window.location.pathname;
+        const previousRoute = previousRoutes[currentRoute] ?? '/';
+
+        loadPage(previousRoute);
     }
+
+    document.querySelector('.btnBack').addEventListener('click', function() {
+        goBack();
+    });
 
     const themeButton = document.getElementById('toggle-theme');
     const html = document.documentElement;
