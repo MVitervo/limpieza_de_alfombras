@@ -53,5 +53,12 @@ $router->post('/api/deleteRegister', [
     'deleteRegister'
 ]);
 
+// MODIFY DATES SCHEDULES || BEGIN
+$router->post('/api/getDatesSchedules', [
+    ModifyDatesSchedulesController::class,
+    'getDates'
+]);
+// MODIFY DATES SCHEDULES || END
+
 
 ?>

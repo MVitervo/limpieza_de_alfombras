@@ -130,22 +130,41 @@
 
 </div>
 
+<link rel="stylesheet" href="/css/modify_dates_schedules.css">
+
 <script>
     flatpickr(".dateAvailable", {
         dateFormat: "Y/m/d",
 
+        // esta funcion por defecto pone de colores verdes a los fines de semana y en rojo todos los demas
+        onDayCreate: function(dObj, dStr, fp, dayElem) {
+
+            const dayOfWeek = dayElem.dateObj.getDay();
+
+            if (dayOfWeek === 0 || dayOfWeek === 6) {
+                // Sábado y domingo: verde
+                dayElem.classList.add("weekend-green");
+            } else {
+                // Lunes a viernes: rojo
+                dayElem.classList.add("weekday-red");
+            }
+        },
+
+        // llamada que hace la consulta a todas las excepciones
         onChange: function(selectedDates, dateStr, instance) {
             debugger;
             // continuar
             $.ajax({
                 method: "GET",
-                url: "/api/schedules",
+                url: "/api/getDatesSchedules",
                 dataType: "json",
                 success: function(response) {
+                    debugger;
                     console.log("Respuesta del servidor:", response);
                 },
 
                 error: function(xhr, status, error) {
+                    debugger;
                     console.error("Error en AJAX:", error);
                 }
             });

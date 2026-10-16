@@ -10,19 +10,24 @@ class ModifyDatesSchedulesService
 
     public function getDates()
     {
-        $this->conn->beginTransaction();
-        $queryGetDates = "SELECT * FROM calendar_exceptions";
+        try {
+            $this->conn->beginTransaction();
+            $queryGetDates = "SELECT * FROM calendar_exceptions";
 
-        $stmtGetDates = $this->conn->prepare($queryGetDates);
-        $stmtGetDates->execute();
+            $stmtGetDates = $this->conn->prepare($queryGetDates);
+            $stmtGetDates->execute();
 
-        $resultGetDates = $stmtGetDates->fetchAll(PDO::FETCH_ASSOC);
+            $resultGetDates = $stmtGetDates->fetchAll(PDO::FETCH_ASSOC);
 
-        $this->conn->commit();
+            $this->conn->commit();
 
-        return [
-            'status' => 'success',
-            'data' => $resultGetDates
-        ];
+            return [
+                'status' => 'success',
+                'data' => $resultGetDates
+            ];
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return ['status' => false, 'message' => $e->getMessage()];
+        }
     }
 }

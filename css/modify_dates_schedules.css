@@ -1,0 +1,13 @@
+/* Sábados y domingos */
+.flatpickr-day.weekend-green {
+    background-color: #49cf7a;
+    border-color: #16a34a;
+    color: white;
+}
+
+/* Lunes a viernes */
+.flatpickr-day.weekday-red {
+    background-color: #ca4040;
+    border-color: #dc2626;
+    color: white;
+}
