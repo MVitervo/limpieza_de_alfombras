@@ -128,10 +128,12 @@ ese numero entonces ya podre deshabilitar ese dia
 
 CREATE TABLE calendar_exceptions (
     Id INT IDENTITY(1,1),
-    Date DATE,
-    Status VARCHAR(20),
+    [Date] DATE,
+    StatusDate BIT,
+    [Hour] TIME,
+    StatusHour BIT,
     LastEditBy VARCHAR(100),
-	 LastEditDt DATETIME
+	LastEditDt DATETIME
 );
 
 */

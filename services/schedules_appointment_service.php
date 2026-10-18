@@ -44,7 +44,7 @@ class SchedulesService
         // }
     }
 
-    public function saveAppointment(Appointment $appointment) // el modelo de Appointment ya existe en el controlador, por lo tanto, ya lo conoce
+    public function saveAppointment(Appointment $appointment) // el modelo de Appointment ya existe en el index, por lo tanto, ya lo conoce
     {
         try {
             $this->conn->beginTransaction();

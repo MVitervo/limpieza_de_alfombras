@@ -30,4 +30,39 @@ class ModifyDatesSchedulesService
             return ['status' => false, 'message' => $e->getMessage()];
         }
     }
+
+    public function availableDisableDate(ModifyDatesSchedules $modifyDatesSchedules) // el modelo de ya existe en el controlador
+    {
+        try {
+            $this->conn->beginTransaction();
+
+            // primero se buscara si es que esa fecha ya existe
+            $queryValidateDate = "SELECT * FROM calendar_exceptions";
+
+            $stmtValidate = $this->conn->prepare($queryValidateDate);
+            $stmtValidate->execute();
+
+            $resultValidateDates = $stmtValidate->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($resultValidateDates['Date']) {
+                // si ya existe entonces se hara una actulizacion del registro
+                $queryupdateRegister = "UPDATE TOP (1) calendar_exceptions 
+                                        SET StatusDate = :StatusDate
+                                        WHERE Date = :date";
+
+                $stmtUpdateRegister = $this->conn->prepare($queryupdateRegister);
+                $stmtUpdateRegister->bindParam();
+                // continuar con el resto
+            } else {
+                // si no existe entonces se hara una insercion del registro
+                $queryInsertRegister = "INSERT INTO calendar_exceptions (
+                                        ) VALUES ()";
+            }
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return ['status' => false, 'message' => $e->getMessage()];
+        }
+    }
+
+    public function availableDisableHour() {}
 }

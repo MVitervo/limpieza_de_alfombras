@@ -59,13 +59,13 @@
 
     <form class="px-4 mt-4" id="modifyHourForm">
         <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mb-3">
-            <label for="selectHour"
+            <label for="hourAvailable"
                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                 Seleccione el horario
             </label>
 
             <select
-                class="selectHour
+                class="hourAvailable
                         w-full
                         rounded-lg
                         border border-gray-300
@@ -83,7 +83,7 @@
                         dark:text-white
                         dark:focus:border-indigo-400
                         dark:focus:ring-indigo-400
-                    " name="selectHour" id="selectHour" required>
+                    " name="hourAvailable" id="hourAvailable" required>
                 <option value=""></option>
             </select>
         </div>

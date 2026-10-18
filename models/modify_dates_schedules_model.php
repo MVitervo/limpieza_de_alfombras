@@ -2,14 +2,16 @@
 
 class ModifyDatesSchedules {
     public string $date;
+    public string $statusDate;
     public string $hour;
-    public string $status;
+    public string $statusHour;
 
-    public function __construct($date = "", $hour = "", $status = "")
+    public function __construct($date = "", $statusDate = "", $hour = "", $statusHour = "")
     {
         $this->date = $date;
+        $this->statusDate = $statusDate;
         $this->hour = $hour;
-        $this->status = $status;
+        $this->statusHour = $statusHour;
     }
 }
 
