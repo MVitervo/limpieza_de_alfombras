@@ -19,7 +19,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mb-3">
             <label for="expectDate"
-                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                class="block text-sm font-medium text-gray-900 dark:text-white">
                 Estatus
             </label>
 
@@ -49,7 +49,7 @@
         </div>
 
         <button type="submit"
-            class="w-full py-2 px-4
+            class="w-full py-2 px-4 mt-2
         bg-white-500/10 text-black
         dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
         ">
@@ -57,10 +57,10 @@
         </button>
     </form>
 
-    <form class="px-4" id="modifyHourForm">
+    <form class="px-4 mt-4" id="modifyHourForm">
         <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mb-3">
             <label for="selectHour"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                 Seleccione el horario
             </label>
 
@@ -90,7 +90,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mb-3">
             <label for="statusHour"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
                 Estatus
             </label>
 
@@ -120,7 +120,7 @@
         </div>
 
         <button type="submit"
-            class="w-full py-2 px-4
+            class="w-full py-2 px-4 mt-2
         bg-white-500/10 text-black
         dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
         ">
@@ -151,7 +151,7 @@
         },
 
         // llamada que hace la consulta a todas las excepciones
-        onChange: function(selectedDates, dateStr, instance) {
+        onReady: function(selectedDates, dateStr, instance) {
             debugger;
             // continuar
             $.ajax({
@@ -170,5 +170,56 @@
             });
 
         }
+    });
+
+    var dateForm = document.querySelector('#modifyDateForm');
+    var hourForm = document.querySelector('#modifyHourForm');
+
+    dateForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // evita que la pagina recargue
+
+        const date = $('#modifyDateForm').serialize(); // toma todos los valores de los campos
+        debugger;
+        $.ajax({
+            method: 'POST',
+            url: '/api/modifyDateForm',
+            data: date,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    loadPage('/list_register');
+                } else {
+                    modalError(response.message);
+                }
+            },
+            error: function(error) {
+                modalError(error);
+            }
+
+        });
+    });
+
+    hourForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // evita que la pagina recargue
+
+        const hour = $('#modifyHourForm').serialize(); // toma todos los valores de los campos
+        debugger;
+        $.ajax({
+            method: 'POST',
+            url: '/api/modifyHourForm',
+            data: hour,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    loadPage('/list_register');
+                } else {
+                    modalError(response.message);
+                }
+            },
+            error: function(error) {
+                modalError(error);
+            }
+
+        });
     });
 </script>

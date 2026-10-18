@@ -19,4 +19,14 @@ class ModifyDatesSchedulesController
             $this->service->getDates()
         );
     }
+
+    public function modifyDate()
+    {
+        // $appointment = $this->modifyFactory->createFromRequest($_POST);
+        $modifyDateSchedules = $this->modifyFactory->dateFactory($_POST);
+
+        echo json_encode(
+            $this->service->saveAppointment($appointment)
+        );
+    }
 }
