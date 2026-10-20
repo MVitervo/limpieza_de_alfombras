@@ -51,7 +51,7 @@ class ModifyDatesSchedulesService
                                         WHERE Date = :date";
 
                 $stmtUpdateRegister = $this->conn->prepare($queryupdateRegister);
-                $stmtUpdateRegister->bindParam();
+                // $stmtUpdateRegister->bindParam();
                 // continuar con el resto
             } else {
                 // si no existe entonces se hara una insercion del registro
