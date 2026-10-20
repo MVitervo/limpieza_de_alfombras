@@ -1,7 +1,7 @@
 <div id="inicio" class="relative z-10 mx-auto grid min-h-[calc(100vh-80px)] w-full max-w-[1500px] grid-cols-1 items-center gap-10 px-5 pb-12 pt-5 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-12 lg:px-12 lg:py-10">
     <!-- Columna de marca / presentación -->
     <section id="marca" class="flex flex-col items-center text-center lg:items-start lg:text-left">
-        <img src="logo-antonio-concartas.png" alt="Antonio Concartas — Tarot evolutivo" class="brand-logo mb-7 drop-shadow-[0_0_22px_rgba(198,154,91,.12)]">
+        <img src="/images/logo.png" alt="Antonio Concartas — Tarot evolutivo" class="brand-logo mb-7 drop-shadow-[0_0_22px_rgba(198,154,91,.12)]">
 
         <p class="mb-3 font-display text-[10px] tracking-[.42em] text-gold sm:text-xs">DESCUBRE · ENTIENDE · EVOLUCIONA</p>
         <h1 class="max-w-xl font-display text-3xl leading-tight text-parchment sm:text-4xl md:text-5xl xl:text-6xl">

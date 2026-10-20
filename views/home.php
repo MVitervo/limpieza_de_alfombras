@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antonio Concartas | Agenda tu lectura de Tarot</title>
-
+    <link rel="icon" type="image/png" href="/images/logo.png">
 
     <script
         src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
