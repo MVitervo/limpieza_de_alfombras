@@ -1,22 +1,52 @@
-<form class="px-4" id="appointmentForm">
-    <div class="w-full md:w-1/2 mx-auto">
+<div id="inicio" class="relative z-10 mx-auto grid min-h-[calc(100vh-80px)] w-full max-w-[1500px] grid-cols-1 items-center gap-10 px-5 pb-12 pt-5 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-12 lg:px-12 lg:py-10">
+    <!-- Columna de marca / presentación -->
+    <section id="marca" class="flex flex-col items-center text-center lg:items-start lg:text-left">
+        <img src="logo-antonio-concartas.png" alt="Antonio Concartas — Tarot evolutivo" class="brand-logo mb-7 drop-shadow-[0_0_22px_rgba(198,154,91,.12)]">
+
+        <p class="mb-3 font-display text-[10px] tracking-[.42em] text-gold sm:text-xs">DESCUBRE · ENTIENDE · EVOLUCIONA</p>
+        <h1 class="max-w-xl font-display text-3xl leading-tight text-parchment sm:text-4xl md:text-5xl xl:text-6xl">
+            Agenda tu<br class="hidden lg:block"> lectura de Tarot
+        </h1>
+        <p class="mt-5 max-w-lg text-sm leading-7 text-stone-300 sm:text-base">
+            Un espacio para escucharte, encontrar nuevas perspectivas y conectar con tu propio camino.
+        </p>
+
+        <div class="mt-7 flex w-full max-w-xs items-center gap-4 text-gold">
+            <div class="ornament flex-1"></div>
+            <span>✦</span>
+            <div class="ornament flex-1"></div>
+        </div>
+
+        <div class="mt-7 hidden items-center gap-3 font-display text-[10px] tracking-[.3em] text-parchment/70 sm:flex">
+            <span>CONEXIÓN</span><span class="text-gold">✧</span>
+            <span>GUÍANZA</span><span class="text-gold">✧</span>
+            <span>EVOLUCIÓN</span>
+        </div>
+    </section>
+
+    <form class="px-4" id="appointmentForm">
+        <!-- <div class="w-full md:w-1/2 mx-auto"> -->
         <?php require __DIR__ . '/form.php' ?>
         <!-- <div class="grid grid-cols-1 gap-6 relative">
             <div id="calendar"></div>
         </div> -->
 
-        <button type="submit"
+        <!-- <button type="submit"
             class="w-full py-2 px-4
         bg-white-500/10 text-black
         dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
         ">
             Guardar
-        </button>
+        </button> -->
 
         <!-- <div class="bg-sky-500/10"></div> -->
 
-    </div>
-</form>
+        <!-- </div> -->
+    </form>
+
+</div>
+
+
 
 
 <a href="/login"

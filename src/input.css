@@ -1,2 +1,23 @@
 @import "tailwindcss";
+
+/* Modo oscuro controlado mediante la clase .dark */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Identidad visual de Antonio Concartas */
+@theme {
+    --color-ink: #100d14;
+    --color-violet: #2c2035;
+    --color-gold: #c69a5b;
+    --color-parchment: #f7efe3;
+    --color-plum: #49304f;
+
+    --font-display: "Cinzel", serif;
+    --font-sans: "Inter", sans-serif;
+
+    --shadow-gold: 0 0 0 1px rgba(198, 154, 91, .7),
+                   0 18px 55px rgba(0, 0, 0, .32);
+}
+
+/* Archivos PHP que contienen clases de Tailwind */
+@source "../*.php";
+@source "../views/**/*.php";

@@ -3,9 +3,7 @@
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-      "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol", "Noto Color Emoji";
+    --font-sans: "Inter", sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-100: oklch(93.6% 0.032 17.717);
@@ -78,6 +76,10 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --color-ink: #100d14;
+    --color-gold: #c69a5b;
+    --color-parchment: #f7efe3;
+    --font-display: "Cinzel", serif;
   }
 }
 @layer base {
@@ -529,6 +531,27 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
   }
+  .border-gold {
+    border-color: var(--color-gold);
+  }
+  .border-gold\/20 {
+    border-color: color-mix(in srgb, #c69a5b 20%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-gold) 20%, transparent);
+    }
+  }
+  .border-gold\/30 {
+    border-color: color-mix(in srgb, #c69a5b 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-gold) 30%, transparent);
+    }
+  }
+  .border-gold\/80 {
+    border-color: color-mix(in srgb, #c69a5b 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-gold) 80%, transparent);
+    }
+  }
   .border-gray-200 {
     border-color: var(--color-gray-200);
   }
@@ -576,6 +599,9 @@
   }
   .bg-green-600 {
     background-color: var(--color-green-600);
+  }
+  .bg-ink {
+    background-color: var(--color-ink);
   }
   .bg-olive-100 {
     background-color: var(--color-olive-100);
@@ -673,6 +699,9 @@
   .text-left {
     text-align: left;
   }
+  .font-display {
+    font-family: var(--font-display);
+  }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
@@ -767,6 +796,9 @@
   .text-emerald-700 {
     color: var(--color-emerald-700);
   }
+  .text-gold {
+    color: var(--color-gold);
+  }
   .text-gray-500 {
     color: var(--color-gray-500);
   }
@@ -781,6 +813,27 @@
   }
   .text-green-600 {
     color: var(--color-green-600);
+  }
+  .text-parchment {
+    color: var(--color-parchment);
+  }
+  .text-parchment\/60 {
+    color: color-mix(in srgb, #f7efe3 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-parchment) 60%, transparent);
+    }
+  }
+  .text-parchment\/70 {
+    color: color-mix(in srgb, #f7efe3 70%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-parchment) 70%, transparent);
+    }
+  }
+  .text-parchment\/90 {
+    color: color-mix(in srgb, #f7efe3 90%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-parchment) 90%, transparent);
+    }
   }
   .text-red-600 {
     color: var(--color-red-600);
@@ -914,6 +967,13 @@
       --tw-gradient-to: #25192d;
       --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
     }
+    .hover\:text-gold:hover {
+      color: var(--color-gold);
+    }
+    .hover\:shadow-gold:hover {
+      --tw-shadow: 0 0 0 1px var(--tw-shadow-color, rgba(198, 154, 91, .7)), 0 18px 55px var(--tw-shadow-color, rgba(0, 0, 0, .32));
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
   }
   .focus\:border-blue-500:focus {
     border-color: var(--color-blue-500);
@@ -931,6 +991,12 @@
   }
   .focus\:ring-blue-500:focus {
     --tw-ring-color: var(--color-blue-500);
+  }
+  .focus\:ring-gold\/30:focus {
+    --tw-ring-color: color-mix(in srgb, #c69a5b 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-ring-color: color-mix(in oklab, var(--color-gold) 30%, transparent);
+    }
   }
   .focus\:ring-indigo-500:focus {
     --tw-ring-color: var(--color-indigo-500);
@@ -1163,6 +1229,9 @@
   }
   .dark\:text-green-400:where(.dark, .dark *) {
     color: var(--color-green-400);
+  }
+  .dark\:text-parchment:where(.dark, .dark *) {
+    color: var(--color-parchment);
   }
   .dark\:text-red-400:where(.dark, .dark *) {
     color: var(--color-red-400);

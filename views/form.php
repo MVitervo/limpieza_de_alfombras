@@ -50,10 +50,20 @@
             <label for="expectHour" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
                 <i data-lucide="clock-3" class="h-5 w-5 text-[#a87943]"></i> Horario
             </label>
-            <select class="field" id="expectHour" name="schedule" required>
+            <select class="field expectHour" id="expectHour" name="schedule" required>
                 <option value="" disabled selected>Selecciona un horario</option>
             </select>
         </div>
+    </div>
+    <button type="submit" class="mt-7 flex min-h-[56px] w-full items-center justify-center gap-4 rounded-xl border border-gold bg-gradient-to-r from-[#25192d] to-[#100d14] px-5 py-4 font-display text-sm tracking-[.22em] text-parchment shadow-lg transition hover:-translate-y-0.5 hover:from-[#49304f] hover:to-[#25192d] hover:shadow-gold focus:outline-none focus:ring-4 focus:ring-gold/30">
+        <span class="text-gold">✦</span> GUARDAR CITA <span class="text-gold">✦</span>
+    </button>
+    <p id="formMessage" class="mt-3 hidden text-center text-sm" role="status"></p>
+    
+    <div class="mt-7 flex items-center justify-center gap-4 text-gold">
+        <div class="ornament flex-1"></div>
+        <span class="text-xl">☾ ● ☽</span>
+        <div class="ornament flex-1"></div>
     </div>
 </section>
 <!-- 

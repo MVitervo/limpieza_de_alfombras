@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina principal</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <title>Antonio Concartas | Agenda tu lectura de Tarot</title>
+
 
     <script
         src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/public/css/especificSelect2.css">
     <link rel="stylesheet" href="/public/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="/public/css/flatpickr.min.css">
+    <link rel="stylesheet" href="/public/css/style.css">
     <link rel="stylesheet" href="/public/css/home.css">
     <script src="/public/js/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="/public/css/bootstrap.min.css"> -->
@@ -41,6 +42,11 @@
 
     <script src="/views/modal_error.js"></script>
     <script src="/views/modal_success.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
 </head>
 
@@ -61,34 +67,9 @@
             </div>
         </nav>
 
-        <div id="inicio" class="relative z-10 mx-auto grid min-h-[calc(100vh-80px)] w-full max-w-[1500px] grid-cols-1 items-center gap-10 px-5 pb-12 pt-5 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-12 lg:px-12 lg:py-10">
-            <!-- Columna de marca / presentación -->
-            <section id="marca" class="flex flex-col items-center text-center lg:items-start lg:text-left">
-                <img src="logo-antonio-concartas.png" alt="Antonio Concartas — Tarot evolutivo" class="brand-logo mb-7 drop-shadow-[0_0_22px_rgba(198,154,91,.12)]">
 
-                <p class="mb-3 font-display text-[10px] tracking-[.42em] text-gold sm:text-xs">DESCUBRE · ENTIENDE · EVOLUCIONA</p>
-                <h1 class="max-w-xl font-display text-3xl leading-tight text-parchment sm:text-4xl md:text-5xl xl:text-6xl">
-                    Agenda tu<br class="hidden lg:block"> lectura de Tarot
-                </h1>
-                <p class="mt-5 max-w-lg text-sm leading-7 text-stone-300 sm:text-base">
-                    Un espacio para escucharte, encontrar nuevas perspectivas y conectar con tu propio camino.
-                </p>
-
-                <div class="mt-7 flex w-full max-w-xs items-center gap-4 text-gold">
-                    <div class="ornament flex-1"></div>
-                    <span>✦</span>
-                    <div class="ornament flex-1"></div>
-                </div>
-
-                <div class="mt-7 hidden items-center gap-3 font-display text-[10px] tracking-[.3em] text-parchment/70 sm:flex">
-                    <span>CONEXIÓN</span><span class="text-gold">✧</span>
-                    <span>GUÍANZA</span><span class="text-gold">✧</span>
-                    <span>EVOLUCIÓN</span>
-                </div>
-            </section>
-        </div>
         <!-- <div id="contentButtonTheme" class="w-full md:w-1/2 mx-auto px-4"> -->
-        <div class="w-full">
+        <!-- <div class="w-full">
             <div id="contentButtonTheme" class="flex">
                 <button class="btnBack mt-4">
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -100,22 +81,20 @@
                             clip-rule="evenodd" />
                     </svg>
                 </button>
-                <!--
-                <div class="btnBackContainer">
-                </div>
-                -->
-                <!-- <div class="relative w-full mx-auto px-4 gap-4"> -->
                 <div class="btnToggleTheme w-full justify-center">
                     <button id="toggle-theme" class="w-full md:w-3/5 mx-auto px-2 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded transition-colors duration-300 mt-4 ml-4">
                         🌙
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div id="renderPage">
 
         </div>
+        <footer class="relative z-10 px-5 pb-7 text-center font-display text-[9px] tracking-[.3em] text-parchment/60">
+            ANTONIO CONCARTAS · TAROT EVOLUTIVO
+        </footer>
 
     </main>
 
@@ -267,9 +246,11 @@
         loadPage(previousRoute);
     }
 
-    document.querySelector('.btnBack').addEventListener('click', function() {
-        goBack();
-    });
+    if (document.querySelector('.btnBack')) {
+        document.querySelector('.btnBack').addEventListener('click', function() {
+            goBack();
+        });
+    }
 
     /*
     const themeButton = document.getElementById('toggle-theme');
@@ -290,25 +271,55 @@
         }
     });
     */
-    tailwind.config = {
-        darkMode: 'class',
-        theme: {
-            extend: {
-                fontFamily: {
-                    display: ['Cinzel', 'serif'],
-                    sans: ['Inter', 'sans-serif']
-                },
-                colors: {
-                    ink: '#100d14',
-                    violet: '#2c2035',
-                    gold: '#c69a5b',
-                    parchment: '#f7efe3',
-                    plum: '#49304f'
-                },
-                boxShadow: {
-                    'gold': '0 0 0 1px rgba(198,154,91,.7), 0 18px 55px rgba(0,0,0,.32)'
-                }
-            }
-        }
+    lucide.createIcons();
+
+    const root = document.documentElement;
+
+    const lightMode = document.getElementById('lightMode');
+    const darkMode = document.getElementById('darkMode');
+
+    // Aplicar el tema y actualizar los botones
+    function setTheme(theme) {
+        const isDark = theme === 'dark';
+
+        root.classList.toggle('dark', isDark);
+
+        lightMode.classList.toggle('toggle-active', !isDark);
+        darkMode.classList.toggle('toggle-active', isDark);
+
+        lightMode.setAttribute('aria-pressed', String(!isDark));
+        darkMode.setAttribute('aria-pressed', String(isDark));
+
+        localStorage.setItem('theme', theme);
     }
+
+    // Recuperar la preferencia guardada
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+
+    setTheme(savedTheme);
+
+    // Eventos de los botones
+    lightMode.addEventListener('click', () => {
+        setTheme('light');
+    });
+
+    darkMode.addEventListener('click', () => {
+        setTheme('dark');
+    });
+
+    // Demostración visual. Reemplazar por el envío AJAX/PHP real.
+    document.getElementById('appointmentForm').addEventListener('submit', event => {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+
+        const data = Object.fromEntries(new FormData(form).entries());
+        console.log('Datos de la cita:', data);
+
+        const message = document.getElementById('formMessage');
+        message.textContent = 'Formulario validado. Conecta este evento con tu backend para guardar la cita.';
+        message.classList.remove('hidden');
+        message.classList.add('text-emerald-700', 'dark:text-emerald-300');
+    });
 </script>
