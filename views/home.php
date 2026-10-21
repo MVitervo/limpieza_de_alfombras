@@ -247,35 +247,28 @@
 
         loadPage(previousRoute);
     }
-
-    /*
-    if (document.querySelector('.btnBack')) {
-        document.querySelector('.btnBack').addEventListener('click', function() {
-            debugger;
-            goBack();
-        });
-    }*/
+    
     $(document).on('click', '.btnBack', function() {
         debugger;
         goBack();
     });
 
-    $(document).on("click", "a[data-route]", function(event) {
-        debugger;
+    // $(document).on("click", "a[data-route]", function(event) {
+    //     debugger;
 
-        // Permitir abrir el enlace en otra pestaña o ventana
-        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
-            return;
-        }
+    //     // Permitir abrir el enlace en otra pestaña o ventana
+    //     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+    //         return;
+    //     }
 
-        event.preventDefault();
+    //     event.preventDefault();
 
-        const route = $(this).attr("href");
+    //     const route = $(this).attr("href");
 
-        // console.log("Ruta seleccionada:", route);
+    //     // console.log("Ruta seleccionada:", route);
 
-        loadPage(route);
-    });
+    //     loadPage(route);
+    // });
 
     /*
     const themeButton = document.getElementById('toggle-theme');
