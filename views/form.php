@@ -56,7 +56,7 @@
         </div>
     </div>
     <button type="submit" class="mt-7 flex min-h-[56px] w-full items-center justify-center gap-4 rounded-xl border border-gold bg-gradient-to-r from-[#25192d] to-[#100d14] px-5 py-4 font-display text-sm tracking-[.22em] text-parchment shadow-lg transition hover:-translate-y-0.5 hover:from-[#49304f] hover:to-[#25192d] hover:shadow-gold focus:outline-none focus:ring-4 focus:ring-gold/30">
-        <span class="text-gold">✦</span> GUARDAR CITA <span class="text-gold">✦</span>
+        <span class="text-gold">✦</span><span class="textButton">GUARDAR CITA</span><span class="text-gold">✦</span>
     </button>
     <p id="formMessage" class="mt-3 hidden text-center text-sm" role="status"></p>
     

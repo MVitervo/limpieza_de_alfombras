@@ -54,7 +54,49 @@
     <main class="cosmos relative isolate min-h-screen overflow-hidden">
         <div class="starfield absolute inset-0 -z-0"></div>
 
-        <nav class="relative z-10 mx-auto flex w-full max-w-[1500px] items-center justify-between gap-4 px-4 py-5 sm:px-8 lg:px-12">
+        <!-- <nav class="relative z-10 mx-auto flex w-full max-w-[1500px] items-center justify-between gap-4 px-4 py-5 sm:px-8 lg:px-12"> -->
+        <nav class="relative z-10 mx-auto flex w-full max-w-[1500px] items-center justify-start gap-4 px-4 py-5 sm:px-8 lg:px-12">
+
+            <button
+                type="button"
+                class="
+                    btnBack
+                    inline-flex items-center justify-center
+                    size-11
+                    rounded-full
+                    border border-gold/70
+                    bg-black/20
+                    text-gold
+                    shadow-md
+                    backdrop-blur-sm
+                    transition-all duration-300
+                    hover:border-gold
+                    hover:bg-gold
+                    hover:text-gray-950
+                    hover:shadow-gold
+                    focus:outline-none
+                    focus:ring-2 focus:ring-gold
+                    focus:ring-offset-2
+                    focus:ring-offset-[#100d14]
+                    active:scale-95
+                    dark:bg-black/20
+                "
+                aria-label="Regresar"
+                title="Regresar">
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="size-6">
+
+                    <path
+                        fill-rule="evenodd"
+                        d="M9.53 2.47a.75.75 0 0 1 0 1.06L4.81 8.25H15a6.75 6.75 0 0 1 0 13.5h-3a.75.75 0 0 1 0-1.5h3a5.25 5.25 0 1 0 0-10.5H4.81l4.72 4.72a.75.75 0 1 1-1.06 1.06l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.06 0Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+
             <div class="flex items-center gap-3">
                 <div class="theme-toggle flex items-center rounded-full border border-gold/80 bg-black/30 p-1 backdrop-blur">
                     <button id="lightMode" type="button" aria-label="Activar modo claro" aria-pressed="false" class="toggle-active flex h-9 w-10 items-center justify-center rounded-full transition">
@@ -92,7 +134,7 @@
         <div id="renderPage">
 
         </div>
-        <footer class="relative z-10 px-5 pb-7 text-center font-display text-[9px] tracking-[.3em] text-parchment/60">
+        <footer class="footer relative z-10 px-5 pb-7 text-center font-display text-[9px] tracking-[.3em] text-parchment/60">
             ANTONIO CONCARTAS · TAROT EVOLUTIVO
         </footer>
 
@@ -123,52 +165,9 @@
     window.id = 0;
     // Variables globales || END
     $(function() {
-        loadPage(location.pathname);
+        // loadPage(location.pathname);
+        onLocationChange();
     });
-
-    /* 
-
-    const EVENT_PUSH = 'pushstate';
-    const EVENT_POP = 'popstate';
-    
-    function loadPage(route) {
-        let page = "";
-        switch (route) {
-            case "/":
-                page = "/views/information.php";
-                break;
-            case "/login":
-                page = "/views/login.php";
-                break;
-            case "/list_register":
-                page = "/views/list_register.php";
-                break;
-            case "/edit_register":
-                page = "/views/edit_register.php";
-                break;
-            case "/add_register":
-                page = "/views/add_register.php";
-                break;
-            case "/modify_dates_schedules":
-                page = "/views/modify_dates_schedules.php";
-                break;
-            default:
-                page = "/views/404.php";
-        }
-
-        $.get(page, function(response) {
-            $("#renderPage").html(response);
-
-        });
-
-
-        window.history.pushState({}, '', route);
-        const navigationEvent = new Event(EVENT_PUSH);
-        window.dispatchEvent(navigationEvent);
-
-    }
-
-    */
     const NAVIGATION_EVENT = 'navigation';
     let currentPath = window.location.pathname;
 
@@ -219,6 +218,9 @@
 
         $.get(page, function(response) {
             $("#renderPage").html(response);
+
+            // Renderizar los iconos de Lucide de la vista recién cargada
+            lucide.createIcons();
         });
     }
 
@@ -246,11 +248,34 @@
         loadPage(previousRoute);
     }
 
+    /*
     if (document.querySelector('.btnBack')) {
         document.querySelector('.btnBack').addEventListener('click', function() {
+            debugger;
             goBack();
         });
-    }
+    }*/
+    $(document).on('click', '.btnBack', function() {
+        debugger;
+        goBack();
+    });
+
+    $(document).on("click", "a[data-route]", function(event) {
+        debugger;
+
+        // Permitir abrir el enlace en otra pestaña o ventana
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+            return;
+        }
+
+        event.preventDefault();
+
+        const route = $(this).attr("href");
+
+        // console.log("Ruta seleccionada:", route);
+
+        loadPage(route);
+    });
 
     /*
     const themeButton = document.getElementById('toggle-theme');
@@ -271,7 +296,6 @@
         }
     });
     */
-    lucide.createIcons();
 
     const root = document.documentElement;
 
@@ -308,6 +332,7 @@
     });
 
     // Demostración visual. Reemplazar por el envío AJAX/PHP real.
+    /*
     document.getElementById('appointmentForm').addEventListener('submit', event => {
         event.preventDefault();
 
@@ -322,4 +347,5 @@
         message.classList.remove('hidden');
         message.classList.add('text-emerald-700', 'dark:text-emerald-300');
     });
+    */
 </script>

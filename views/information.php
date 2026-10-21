@@ -70,20 +70,21 @@
 <!-- <button class="dialogErrorDatabaseButton" command="show-modal" commandfor="dialogErrorDatabase"></button> -->
 
 <script>
-    $("#renderPage").on("click", "a[data-route]", function(event) {
+    // $("#renderPage").on("click", "a[data-route]", function(event) {
+    //     debugger;
 
-        // Si el usuario quiere abrir en otra pestaña,
-        // dejamos que el navegador haga su comportamiento normal.
-        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
-            return;
-        }
+    //     // Si el usuario quiere abrir en otra pestaña,
+    //     // dejamos que el navegador haga su comportamiento normal.
+    //     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+    //         return;
+    //     }
 
-        event.preventDefault();
+    //     event.preventDefault();
 
-        const route = $(this).attr("href");
+    //     const route = $(this).attr("href");
 
-        loadPage(route);
-    });
+    //     loadPage(route);
+    // });
 
     // document.querySelector('.btnBack').style.display = 'none';
 
@@ -120,8 +121,6 @@
         event.preventDefault(); // evita que la pagina recargue
 
         const appointment = $('#appointmentForm').serialize(); // toma todos los valores de los campos
-
-        debugger;
 
         // retroalimentacion ya busque y me quedare siemopre con esta forma de manera estandar si por alguna razon los nombres de los campos del formulario
         // con diferentes a los del modelo entonces los voy a mappear directamente en el contrador
