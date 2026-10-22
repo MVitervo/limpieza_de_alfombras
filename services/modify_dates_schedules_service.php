@@ -2,6 +2,7 @@
 class ModifyDatesSchedulesService
 {
     private PDO $conn;
+    private $username = 'test';
 
     public function __construct(PDO $conn)
     {
@@ -37,27 +38,54 @@ class ModifyDatesSchedulesService
             $this->conn->beginTransaction();
 
             // primero se buscara si es que esa fecha ya existe
-            $queryValidateDate = "SELECT * FROM calendar_exceptions";
+            $queryValidateDate = "SELECT * FROM calendar_exceptions
+                                WHERE Date = :Date";
 
             $stmtValidate = $this->conn->prepare($queryValidateDate);
+            $stmtValidate->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
             $stmtValidate->execute();
 
-            $resultValidateDates = $stmtValidate->fetchAll(PDO::FETCH_ASSOC);
+            $resultValidateDates = $stmtValidate->fetch(PDO::FETCH_ASSOC);
 
             if ($resultValidateDates['Date']) {
                 // si ya existe entonces se hara una actulizacion del registro
                 $queryupdateRegister = "UPDATE TOP (1) calendar_exceptions 
                                         SET StatusDate = :StatusDate
-                                        WHERE Date = :date";
+                                        WHERE Date = :Date";
 
                 $stmtUpdateRegister = $this->conn->prepare($queryupdateRegister);
-                // $stmtUpdateRegister->bindParam();
-                // continuar con el resto
+                $stmtUpdateRegister->bindParam(':StatusDate', $modifyDatesSchedules->statusDate, PDO::PARAM_STR);
+                $stmtUpdateRegister->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
+                $stmtUpdateRegister->execute();
+                
             } else {
                 // si no existe entonces se hara una insercion del registro
                 $queryInsertRegister = "INSERT INTO calendar_exceptions (
-                                        ) VALUES ()";
+                                        Date
+                                        ,StatusDate
+                                        ,LastEditBy
+                                        ,LastEditDt
+                                        )
+                                        VALUES (
+                                        :Date
+                                        ,:StatusDate
+                                        ,:LastEditBy
+                                        ,GETDATE()
+                                        )";
+
+                $stmtInsertRegister = $this->conn->prepare($queryInsertRegister);
+                $stmtInsertRegister->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
+                $stmtInsertRegister->bindParam(':StatusDate', $modifyDatesSchedules->statusDate, PDO::PARAM_STR);
+                $stmtInsertRegister->bindParam(':LastEditBy', $username, PDO::PARAM_STR);
+                $stmtInsertRegister->execute();
             }
+
+            $this->conn->commit();
+
+            return [
+                'status' => 'success',
+                'message' => 'fecha actualizada'
+            ];
         } catch (PDOException $e) {
             $this->conn->rollBack();
             return ['status' => false, 'message' => $e->getMessage()];

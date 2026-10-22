@@ -4,9 +4,11 @@ require './core/container.php';
 require './services/schedules_appointment_service.php';
 require './services/login_service.php';
 require './services/list_register_service.php';
+require './services/modify_dates_schedules_service.php';
 require './controllers/schedules_appointment_controller.php';
 require './controllers/login_controlller.php';
 require './controllers/list_register_controller.php';
+require './controllers/modify_dates_schedules_controller.php';
 
 require './models/appointment_model.php';
 require './models/modify_dates_schedules_model.php';

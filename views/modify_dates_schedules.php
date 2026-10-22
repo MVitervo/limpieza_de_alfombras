@@ -14,7 +14,7 @@
             dark:text-white
             dark:border-gray-600
             dark:placeholder-gray-400"
-                type="date" id="dateAvailable" name="date" required />
+                type="date" id="dateAvailable" name="dateAvailable" required />
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mb-3">
@@ -182,12 +182,13 @@
         debugger;
         $.ajax({
             method: 'POST',
-            url: '/api/modifyDateForm',
+            url: '/api/modifyDate',
             data: date,
             dataType: 'json',
             success: function(response) {
                 if (response.status === 'success') {
-                    loadPage('/list_register');
+                    modalSuccess(response.message);
+                    // loadPage('/list_register');
                 } else {
                     modalError(response.message);
                 }

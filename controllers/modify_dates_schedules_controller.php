@@ -26,7 +26,7 @@ class ModifyDatesSchedulesController
         $modifyDateSchedules = $this->modifyFactory->dateFactory($_POST);
 
         echo json_encode(
-            $this->service->saveAppointment($appointment)
+            $this->service->availableDisableDate($modifyDateSchedules)
         );
     }
 }
