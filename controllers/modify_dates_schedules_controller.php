@@ -29,4 +29,12 @@ class ModifyDatesSchedulesController
             $this->service->availableDisableDate($modifyDateSchedules)
         );
     }
+
+    public function modifyHour() {
+        $modifyDateSchedules = $this->modifyFactory->dateFactory($_POST);
+
+        echo json_encode(
+            $this->service->availableDisableHour($modifyDateSchedules)
+        );
+    }
 }

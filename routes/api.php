@@ -63,6 +63,11 @@ $router->post('/api/modifyDate', [
     ModifyDatesSchedulesController::class,
     'modifyDate'
 ]);
+
+$router->post('/api/modifyHour', [
+    ModifyDatesSchedulesController::class,
+    'modifyHour'
+]);
 // MODIFY DATES SCHEDULES || END
 
 

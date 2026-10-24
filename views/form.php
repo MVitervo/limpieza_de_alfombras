@@ -192,7 +192,7 @@
         // findAppointments();
         $('.expectHour').select2({
             theme: 'bootstrap-5',
-            placeholder: 'first select a date',
+            placeholder: 'Seleccionar fecha',
             width: '100%'
         });
     });

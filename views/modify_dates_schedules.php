@@ -64,7 +64,7 @@
                 Seleccione el horario
             </label>
 
-            <select
+            <!-- <select
                 class="hourAvailable
                         w-full
                         rounded-lg
@@ -85,6 +85,25 @@
                         dark:focus:ring-indigo-400
                     " name="hourAvailable" id="hourAvailable" required>
                 <option value=""></option>
+            </select> -->
+            <select class="field hourAvailable
+                        w-full
+                        rounded-lg
+                        border border-gray-300
+                        bg-white
+                        px-4 py-2
+                        text-sm text-gray-900
+                        shadow-sm
+                        focus:border-indigo-500
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-indigo-500
+                        dark:bg-gray-800
+                        dark:border-gray-600
+                        dark:text-white
+                        dark:focus:border-indigo-400
+                        dark:focus:ring-indigo-400" id="hourAvailable" name="hourAvailable" required>
+                <option value="" disabled selected>Selecciona un horario</option>
             </select>
         </div>
 
@@ -133,6 +152,41 @@
 <link rel="stylesheet" href="/css/modify_dates_schedules.css">
 
 <script>
+    $(function() {
+        // findAppointments();
+        $('.hourAvailable').select2({
+            theme: 'bootstrap-5',
+            placeholder: 'Seleccionar fecha',
+            width: '100%'
+        });
+    });
+
+    // cuando seleccione una fecha entonces buscara los horarios disponibles de esa fecha en especifico
+    document.querySelector('#dateAvailable').addEventListener('change', function() {
+        reloadSchedules();
+    });
+
+    async function reloadSchedules() {
+        // esta funcion debera de mandarse a llamar cuando se seleccione una fecha antes no para no consumir recursos
+        const schedules = await $.ajax({
+            method: 'GET',
+            url: '/api/schedules',
+            dataType: 'json',
+        });
+
+        if (schedules.status === 'success') {
+            // const schedules = response.data;
+            $('.hourAvailable').empty();
+            $('.hourAvailable').append('<option value=""></option>')
+            const fieldSchedules = $('.hourAvailable');
+            schedules.data.forEach(element => {
+                fieldSchedules.append(`<option value='${element.Schedule}'>${element.Schedule}</option>`);
+            });
+        } else {
+            modalError(schedules.message);
+        }
+    }
+
     flatpickr(".dateAvailable", {
         dateFormat: "Y/m/d",
 
@@ -203,16 +257,18 @@
     hourForm.addEventListener('submit', function(event) {
         event.preventDefault(); // evita que la pagina recargue
 
+        const date = $('#modifyDateForm').serialize(); // toma todos los valores de los campos
         const hour = $('#modifyHourForm').serialize(); // toma todos los valores de los campos
+        const dateHour = date + '&' + hour;
         debugger;
         $.ajax({
             method: 'POST',
-            url: '/api/modifyHourForm',
-            data: hour,
+            url: '/api/modifyHour',
+            data: dateHour,
             dataType: 'json',
             success: function(response) {
                 if (response.status === 'success') {
-                    loadPage('/list_register');
+                    modalSuccess(response.message);
                 } else {
                     modalError(response.message);
                 }
