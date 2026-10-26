@@ -130,7 +130,7 @@ CREATE TABLE calendar_exceptions (
     Id INT IDENTITY(1,1),
     [Date] DATE,
     StatusDate BIT,
-    [Hour] TIME,
+    [Hour] VARCHAR(100),
     StatusHour BIT,
     LastEditBy VARCHAR(100),
 	LastEditDt DATETIME

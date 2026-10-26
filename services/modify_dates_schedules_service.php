@@ -2,7 +2,6 @@
 class ModifyDatesSchedulesService
 {
     private PDO $conn;
-    private $username = 'test';
 
     public function __construct(PDO $conn)
     {
@@ -36,6 +35,7 @@ class ModifyDatesSchedulesService
     {
         try {
             $this->conn->beginTransaction();
+            $username = 'test';
 
             // primero se buscara si es que esa fecha ya existe
             $queryValidateDate = "SELECT * FROM calendar_exceptions
@@ -49,7 +49,7 @@ class ModifyDatesSchedulesService
 
             if ($resultValidateDates['Date']) {
                 // si ya existe entonces se hara una actulizacion del registro
-                $queryupdateRegister = "UPDATE TOP (1) calendar_exceptions 
+                $queryupdateRegister = "UPDATE calendar_exceptions 
                                         SET StatusDate = :StatusDate
                                         WHERE Date = :Date";
 
@@ -95,6 +95,7 @@ class ModifyDatesSchedulesService
     {
         try {
             $this->conn->beginTransaction();
+            $username = 'test';
 
             // primero se buscara si es que esa fecha ya existe
             $queryValidateDate = "SELECT * FROM calendar_exceptions
@@ -107,14 +108,15 @@ class ModifyDatesSchedulesService
 
             $resultValidateDates = $stmtValidateDate->fetch(PDO::FETCH_ASSOC);
 
-            if ($resultValidateDates['Date']) {
+            
+
+            if (!empty($resultValidateDates['Date'])) {
                 // si ya existe entonces se hara una actulizacion del registro
                 $queryupdateRegister = "UPDATE TOP (1) calendar_exceptions 
                                         SET StatusHour = :StatusHour
                                         WHERE Date = :Date AND Hour = :Hour";
 
                 $stmtUpdateRegister = $this->conn->prepare($queryupdateRegister);
-                $stmtUpdateRegister->bindParam(':StatusDate', $modifyDatesSchedules->statusDate, PDO::PARAM_STR);
                 $stmtUpdateRegister->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
                 $stmtUpdateRegister->bindParam(':StatusHour', $modifyDatesSchedules->statusHour, PDO::PARAM_STR);
                 $stmtUpdateRegister->bindParam(':Hour', $modifyDatesSchedules->hour, PDO::PARAM_STR);

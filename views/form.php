@@ -59,7 +59,7 @@
         <span class="text-gold">✦</span><span class="textButton">GUARDAR CITA</span><span class="text-gold">✦</span>
     </button>
     <p id="formMessage" class="mt-3 hidden text-center text-sm" role="status"></p>
-    
+
     <div class="mt-7 flex items-center justify-center gap-4 text-gold">
         <div class="ornament flex-1"></div>
         <span class="text-xl">☾ ● ☽</span>
@@ -246,6 +246,7 @@
         */
     }
 
+    /*
     flatpickr(".dateManagement", {
         dateFormat: "Y/m/d",
 
@@ -254,5 +255,69 @@
                 return date.getDay() !== 0 && date.getDay() !== 6;
             }
         ]
+    });
+    */
+
+    activeDates = [];
+
+    flatpickr(".dateManagement", {
+        dateFormat: "Y/m/d",
+
+        disable: [
+            function(date) {
+
+                const formattedDate = [
+                    date.getFullYear(),
+                    String(date.getMonth() + 1).padStart(2, "0"),
+                    String(date.getDate()).padStart(2, "0")
+                ].join("/");
+
+                // Buscar si la fecha tiene una excepción en la API
+                const exception = activeDates.find(element => {
+                    if (!element.Date) return false;
+
+                    const apiDate = element.Date
+                        .substring(0, 10)
+                        .replaceAll("-", "/");
+
+                    return apiDate === formattedDate;
+                });
+
+                // Si existe una excepción, respetar su estado
+                if (exception) {
+                    return Number(exception.StatusDate) !== 1;
+                }
+
+                // Si no existe excepción, habilitar solo sábados y domingos
+                const dayOfWeek = date.getDay();
+
+                return dayOfWeek !== 0 && dayOfWeek !== 6;
+            }
+        ],
+
+        onReady: function(selectedDates, dateStr, instance) {
+
+            $.ajax({
+                method: "GET",
+                url: "/api/getDatesSchedules",
+                dataType: "json",
+
+                success: function(response) {
+
+                    if (response.status === "success") {
+
+                        // Guardar todos los registros, no solo los activos
+                        activeDates.push(...response.data);
+
+                        // Actualizar las fechas habilitadas
+                        instance.redraw();
+                    }
+                },
+
+                error: function(xhr, status, error) {
+                    console.error("Error en AJAX:", error);
+                }
+            });
+        }
     });
 </script>

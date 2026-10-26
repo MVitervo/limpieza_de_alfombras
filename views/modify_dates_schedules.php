@@ -187,34 +187,76 @@
         }
     }
 
+    datesSchedules = [];
+
     flatpickr(".dateAvailable", {
         dateFormat: "Y/m/d",
 
         // esta funcion por defecto pone de colores verdes a los fines de semana y en rojo todos los demas
         onDayCreate: function(dObj, dStr, fp, dayElem) {
 
-            const dayOfWeek = dayElem.dateObj.getDay();
+            // Obtener la fecha del día que Flatpickr está creando
+            const date = dayElem.dateObj;
 
-            if (dayOfWeek === 0 || dayOfWeek === 6) {
-                // Sábado y domingo: verde
-                dayElem.classList.add("weekend-green");
+            // Formatear la fecha como YYYY/MM/DD
+            const formattedDate = [
+                date.getFullYear(),
+                String(date.getMonth() + 1).padStart(2, "0"),
+                String(date.getDate()).padStart(2, "0")
+            ].join("/");
+
+            // Buscar si existe una excepción para esta fecha
+            const exception = datesSchedules.find(element => {
+                if (!element.Date) return false;
+
+                // Normalizar la fecha recibida desde el servidor
+                const apiDate = element.Date.substring(0, 10)
+                    .replaceAll("-", "/");
+
+                return apiDate === formattedDate;
+            });
+
+            if (exception) {
+
+                if (Number(exception.StatusDate) === 1) {
+                    // Estado 1: verde
+                    dayElem.classList.add("weekend-green");
+                } else {
+                    // Otro estado: rojo
+                    dayElem.classList.add("weekday-red");
+                }
+
             } else {
-                // Lunes a viernes: rojo
-                dayElem.classList.add("weekday-red");
+
+                // Sin excepción: mantener colores predeterminados
+                const dayOfWeek = date.getDay();
+
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    dayElem.classList.add("weekend-green");
+                } else {
+                    dayElem.classList.add("weekday-red");
+                }
             }
         },
 
+
+
         // llamada que hace la consulta a todas las excepciones
         onReady: function(selectedDates, dateStr, instance) {
-            debugger;
-            // continuar
             $.ajax({
                 method: "GET",
                 url: "/api/getDatesSchedules",
                 dataType: "json",
                 success: function(response) {
                     debugger;
-                    console.log("Respuesta del servidor:", response);
+                    if (response.status === 'success') {
+                        datesSchedules = [];
+                        // Guardar las excepciones recibidas
+                        datesSchedules.push(...response.data);
+
+                        // Redibujar el calendario para aplicar los colores
+                        instance.redraw();
+                    }
                 },
 
                 error: function(xhr, status, error) {
@@ -233,7 +275,7 @@
         event.preventDefault(); // evita que la pagina recargue
 
         const date = $('#modifyDateForm').serialize(); // toma todos los valores de los campos
-        debugger;
+
         $.ajax({
             method: 'POST',
             url: '/api/modifyDate',
@@ -260,7 +302,7 @@
         const date = $('#modifyDateForm').serialize(); // toma todos los valores de los campos
         const hour = $('#modifyHourForm').serialize(); // toma todos los valores de los campos
         const dateHour = date + '&' + hour;
-        debugger;
+
         $.ajax({
             method: 'POST',
             url: '/api/modifyHour',
