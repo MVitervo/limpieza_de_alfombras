@@ -59,6 +59,11 @@ $router->get('/api/getDatesSchedules', [
     'getDates'
 ]);
 
+$router->post('/api/getSpecificDate', [
+    ModifyDatesSchedulesController::class,
+    'getSpecificDate'
+]);
+
 $router->post('/api/modifyDate', [
     ModifyDatesSchedulesController::class,
     'modifyDate'

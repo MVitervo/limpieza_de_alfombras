@@ -20,6 +20,15 @@ class ModifyDatesSchedulesController
         );
     }
 
+    public function getSpecificDate()
+    {
+        $getSpecificDate = $this->modifyFactory->dateFactory($_POST);
+
+        echo json_encode(
+            $this->service->getspecificDate($getSpecificDate)
+        );
+    }
+
     public function modifyDate()
     {
         // $appointment = $this->modifyFactory->createFromRequest($_POST);
@@ -30,7 +39,8 @@ class ModifyDatesSchedulesController
         );
     }
 
-    public function modifyHour() {
+    public function modifyHour()
+    {
         $modifyDateSchedules = $this->modifyFactory->dateFactory($_POST);
 
         echo json_encode(

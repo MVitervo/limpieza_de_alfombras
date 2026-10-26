@@ -83,7 +83,6 @@
 
 <script>
     $("#renderPage").on("click", "a[data-route]", function(event) {
-        debugger;
         // Si el usuario quiere abrir en otra pestaña,
         // dejamos que el navegador haga su comportamiento normal.
         if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {

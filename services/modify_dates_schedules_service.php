@@ -31,6 +31,37 @@ class ModifyDatesSchedulesService
         }
     }
 
+    public function getspecificDate(ModifyDatesSchedules $specificDate)
+    {
+        try {
+            $this->conn->beginTransaction();
+
+            $queryGetSchedules = "SELECT * FROM calendar_exceptions WHERE Date = :Date";
+
+            $stmtGetSchedules = $this->conn->prepare($queryGetSchedules);
+            $stmtGetSchedules->bindParam(':Date', $specificDate->date, PDO::PARAM_STR);
+            $stmtGetSchedules->execute();
+
+            $resultGetSchedules = $stmtGetSchedules->fetchAll(PDO::FETCH_ASSOC);
+
+            $this->conn->commit();
+            if (!empty($resultGetSchedules)) {
+                return [
+                    'status' => 'success',
+                    'data' => $resultGetSchedules
+                ];
+            } else {
+                return [
+                    'status' => 'success',
+                    'data' => 'No hay datos'
+                ];
+            }
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return ['status' => false, 'message' => $e->getMessage()];
+        }
+    }
+
     public function availableDisableDate(ModifyDatesSchedules $modifyDatesSchedules) // el modelo de ya existe en el controlador
     {
         try {
@@ -108,7 +139,7 @@ class ModifyDatesSchedulesService
 
             $resultValidateDates = $stmtValidateDate->fetch(PDO::FETCH_ASSOC);
 
-            
+
 
             if (!empty($resultValidateDates['Date'])) {
                 // si ya existe entonces se hara una actulizacion del registro
