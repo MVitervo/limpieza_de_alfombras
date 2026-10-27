@@ -57,7 +57,7 @@
 
 
 <div class="form-panel w-11/12 mx-auto rounded-2xl border border-gold/40
-    p-4 shadow-gold transition-colors duration-300 sm:p-6 lg:p-8">
+    p-4 shadow-gold transition-colors duration-300 sm:p-6 lg:p-8 mb-4">
 
     <!-- Encabezado y acciones -->
     <div class="mb-6 flex flex-col gap-4 border-b border-gold/30 pb-5
