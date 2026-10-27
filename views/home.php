@@ -42,6 +42,7 @@
 
     <script src="/views/modal_error.js"></script>
     <script src="/views/modal_success.js"></script>
+    <script src="/views/modal_confirmation.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,6 +153,9 @@
     </div>
 
     <div class="modalSuccess">
+    </div>
+
+    <div class="modalConfirmation">
     </div>
 
 </body>
