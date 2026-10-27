@@ -239,7 +239,6 @@
                 fieldSchedules.append(`<option value='${element.Schedule}'>${element.Schedule}</option>`);
             });
 
-            debugger;
             const dateSelected = 'dateAvailable=' + document.querySelector('.dateManagement').value;
             // $('#appointmentForm').serialize();
             // aqui se manda a llamar los horarios deshabilitados en esa fecha
@@ -249,7 +248,7 @@
                 url: '/api/getSpecificDate',
                 dataType: 'json',
             });
-            debugger;
+            
             // validar que hay datos
             if (disabledSchedules.status === 'success') {
                 if (disabledSchedules.data === 'No hay datos') {
@@ -265,7 +264,7 @@
                         $('#expectHour').select2({
                             width: '100%',
                             theme: 'bootstrap-5',
-                            placeholder: 'Selecciona primero una localizacion',
+                            placeholder: 'Selecciona el horario',
 
                             templateResult: function(data) {
 
