@@ -64,8 +64,9 @@ class SchedulesService
 
 
             $querySaveAppointment = "INSERT INTO appointment (
-                Name
-                ,Lastname
+                NameLastname
+                ,zodiacSign
+                ,nationality
                 ,Email
                 ,Phone
                 ,Date
@@ -74,8 +75,9 @@ class SchedulesService
                 ) 
                 VALUES
                 (
-                :Name
-                ,:Lastname
+                :NameLastname
+                ,:zodiacSign
+                ,:nationality
                 ,:Email
                 ,:Phone
                 ,:Date
@@ -84,8 +86,9 @@ class SchedulesService
                 )";
 
             $stmtSaveAppointment = $this->conn->prepare($querySaveAppointment);
-            $stmtSaveAppointment->bindParam(':Name', $appointment->name, PDO::PARAM_STR);
-            $stmtSaveAppointment->bindParam(':Lastname', $appointment->lastname, PDO::PARAM_STR);
+            $stmtSaveAppointment->bindParam(':NameLastname', $appointment->nameLastname, PDO::PARAM_STR);
+            $stmtSaveAppointment->bindParam(':zodiacSign', $appointment->zodiacSign, PDO::PARAM_STR);
+            $stmtSaveAppointment->bindParam(':nationality', $appointment->nationality, PDO::PARAM_STR);
             $stmtSaveAppointment->bindParam(':Email', $appointment->email, PDO::PARAM_STR);
             $stmtSaveAppointment->bindParam(':Phone', $appointment->phone, PDO::PARAM_STR);
             $stmtSaveAppointment->bindParam(':Date', $appointment->date, PDO::PARAM_STR);

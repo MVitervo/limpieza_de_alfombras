@@ -36,11 +36,13 @@
 
         if (information.status === 'success') {
             document.querySelector('#id').value = information.data.id;
-            document.querySelector('#first_name').value = information.data.name;
-            document.querySelector('#lastname').value = information.data.lastname;
+            document.querySelector('#nameLastname').value = information.data.nameLastname;
+            document.querySelector('#zodiacSign').value = information.data.zodiacSign;
+            document.querySelector('#nationality').value = information.data.nationality;
             document.querySelector('#email').value = information.data.email;
             document.querySelector('#phone').value = information.data.phone;
             document.querySelector('#expectDate').value = information.data.date;
+            debugger;
             await loadSchedules(); // sirve para disparar el evento de los horarios y asi poder asignar el valor con la instruccion de abajo
             $('#expectHour').val(information.data.schedule).trigger('change');
         } else {

@@ -85,8 +85,9 @@ Base de datos
 
 CREATE TABLE appointment (
 	Id INT IDENTITY,
-	[Name] VARCHAR (100),
-	[Lastname] VARCHAR(100),
+	NameLastname VARCHAR (100),
+	ZodiacSign VARCHAR(100),
+	Nacionality VARCHAR(100),
 	[Email] VARCHAR(200),
 	[Phone] VARCHAR(20),
 	[Date] DATE,

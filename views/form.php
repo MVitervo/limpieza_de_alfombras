@@ -10,19 +10,39 @@
         <p class="mt-2 text-xs leading-5 text-stone-600 dark:text-stone-300">Completa tus datos para agendar tu lectura.</p>
     </div>
     <div class="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
-        <div>
-            <label for="first_name" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
-                <i data-lucide="user-round" class="h-5 w-5 text-[#a87943]"></i> Nombre
+        <div class="sm:col-span-2">
+            <label for="nameLastname" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
+                <i data-lucide="user-round" class="h-5 w-5 text-[#a87943]"></i> Nombre y apellido
             </label>
-            <input class="field" type="text" id="first_name" name="name" placeholder="Ingresa tu nombre" autocomplete="given-name" required>
+            <input class="field" type="text" id="nameLastname" name="nameLastname" placeholder="Ingresa tu nombre y apellido" autocomplete="given-name" required>
 
         </div>
 
         <div>
-            <label for="lastname" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
-                <i data-lucide="user-round" class="h-5 w-5 text-[#a87943]"></i> Apellido
+            <label for="zodiacSign" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
+                <i data-lucide="user-round" class="h-5 w-5 text-[#a87943]"></i> Signo zodiacal
             </label>
-            <input class="field" type="text" id="lastname" name="lastname" placeholder="Ingresa tu apellido" autocomplete="family-name" required>
+            <select class="field" type="text" id="zodiacSign" name="zodiacSign" placeholder="Ingresa tu apellido" autocomplete="family-name" required>
+                <option value='aries'>ARIES</option>
+                <option value='tauro'>TAURO</option>
+                <option value='geminis'>GEMINIS</option>
+                <option value='cancer'>CANCER</option>
+                <option value='leo'>LEO</option>
+                <option value='virgo'>VIRGO</option>
+                <option value='libra'>LIBRA</option>
+                <option value='escorpion'>ESCORPION</option>
+                <option value='sagitario'>SAGITARIO</option>
+                <option value='capricornio'>CAPRICORNIO</option>
+                <option value='acuario'>ACUARIO</option>
+                <option value='piscis'>PISCIS</option>
+            </select>
+
+        </div>
+        <div>
+            <label for="nationality" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
+                <i data-lucide="user-round" class="h-5 w-5 text-[#a87943]"></i> Nacionalidad
+            </label>
+            <input class="field" type="text" id="nationality" name="nationality" placeholder="Ingresa tu nacionalidad" autocomplete="family-name" required>
         </div>
 
         <div>
@@ -232,7 +252,7 @@
             debugger;
             // validar que hay datos
             if (disabledSchedules.status === 'success') {
-                if (disabledSchedules.data === 'no hay datos') {
+                if (disabledSchedules.data === 'No hay datos') {
                     // quiere decir que no hay ningun dato que revisar
                     return;
                 }

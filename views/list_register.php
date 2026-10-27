@@ -122,10 +122,13 @@
 
                 <tr>
                     <th class="whitespace-nowrap border-b border-gold/30
-                        px-4 py-4 font-semibold">Nombre</th>
+                        px-4 py-4 font-semibold">Nombre y apellido</th>
 
                     <th class="whitespace-nowrap border-b border-gold/30
-                        px-4 py-4 font-semibold">Apellido</th>
+                        px-4 py-4 font-semibold">Signo zodiacal</th>
+
+                    <th class="whitespace-nowrap border-b border-gold/30
+                        px-4 py-4 font-semibold">Nacionalidad</th>
 
                     <th class="whitespace-nowrap border-b border-gold/30
                         px-4 py-4 font-semibold">Correo</th>
@@ -223,10 +226,13 @@
             },
             // los valores que recibira data estan pendientes de la tabla en la bd
             columns: [{
-                    data: 'name'
+                    data: 'nameLastname'
                 },
                 {
-                    data: 'lastname'
+                    data: 'zodiacSign'
+                },
+                {
+                    data: 'nationality'
                 },
                 {
                     data: 'email'

@@ -16,8 +16,9 @@ class ListRegisterService
         try {
             $queryAppointment = "SELECT
                                 Id AS [id]
-                                ,Name AS [name]
-                                ,Lastname AS [lastname]
+                                ,NameLastname AS [nameLastname]
+                                ,ZodiacSign AS [zodiacSign]
+                                ,Nationality AS [nationality]
                                 ,Email AS [email]
                                 ,Phone AS [phone]
                                 ,Date AS [date]
@@ -42,8 +43,9 @@ class ListRegisterService
                             </button>';
 
                 $row = [
-                    'name' => $data['name'],
-                    'lastname' => $data['lastname'],
+                    'nameLastname' => $data['nameLastname'],
+                    'zodiacSign' => $data['zodiacSign'],
+                    'nationality' => $data['nationality'],
                     'email' => $data['email'],
                     'phone' => $data['phone'],
                     'date' => $data['date'],
@@ -74,8 +76,9 @@ class ListRegisterService
         try {
             $queryInformation = "SELECT
                                 Id AS [id]
-                                ,Name AS [name]
-                                ,Lastname AS [lastname]
+                                ,NameLastname AS [nameLastname]
+                                ,ZodiacSign AS [zodiacSign]
+                                ,Nationality AS [nationality]
                                 ,Email AS [email]
                                 ,Phone AS [phone]
                                 ,Date AS [date]
@@ -124,8 +127,9 @@ class ListRegisterService
             }
 
             $queryEditRegister = "UPDATE TOP (1) appointment 
-                                SET Name = :name
-                                ,Lastname = :lastname
+                                SET NameLastname = :nameLastname
+                                ,ZodiacSign = :zodiacSign
+                                ,Nationality = :nationality
                                 ,Email = :email
                                 ,Phone = :phone
                                 ,Date = :date
@@ -133,9 +137,16 @@ class ListRegisterService
                                 ,LastEditDt = GETDATE()
                                 WHERE Id = :id";
 
+                                /*
+                                ,NameLastname AS [nameLastname]
+                                ,ZodiacSign AS [zodiacSign]
+                                ,Nationality AS [nationality]
+                                */
+
             $stmtEditRegister = $this->conn->prepare($queryEditRegister);
-            $stmtEditRegister->bindParam(':name', $appointment->name, PDO::PARAM_STR);
-            $stmtEditRegister->bindParam(':lastname', $appointment->lastname, PDO::PARAM_STR);
+            $stmtEditRegister->bindParam(':nameLastname', $appointment->nameLastname, PDO::PARAM_STR);
+            $stmtEditRegister->bindParam(':zodiacSign', $appointment->zodiacSign, PDO::PARAM_STR);
+            $stmtEditRegister->bindParam(':nationality', $appointment->nationality, PDO::PARAM_STR);
             $stmtEditRegister->bindParam(':email', $appointment->email, PDO::PARAM_STR);
             $stmtEditRegister->bindParam(':phone', $appointment->phone, PDO::PARAM_STR);
             $stmtEditRegister->bindParam(':date', $appointment->date, PDO::PARAM_STR);
