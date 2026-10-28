@@ -28,7 +28,7 @@ $router->post('/api/saveAppointment', [
     'saveAppointment'
 ]);
 
-$router->get('/api/login', [
+$router->post('/api/login', [
     LoginController::class,
     'singIn'
 ]);

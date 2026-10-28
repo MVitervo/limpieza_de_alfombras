@@ -26,7 +26,8 @@ class LoginController
 
     function singIn()
     {
-        $login = $this->loginFactory->createFromRequest($_GET);
+        header('Content-Type: application/json; charset=utf-8'); // gpt
+        $login = $this->loginFactory->createFromRequest($_POST);
 
         echo json_encode(
             $this->loginService->login($login)

@@ -55,6 +55,10 @@
 
 </div> -->
 
+<?php
+require_once __DIR__ . '/../auth.php';
+requireAdmin();
+?>
 
 <div class="form-panel w-11/12 mx-auto rounded-2xl border border-gold/40
     p-4 shadow-gold transition-colors duration-300 sm:p-6 lg:p-8 mb-4">

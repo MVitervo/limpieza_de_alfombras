@@ -87,7 +87,7 @@ CREATE TABLE appointment (
 	Id INT IDENTITY,
 	NameLastname VARCHAR (100),
 	ZodiacSign VARCHAR(100),
-	Nacionality VARCHAR(100),
+	Nationality VARCHAR(100),
 	[Email] VARCHAR(200),
 	[Phone] VARCHAR(20),
 	[Date] DATE,
