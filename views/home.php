@@ -43,6 +43,7 @@
     <script src="/views/modal_error.js"></script>
     <script src="/views/modal_success.js"></script>
     <script src="/views/modal_confirmation.js"></script>
+    <script src="/views/modal_session_expired.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -158,6 +159,9 @@
     <div class="modalConfirmation">
     </div>
 
+    <div class="modalSession">
+    </div>
+
 </body>
 
 
@@ -220,21 +224,55 @@
                 page = "/views/404.php";
         }
 
+        $.ajax({
+            url: page,
+            method: "GET",
+            dataType: "html",
+
+            success: function(response) {
+                $("#renderPage").html(response);
+                lucide.createIcons();
+            },
+
+            error: function(xhr) {
+                debugger;
+                // aqui entra cuando la sesion ya expiro y se debe de volver a iniciar sesion
+                if (xhr.status === 401) {
+
+                    const message = xhr.responseJSON?.message ??
+                        "Tu sesión ha expirado. Inicia sesión nuevamente.";
+
+                    modalSession(message);
+
+                    return;
+                }
+
+                console.error(xhr.responseText);
+
+                modalSession("No fue posible cargar esta sección.");
+            }
+        });
+
+        /*
         $.get(page, function(response) {
             $("#renderPage").html(response);
 
             // Renderizar los iconos de Lucide de la vista recién cargada
             lucide.createIcons();
         });
+        */
+
     }
 
     window.addEventListener(NAVIGATION_EVENT, onLocationChange);
 
     window.addEventListener('popstate', onLocationChange);
 
+    /* Este se comento ya que estaba cargando dos veces la pagina de forma innecesaria
     document.addEventListener('DOMContentLoaded', () => {
         onLocationChange();
     });
+    */
 
     const previousRoutes = {
         '/': '/',
@@ -251,11 +289,24 @@
 
         loadPage(previousRoute);
     }
-    
+
     $(document).on('click', '.btnBack', function() {
-        debugger;
         goBack();
     });
+
+    function handleAjaxError(xhr) {
+
+        if (xhr.status === 401) {
+
+            const message = xhr.responseJSON?.message ??
+                "Tu sesión ha expirado. Inicia sesión nuevamente.";
+
+            modalError(message);
+            return true;
+        }
+
+        return false;
+    }
 
     // $(document).on("click", "a[data-route]", function(event) {
     //     debugger;

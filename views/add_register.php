@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/../auth.php';
+requireAdmin();
+?>
 
 <form class="px-4 mb-4" id="addAppointmentForm">
     <div class="w-full md:w-1/2 mx-auto">

@@ -1,3 +1,8 @@
+<?php
+require_once __DIR__ . '/../auth.php';
+requireAdmin();
+?>
+
 <form class="px-4 mb-4" id="editAppointmentForm">
     <div class="w-full md:w-1/2 mx-auto">
         <input type="number" id="id" autocomplete="off" name="id" style="display: none;" />
@@ -42,7 +47,6 @@
             document.querySelector('#email').value = information.data.email;
             document.querySelector('#phone').value = information.data.phone;
             document.querySelector('#expectDate').value = information.data.date;
-            debugger;
             await loadSchedules(); // sirve para disparar el evento de los horarios y asi poder asignar el valor con la instruccion de abajo
             $('#expectHour').val(information.data.schedule).trigger('change');
         } else {
@@ -57,7 +61,6 @@
         event.preventDefault(); // evita que la pagina recargue
 
         const appointment = $('#editAppointmentForm').serialize(); // toma todos los valores de los campos
-        debugger;
 
         $.ajax({
             method: 'POST',

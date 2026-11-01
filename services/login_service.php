@@ -12,18 +12,21 @@ class LoginService
     public function login(Login $login)
     {
         try {
-            $this->conn->beginTransaction();
-
-            $queryValidateUser = "SELECT * FROM usernames WHERE Username = :Username AND Password = :Password";
+            $queryValidateUser = "
+                SELECT Username
+                FROM usernames
+                WHERE Username = :Username
+                AND Password = :Password
+            ";
 
             $stmtValidateUser = $this->conn->prepare($queryValidateUser);
-            $stmtValidateUser->bindParam(':Username', $login->username, PDO::PARAM_STR);
-            $stmtValidateUser->bindParam(':Password', $login->password, PDO::PARAM_STR);
+
+            $stmtValidateUser->bindValue(':Username', $login->username, PDO::PARAM_STR);
+            $stmtValidateUser->bindValue(':Password', $login->password, PDO::PARAM_STR);
+
             $stmtValidateUser->execute();
 
             $resultValidateUser = $stmtValidateUser->fetch(PDO::FETCH_ASSOC);
-
-            $this->conn->commit();
 
             if (!$resultValidateUser) {
                 return [
@@ -49,28 +52,19 @@ class LoginService
             $_SESSION['admin_authenticated'] = true;
             $_SESSION['admin_username'] = $resultValidateUser['Username'];
 
+            // Registrar el momento de la última actividad.
+            $_SESSION['last_activity'] = time();
+
             return [
                 'status' => 'success',
                 'message' => 'Bienvenido.'
             ];
-
-            /*
-            if ($resultValidateUser) {
-                return [
-                    'status' => 'success',
-                    'message' => 'Bienvenido'
-                ];
-            }
-            else {
-                return [
-                    'status' => 'error',
-                    'message' => 'Usuario invalido'
-                ];
-            }
-            */
         } catch (PDOException $e) {
-            $this->conn->rollBack();
-            return ['status' => false, 'message' => "Error de base de datos " . $e->getMessage()];
+
+            return [
+                'status' => 'error',
+                'message' => 'Error de base de datos.'
+            ];
         }
     }
 }
