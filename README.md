@@ -228,3 +228,7 @@ JSON
    │
    ▼
 Browser / AJAX
+
+
+// continuar crear otra funcion al guardar un nuevo registro para poder validar la sesion la cual utilizara
+el administrador

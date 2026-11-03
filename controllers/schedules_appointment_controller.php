@@ -43,4 +43,28 @@ class AppointmentSchedulesController
             $this->service->saveAppointment($appointment)
         );
     }
+
+    /* aplican solo para el administrador */
+
+    public function getSchedulesAdmin()
+    {
+        requireAdmin();
+
+        echo json_encode(
+            $this->service->schedules()
+        );
+    }
+
+    public function saveAppointmentAdmin()
+    {
+        requireAdmin();
+
+        $appointment = $this->appointmentFactory->createFromRequest($_POST);
+
+        echo json_encode(
+            $this->service->saveAppointment($appointment)
+        );
+    }
+
+    /* aplican solo para el administrador */
 }

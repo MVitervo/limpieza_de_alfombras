@@ -28,6 +28,18 @@ $router->post('/api/saveAppointment', [
     'saveAppointment'
 ]);
 
+/* REPLICAS PARA PONER LA VALIDACION DE LA SESION || BEGIN */
+$router->get('/api/schedulesAdmin', [
+    AppointmentSchedulesController::class,
+    'getSchedulesAdmin'
+]);
+
+$router->post('/api/saveAppointmentAdmin', [
+    AppointmentSchedulesController::class,
+    'saveAppointmentAdmin'
+]);
+/* REPLICAS PARA PONER LA VALIDACION DE LA SESION || END */
+
 $router->post('/api/login', [
     LoginController::class,
     'singIn'

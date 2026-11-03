@@ -13,6 +13,8 @@ class ModifyDatesSchedulesController
 
     public function getDates()
     {
+        requireAdmin();
+
         // $date = $_GET['date'] ?? '';
 
         echo json_encode(
@@ -22,6 +24,8 @@ class ModifyDatesSchedulesController
 
     public function getSpecificDate()
     {
+        requireAdmin();
+
         $getSpecificDate = $this->modifyFactory->dateFactory($_POST);
 
         echo json_encode(
@@ -31,6 +35,8 @@ class ModifyDatesSchedulesController
 
     public function modifyDate()
     {
+        requireAdmin();
+
         // $appointment = $this->modifyFactory->createFromRequest($_POST);
         $modifyDateSchedules = $this->modifyFactory->dateFactory($_POST);
 
@@ -41,6 +47,8 @@ class ModifyDatesSchedulesController
 
     public function modifyHour()
     {
+        requireAdmin();
+        
         $modifyDateSchedules = $this->modifyFactory->dateFactory($_POST);
 
         echo json_encode(

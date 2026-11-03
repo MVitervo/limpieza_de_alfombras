@@ -25,12 +25,16 @@ class listRegisterController {
     }
 
     public function listRegister() {
+        requireAdmin();
+
         echo json_encode(
             $this->listRegister->listRegister()
         );
     }
 
     public function editRegister() {
+        requireAdmin();
+
         $appointment = $this->appointmentFactory->createFromRequest($_POST);
 
         echo json_encode(
@@ -39,6 +43,7 @@ class listRegisterController {
     }
 
     public function deleteRegister() {
+        requireAdmin();
 
         $appointment = $this->appointmentFactory->createFromRequest($_POST);
 
@@ -48,6 +53,8 @@ class listRegisterController {
     }
 
     public function getInformation() {
+        requireAdmin();
+        
         $appointment = $this->appointmentFactory->createFromRequest($_GET);
 
         echo json_encode(

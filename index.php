@@ -16,6 +16,8 @@ require './models/modify_dates_schedules_model.php';
 require './factory/appoinment_factory.php';
 require './factory/modify_dates_schedules_factory.php';
 
+require_once __DIR__ . '/auth.php';
+
 $container = new Container();
 
 $container->set(PDO::class, function () {

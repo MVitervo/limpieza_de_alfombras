@@ -38,7 +38,7 @@ requireAdmin();
 
         $.ajax({
             method: 'POST',
-            url: '/api/saveAppointment',
+            url: '/api/saveAppointmentAdmin',
             data: appointment,
             dataType: 'json',
             success: function(response) {

@@ -233,7 +233,7 @@ requireAdmin();
         // esta funcion debera de mandarse a llamar cuando se seleccione una fecha antes no para no consumir recursos
         const schedules = await $.ajax({
             method: 'GET',
-            url: '/api/schedules',
+            url: '/api/schedulesAdmin',
             dataType: 'json',
         });
 
