@@ -1,3 +1,13 @@
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+$isAdmin = (
+    isset($_SESSION['admin_authenticated']) &&
+    $_SESSION['admin_authenticated'] === true
+);
+?>
 <!DOCTYPE html>
 <html lang="en" class="dark">
 
@@ -109,6 +119,33 @@
                     </button>
                 </div>
             </div>
+
+
+            <button
+                onclick="logoutHome()"
+                type="button"
+                id="btnLogout"
+                class="hidden inline-flex items-center justify-center
+                        size-11
+                        rounded-full
+                        border border-gold/70
+                        bg-black/20
+                        text-gold
+                        shadow-md
+                        backdrop-blur-sm
+                        transition-all duration-300
+                        hover:border-gold
+                        hover:bg-gold
+                        hover:text-gray-950
+                        hover:shadow-gold
+                        focus:outline-none
+                        focus:ring-2 focus:ring-gold
+                        focus:ring-offset-2
+                        focus:ring-offset-[#100d14]
+                        active:scale-95
+                        dark:bg-black/20">
+                <i data-lucide="log-out"></i>
+            </button>
         </nav>
 
 
@@ -190,6 +227,22 @@
     function onLocationChange() {
         currentPath = window.location.pathname;
         renderPage(currentPath);
+    }
+
+    function logoutHome() {
+        $.ajax({
+            type: 'POST',
+            url: '/api/logout',
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    window.location.href = '/login';
+                }
+            },
+            error: function(error) {
+                modalError('Error al cerrar sesion');
+            }
+        });
     }
 
     function renderPage(route) {

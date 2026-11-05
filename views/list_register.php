@@ -1,3 +1,9 @@
+<?php
+require_once __DIR__ . '/../auth.php';
+requireAdmin();
+?>
+
+
 <!-- <button class="btnBack2" onclick="loadPage('/login')">
     <svg xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -8,57 +14,6 @@
             clip-rule="evenodd" />
     </svg>
 </button> -->
-
-<!-- <div class="rounded-lg border border-gray-200 bg-white shadow-sm
-        dark:border-gray-700 dark:bg-gray-900">
-    <div class="w-10/12 mx-auto">
-        <button onclick="loadPage('/add_register')" class="py-2 px-4 mt-2
-            bg-white-500/10 text-black
-            dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
-            ">
-            Agregar
-        </button>
-        <button onclick="loadPage('/modify_dates_schedules')" class="py-2 px-4 mt-2
-            bg-white-500/10 text-black
-            dark:bg-white-500/10 dark:text-white font-semibold border border-gray-400 rounded shadow
-            ">
-            Editar horarios
-        </button>
-    </div>
-
-    <div class="border-b border-gray-200 px-4 py-3 font-semibold
-            dark:border-gray-700 dark:text-white
-            w-10/12 mx-auto">
-        <h2>Lista de registros</h2>
-    </div>
-
-    <div class="p-4">
-        <div class="containerTable w-10/12 mx-auto">
-            <table class="appoinmentTable w-full">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                        <th>Fecha</th>
-                        <th>Horario</th>
-                        <th>Ultima fecha de modificacion</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div> -->
-
-<?php
-require_once __DIR__ . '/../auth.php';
-requireAdmin();
-?>
 
 <div class="form-panel w-11/12 mx-auto rounded-2xl border border-gold/40
     p-4 shadow-gold transition-colors duration-300 sm:p-6 lg:p-8 mb-4">

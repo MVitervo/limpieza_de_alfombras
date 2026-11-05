@@ -314,7 +314,6 @@ requireAdmin();
                 url: "/api/getDatesSchedules",
                 dataType: "json",
                 success: function(response) {
-                    debugger;
                     if (response.status === 'success') {
                         datesSchedules = [];
                         // Guardar las excepciones recibidas
@@ -324,12 +323,8 @@ requireAdmin();
                         instance.redraw();
                     }
                 },
-
                 error: function(xhr, status, error) {
-
                     if (handleAjaxError(xhr)) return;
-
-                    console.error("Error en AJAX:", error);
                     modalError("No fue posible consultar las fechas disponibles.");
                 }
             });

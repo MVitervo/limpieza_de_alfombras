@@ -46,9 +46,6 @@
 
 </div>
 
-
-
-
 <a href="/login"
     data-route
     class="

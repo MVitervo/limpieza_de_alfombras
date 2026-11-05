@@ -1,4 +1,4 @@
-<form id="loginForm"
+<form id="loginForm" method="POST"
     class="flex min-h-[calc(100vh-100px)] items-center justify-center px-4 py-8">
 
     <div class="form-panel w-full md:w-3/5 mx-auto max-w-3xl rounded-2xl p-6 shadow-gold sm:p-8">
@@ -70,40 +70,11 @@
     </div>
 </form>
 
-<!-- <script>
-    var formLogin = document.querySelector('#loginForm');
-
-    formLogin.addEventListener('submit', function(event) {
-
-        event.preventDefault(); // evita que la pagina recargue
-
-        const login = $('#loginForm').serialize(); // toma todos los valores de los campos
-
-        $.ajax({
-            method: 'POST',
-            url: '/api/login',
-            data: login,
-            dataType: 'json',
-            success: function(response) {
-                if (response.status === 'success') {
-                    loadPage('/list_register');
-                } else {
-                    modalError(response.message);
-                }
-            },
-            error: function(error) {
-                modalError(error);
-            }
-
-        });
-    });
-</script> -->
-
-
 <script>
     const formLogin = document.querySelector('#loginForm');
 
-    formLogin.addEventListener('submit', function(event) {
+    // formLogin.addEventListener('submit', function(event) {
+    $(document).on('submit', '#loginForm', function(event) {
         event.preventDefault();
 
         const login = $('#loginForm').serialize();
@@ -116,6 +87,7 @@
 
             success: function(response) {
                 if (response.status === 'success') {
+                    $('#btnLogout').removeClass('hidden');
                     loadPage('/list_register');
                 } else {
                     modalError(response.message);
@@ -123,7 +95,6 @@
             },
 
             error: function(xhr) {
-                console.error(xhr.responseText);
                 modalError('No fue posible iniciar sesión. Inténtalo nuevamente.');
             }
         });

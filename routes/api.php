@@ -45,6 +45,11 @@ $router->post('/api/login', [
     'singIn'
 ]);
 
+$router->post('/api/logout', [
+    LoginController::class,
+    'logout'
+]);
+
 $router->get('/api/listRegister', [
     listRegisterController::class,
     'listRegister'
