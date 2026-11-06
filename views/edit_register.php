@@ -24,6 +24,10 @@ requireAdmin();
     </div>
 </form>
 <script>
+
+    $('#btnLogout').removeClass('hidden');
+    $('#btnLogout').addClass('inline-flex');
+
     $(function() {
         getInformationRegister();
         document.querySelector('.textButton').textContent = 'ACTUALIZAR CITA';

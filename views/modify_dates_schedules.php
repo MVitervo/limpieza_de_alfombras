@@ -215,6 +215,9 @@ requireAdmin();
 <link rel="stylesheet" href="/css/modify_dates_schedules.css">
 
 <script>
+    $('#btnLogout').removeClass('hidden');
+    $('#btnLogout').addClass('inline-flex');
+
     $(function() {
         // findAppointments();
         $('.hourAvailable').select2({

@@ -125,7 +125,7 @@ $isAdmin = (
                 onclick="logoutHome()"
                 type="button"
                 id="btnLogout"
-                class="hidden inline-flex items-center justify-center
+                class="hidden ml-auto items-center justify-center
                         size-11
                         rounded-full
                         border border-gold/70
@@ -141,11 +141,11 @@ $isAdmin = (
                         focus:outline-none
                         focus:ring-2 focus:ring-gold
                         focus:ring-offset-2
-                        focus:ring-offset-[#100d14]
                         active:scale-95
                         dark:bg-black/20">
                 <i data-lucide="log-out"></i>
             </button>
+
         </nav>
 
 

@@ -25,6 +25,9 @@ requireAdmin();
 
 <script>
 
+    $('#btnLogout').removeClass('hidden');
+    $('#btnLogout').addClass('inline-flex');
+
     var form = document.querySelector('#addAppointmentForm');
 
     form.addEventListener('submit', function(event) {

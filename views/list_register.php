@@ -128,6 +128,9 @@ requireAdmin();
         loadRegister();
     });
 
+    $('#btnLogout').removeClass('hidden');
+    $('#btnLogout').addClass('inline-flex');
+
     // document.querySelector('#contentButtonTheme').style.display = 'block';
 
     function loadRegister() {
