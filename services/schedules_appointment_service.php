@@ -5,10 +5,17 @@
 class SchedulesService
 {
     private PDO $conn;
+    private string $username;
 
     public function __construct(PDO $conn)
     {
         $this->conn = $conn;
+
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+        // utilizar esta variable para guardar el dato donde sea necesario
+        $this->username = $_SESSION['admin_username'] ?? '';
     }
 
     public function schedules()
