@@ -35,7 +35,7 @@ body {
     box-shadow: 0 0 0 4px rgba(198, 154, 91, .08), 0 0 0 6px rgba(198, 154, 91, .32), 0 22px 60px rgba(0, 0, 0, .4);
 }
 
-.field {
+/* .field {
     width: 100%;
     min-height: 46px;
     padding: 11px 13px;
@@ -68,6 +68,67 @@ body {
 
 .dark .field:focus {
     border-color: #c69a5b;
+} */
+
+/* Campos generales */
+.field {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 13px;
+
+    border: 1px solid #c69a5b;
+    border-radius: 10px;
+
+    background-color: #fffcf7;
+    color: #392b3c;
+
+    outline: none;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s,
+        background-color .2s;
+}
+
+/* Placeholder */
+.field::placeholder {
+    color: #9a897c;
+}
+
+/* Enfoque */
+.field:focus {
+    border-color: #a87943;
+    box-shadow: 0 0 0 3px rgba(198, 154, 91, .20);
+}
+
+/* Modo oscuro */
+.dark .field {
+    background-color: #17131f;
+    border-color: #a9824d;
+    color: #f7efe3;
+}
+
+/* Placeholder modo oscuro */
+.dark .field::placeholder {
+    color: #a99eae;
+}
+
+/* Enfoque modo oscuro */
+.dark .field:focus {
+    border-color: #c69a5b;
+    box-shadow: 0 0 0 3px rgba(198, 154, 91, .25);
+}
+
+/* Opciones de los select */
+.field option {
+    background-color: #fffcf7;
+    color: #392b3c;
+}
+
+.dark .field option {
+    background-color: #17131f;
+    color: #f7efe3;
 }
 
 .toggle-active {

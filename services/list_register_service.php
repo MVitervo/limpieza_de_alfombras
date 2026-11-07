@@ -3,10 +3,17 @@
 class ListRegisterService
 {
     private PDO $conn;
+    private string $username;
 
     public function __construct(PDO $conn)
     {
         $this->conn = $conn;
+
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+        // utilizar esta variable para guardar el dato donde sea necesario
+        $this->username = $_SESSION['admin_username'] ?? '';
     }
 
     public function listRegister()
@@ -109,6 +116,7 @@ class ListRegisterService
     {
         try {
             $this->conn->beginTransaction();
+            $username = $this->username;
 
             // validar que la fecha y horario esten disponibles
             $queryValidateAvailability = "SELECT * FROM appointment WHERE Date = :date AND Schedule = :schedule AND Id != :id";
@@ -134,10 +142,11 @@ class ListRegisterService
                                 ,Phone = :phone
                                 ,Date = :date
                                 ,Schedule = :schedule
+                                ,LastEditBy = :LastEditBy
                                 ,LastEditDt = GETDATE()
                                 WHERE Id = :id";
 
-                                /*
+            /*
                                 ,NameLastname AS [nameLastname]
                                 ,ZodiacSign AS [zodiacSign]
                                 ,Nationality AS [nationality]
@@ -151,6 +160,7 @@ class ListRegisterService
             $stmtEditRegister->bindParam(':phone', $appointment->phone, PDO::PARAM_STR);
             $stmtEditRegister->bindParam(':date', $appointment->date, PDO::PARAM_STR);
             $stmtEditRegister->bindParam(':schedule', $appointment->schedule, PDO::PARAM_STR);
+            $stmtEditRegister->bindParam(':LastEditBy', $username, PDO::PARAM_STR);
             $stmtEditRegister->bindValue(':id', $appointment->id, PDO::PARAM_INT);
             $stmtEditRegister->execute();
 
@@ -160,7 +170,6 @@ class ListRegisterService
                 'status' => 'success',
                 'message' => 'Registro actualizado correctamente'
             ];
-
         } catch (Exception $e) {
             return ["status" => "error", "message" => $e->getMessage()];
         } catch (PDOException $e) {

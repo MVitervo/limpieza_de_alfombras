@@ -2,10 +2,17 @@
 class ModifyDatesSchedulesService
 {
     private PDO $conn;
+    private string $username;
 
     public function __construct(PDO $conn)
     {
         $this->conn = $conn;
+
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+        // utilizar esta variable para guardar el dato donde sea necesario
+        $this->username = $_SESSION['admin_username'] ?? '';
     }
 
     public function getDates()
@@ -64,9 +71,10 @@ class ModifyDatesSchedulesService
 
     public function availableDisableDate(ModifyDatesSchedules $modifyDatesSchedules) // el modelo de ya existe en el controlador
     {
+        // revisar todas las personas con esa fecha y avisar
         try {
             $this->conn->beginTransaction();
-            $username = 'test';
+            $username = $this->username;
 
             // primero se buscara si es que esa fecha ya existe
             $queryValidateDate = "SELECT * FROM calendar_exceptions
@@ -78,17 +86,35 @@ class ModifyDatesSchedulesService
 
             $resultValidateDates = $stmtValidate->fetch(PDO::FETCH_ASSOC);
 
-            if ($resultValidateDates['Date']) {
-                // si ya existe entonces se hara una actulizacion del registro
+            if (!empty($resultValidateDates['Date'])) {
+                // validacion
+
+                // si ya existe entonces se hara una actualizacion del registro
                 $queryupdateRegister = "UPDATE calendar_exceptions 
-                                        SET StatusDate = :StatusDate
+                                        SET StatusDate = :StatusDate,
+                                        LastEditBy = :LastEditBy
                                         WHERE Date = :Date";
 
                 $stmtUpdateRegister = $this->conn->prepare($queryupdateRegister);
                 $stmtUpdateRegister->bindParam(':StatusDate', $modifyDatesSchedules->statusDate, PDO::PARAM_STR);
                 $stmtUpdateRegister->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
+                $stmtUpdateRegister->bindParam(':LastEditBy', $username, PDO::PARAM_STR);
                 $stmtUpdateRegister->execute();
             } else {
+                // validacion
+                $querySearchAppoinments = "SELECT NameLastname FROM appointment
+                                            WHERE Date = :Date";
+
+                $stmtSearchAppoinments = $this->conn->prepare($querySearchAppoinments);
+                $stmtSearchAppoinments->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
+                $stmtSearchAppoinments->execute();
+
+                $resultSearchAppoinments = $stmtSearchAppoinments->fetchAll(PDO::FETCH_ASSOC);
+
+                var_dump($resultSearchAppoinments);
+                return;
+                // debo de preguntar que se quiere hacer aqui ya que no recuerdo bien
+
                 // si no existe entonces se hara una insercion del registro
                 $queryInsertRegister = "INSERT INTO calendar_exceptions (
                                         Date
@@ -124,9 +150,10 @@ class ModifyDatesSchedulesService
 
     public function availableDisableHour(ModifyDatesSchedules $modifyDatesSchedules)
     {
+        // revisar si hay una persona con esa fecha y hora para avisar
         try {
             $this->conn->beginTransaction();
-            $username = 'test';
+            $username = $this->username;
 
             // primero se buscara si es que esa fecha ya existe
             $queryValidateDate = "SELECT * FROM calendar_exceptions
@@ -144,13 +171,15 @@ class ModifyDatesSchedulesService
             if (!empty($resultValidateDates['Date'])) {
                 // si ya existe entonces se hara una actulizacion del registro
                 $queryupdateRegister = "UPDATE TOP (1) calendar_exceptions 
-                                        SET StatusHour = :StatusHour
+                                        SET StatusHour = :StatusHour,
+                                        LastEditBy = :LastEditBy
                                         WHERE Date = :Date AND Hour = :Hour";
 
                 $stmtUpdateRegister = $this->conn->prepare($queryupdateRegister);
                 $stmtUpdateRegister->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
                 $stmtUpdateRegister->bindParam(':StatusHour', $modifyDatesSchedules->statusHour, PDO::PARAM_STR);
                 $stmtUpdateRegister->bindParam(':Hour', $modifyDatesSchedules->hour, PDO::PARAM_STR);
+                $stmtUpdateRegister->bindParam(':LastEditBy', $username, PDO::PARAM_STR);
                 $stmtUpdateRegister->execute();
                 // continuar debo de cambiar el tipo de dato en la columna Hour de sql server para que funcione esto de aqui
             } else {

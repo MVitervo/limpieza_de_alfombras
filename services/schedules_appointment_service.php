@@ -55,6 +55,7 @@ class SchedulesService
     {
         try {
             $this->conn->beginTransaction();
+            $username = $this->username;
             // falta la validacion de que no este ocupado esta fecha con el horario para que no haya repetidos
             $queryValidationAppointment = 'SELECT * FROM appointment WHERE Date = :date AND Schedule = :Schedule';
 
@@ -78,6 +79,7 @@ class SchedulesService
                 ,Phone
                 ,Date
                 ,Schedule
+                ,LastEditBy
                 ,LastEditDt
                 ) 
                 VALUES
@@ -89,6 +91,7 @@ class SchedulesService
                 ,:Phone
                 ,:Date
                 ,:Schedule
+                ,:LastEditBy
                 ,GETDATE()
                 )";
 
@@ -100,6 +103,7 @@ class SchedulesService
             $stmtSaveAppointment->bindParam(':Phone', $appointment->phone, PDO::PARAM_STR);
             $stmtSaveAppointment->bindParam(':Date', $appointment->date, PDO::PARAM_STR);
             $stmtSaveAppointment->bindParam(':Schedule', $appointment->schedule, PDO::PARAM_STR);
+            $stmtSaveAppointment->bindParam(':LastEditBy', $username, PDO::PARAM_STR);
             
 
             // $resultSaveAppointment = $stmtSaveAppointment->fetch(PDO::FETCH_ASSOC); // esta linea aplica solo los SELECT

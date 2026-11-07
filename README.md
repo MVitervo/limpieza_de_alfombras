@@ -92,6 +92,7 @@ CREATE TABLE appointment (
 	[Phone] VARCHAR(20),
 	[Date] DATE,
 	Schedule VARCHAR(100),
+   LastEditBy VARCHAR(100),
 	LastEditDt DATETIME
 )
 
