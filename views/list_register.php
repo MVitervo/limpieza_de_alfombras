@@ -263,7 +263,6 @@ requireAdmin();
                     data: idFormatter,
                     dataType: 'json',
                     success: function(response) {
-                        debugger;
                         if (response.status === 'success') {
                             modalSuccess(response.message);
                         } else {
@@ -271,7 +270,6 @@ requireAdmin();
                         }
                     },
                     error: function(error) {
-                        debugger;
                         modalSuccess(error.message);
                     }
                 });

@@ -20,9 +20,10 @@
 
         <div>
             <label for="zodiacSign" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
-                <i data-lucide="user-round" class="h-5 w-5 text-[#a87943]"></i> Signo zodiacal
+                <i data-lucide="zodiac-ophiuchus" class="h-5 w-5 text-[#a87943]"></i> Signo zodiacal
             </label>
-            <select class="field" type="text" id="zodiacSign" name="zodiacSign" placeholder="Ingresa tu apellido" autocomplete="family-name" required>
+            <select class="field zodiacSign" type="text" id="zodiacSign" name="zodiacSign" placeholder="Ingresa tu apellido" autocomplete="family-name" required>
+                <option value='' aria-placeholder="Selecciona un signo"></option>
                 <option value='aries'>ARIES</option>
                 <option value='tauro'>TAURO</option>
                 <option value='geminis'>GEMINIS</option>
@@ -215,6 +216,12 @@
             placeholder: 'Seleccionar fecha',
             width: '100%'
         });
+
+        $('.zodiacSign').select2({
+            theme: 'bootstrap-5',
+            placeholder: 'Seleccionar tu signo',
+            width: '100%'
+        });
     });
 
     // cuando seleccione una fecha entonces buscara los horarios disponibles de esa fecha en especifico
@@ -248,7 +255,7 @@
                 url: '/api/getSpecificDate',
                 dataType: 'json',
             });
-            
+
             // validar que hay datos
             if (disabledSchedules.status === 'success') {
                 if (disabledSchedules.data === 'No hay datos') {

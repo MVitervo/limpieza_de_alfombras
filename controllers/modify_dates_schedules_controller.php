@@ -33,6 +33,17 @@ class ModifyDatesSchedulesController
         );
     }
 
+    public function searchAppointmentDates()
+    {
+        requireAdmin();
+
+        $searchAppointment = $this->modifyFactory->dateFactory($_GET);
+
+        echo json_encode(
+            $this->service->searchAppointmentDates($searchAppointment)
+        );
+    }
+
     public function modifyDate()
     {
         requireAdmin();

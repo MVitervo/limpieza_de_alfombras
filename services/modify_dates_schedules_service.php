@@ -69,6 +69,47 @@ class ModifyDatesSchedulesService
         }
     }
 
+    public function searchAppointmentDates(ModifyDatesSchedules $modifyDatesSchedules)
+    {
+        try {
+            $this->conn->beginTransaction();
+            $querySearchAppointments = "SELECT Id, NameLastname FROM appointment
+                                        WHERE Date = :Date";
+
+            $stmtSearchAppointments = $this->conn->prepare($querySearchAppointments);
+            $stmtSearchAppointments->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
+            $stmtSearchAppointments->execute();
+
+            $resultSearchAppointments = [];
+
+            while ($data = $stmtSearchAppointments->fetch(PDO::FETCH_ASSOC)) {
+                $register = [
+                    "Id" => $data['Id'],
+                    "NameLastname" => $data['NameLastname']
+                ];
+
+                $resultSearchAppointments[] = $register;
+            }
+
+            $this->conn->commit();
+
+            if (!empty($resultSearchAppointments)) {
+                return [
+                    'status' => 'success',
+                    'data' => $resultSearchAppointments
+                ];
+            } else {
+                return [
+                    'status' => 'success',
+                    'message' => 'No hay citas'
+                ];
+            }
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return ['status' => false, 'message' => $e->getMessage()];
+        }
+    }
+
     public function availableDisableDate(ModifyDatesSchedules $modifyDatesSchedules) // el modelo de ya existe en el controlador
     {
         // revisar todas las personas con esa fecha y avisar
@@ -101,20 +142,6 @@ class ModifyDatesSchedulesService
                 $stmtUpdateRegister->bindParam(':LastEditBy', $username, PDO::PARAM_STR);
                 $stmtUpdateRegister->execute();
             } else {
-                // validacion
-                $querySearchAppoinments = "SELECT NameLastname FROM appointment
-                                            WHERE Date = :Date";
-
-                $stmtSearchAppoinments = $this->conn->prepare($querySearchAppoinments);
-                $stmtSearchAppoinments->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
-                $stmtSearchAppoinments->execute();
-
-                $resultSearchAppoinments = $stmtSearchAppoinments->fetchAll(PDO::FETCH_ASSOC);
-
-                var_dump($resultSearchAppoinments);
-                return;
-                // debo de preguntar que se quiere hacer aqui ya que no recuerdo bien
-
                 // si no existe entonces se hara una insercion del registro
                 $queryInsertRegister = "INSERT INTO calendar_exceptions (
                                         Date

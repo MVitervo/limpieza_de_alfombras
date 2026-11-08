@@ -338,11 +338,77 @@ requireAdmin();
     var dateForm = document.querySelector('#modifyDateForm');
     var hourForm = document.querySelector('#modifyHourForm');
 
-    dateForm.addEventListener('submit', function(event) {
+    dateForm.addEventListener('submit', async function(event) {
         event.preventDefault(); // evita que la pagina recargue
 
         const date = $('#modifyDateForm').serialize(); // toma todos los valores de los campos
 
+        // validar si es que se quiere habilitar o deshabilitar la fecha
+        if (parseInt(document.querySelector('.statusDate').value) === 1) {
+            doModify(date);
+            return;
+        }
+
+        const validateAppointment = await $.ajax({
+            method: 'GET',
+            url: '/api/searchAppointmentDates',
+            data: date,
+            dataType: 'json'
+        });
+
+        if (validateAppointment.data) {
+
+            let names = '';
+            validateAppointment.data.forEach(register => {
+                names += register.NameLastname + ', ';
+            });
+            names = names.slice(0, -2);
+            debugger;
+            modalconfirmation(
+                'Las personas: ' + names + ' han agendado, si confirma se eliminaran las citas agendadas. ¿Desea continuar?',
+                function() {
+                    doModify(date);
+                    validateAppointment.data.forEach(register => {
+                        removeRegisterFromDate(parseInt(register.Id))
+                    });
+                }
+            );
+        } else {
+            // si entra en este apartado es por que no hay ninguna cita agendada y se puede desactivar
+            doModify(date);
+        }
+
+        /*
+        modalconfirmation(
+            'Esta acción eliminará el registro seleccionado. ¿Deseas continuar?',
+
+            function() {
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/api/deleteRegister',
+                    data: idFormatter,
+                    dataType: 'json',
+                    success: function(response) {
+                        debugger;
+                        if (response.status === 'success') {
+                            modalSuccess(response.message);
+                        } else {
+                            modalSuccess(response.message);
+                        }
+                    },
+                    error: function(error) {
+                        debugger;
+                        modalSuccess(error.message);
+                    }
+                });
+
+            }
+        );
+        */
+    });
+
+    function doModify(date) {
         $.ajax({
             method: 'POST',
             url: '/api/modifyDate',
@@ -361,7 +427,29 @@ requireAdmin();
             }
 
         });
-    });
+    }
+
+    function removeRegisterFromDate(id) {
+        const idFormatter = `id=${id}`;
+
+        $.ajax({
+            method: 'POST',
+            url: '/api/deleteRegister',
+            data: idFormatter,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === 'success') {
+                    modalSuccess(response.message);
+                } else {
+                    modalSuccess(response.message);
+                }
+            },
+            error: function(error) {
+                modalSuccess(error.message);
+            }
+        });
+    }
+
 
     hourForm.addEventListener('submit', function(event) {
         event.preventDefault(); // evita que la pagina recargue

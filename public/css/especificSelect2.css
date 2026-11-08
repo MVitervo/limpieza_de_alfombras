@@ -1,3 +1,4 @@
+/*
 .select2-container--bootstrap-5 .select2-selection {
     border-radius: 0.5rem;
     border: 1px solid rgb(209 213 219);
@@ -36,4 +37,137 @@
 .dark .select2-container--bootstrap-5 .select2-results__option--highlighted {
     background-color: #374151;
     color: white;
+}
+*/
+
+
+/* ========================================
+   SELECT2 - MODO CLARO
+======================================== */
+
+.select2-container--bootstrap-5 .select2-selection {
+    min-height: 46px;
+    border-radius: 10px;
+    border: 1px solid #c69a5b;
+    background-color: #fffcf7;
+    color: #392b3c;
+    transition: border-color .2s, box-shadow .2s, background-color .2s;
+}
+
+.select2-container--bootstrap-5 .select2-selection__rendered {
+    color: #392b3c;
+    line-height: 44px;
+    padding-left: 13px;
+}
+
+.select2-container--bootstrap-5 .select2-selection__placeholder {
+    color: #9a897c;
+}
+
+.select2-container--bootstrap-5 .select2-selection__arrow {
+    height: 44px;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown {
+    background-color: #fffcf7;
+    border: 1px solid #c69a5b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.select2-container--bootstrap-5 .select2-results__option {
+    color: #392b3c;
+    padding: 10px 13px;
+}
+
+.select2-container--bootstrap-5 .select2-results__option--highlighted {
+    background-color: #eee2d2;
+    color: #392b3c;
+}
+
+.select2-container--bootstrap-5 .select2-results__option[aria-selected="true"] {
+    background-color: #e5d2b9;
+    color: #392b3c;
+}
+
+/* ========================================
+   SELECT2 - MODO OSCURO
+======================================== */
+
+.dark .select2-container--bootstrap-5 .select2-selection {
+    background-color: #17131f;
+    border-color: #a9824d;
+    color: #f7efe3;
+}
+
+.dark .select2-container--bootstrap-5 .select2-selection__rendered {
+    color: #f7efe3;
+}
+
+.dark .select2-container--bootstrap-5 .select2-selection__placeholder {
+    color: #a99eae;
+}
+
+.dark .select2-container--bootstrap-5 .select2-selection__arrow b {
+    border-color: #c69a5b transparent transparent transparent;
+}
+
+.dark .select2-container--bootstrap-5 .select2-dropdown {
+    background-color: #17131f;
+    border-color: #a9824d;
+}
+
+.dark .select2-container--bootstrap-5 .select2-results__option {
+    color: #f7efe3;
+}
+
+.dark .select2-container--bootstrap-5 .select2-results__option--highlighted {
+    background-color: #49304f;
+    color: #f7efe3;
+}
+
+.dark .select2-container--bootstrap-5 .select2-results__option[aria-selected="true"] {
+    background-color: #2c2035;
+    color: #c69a5b;
+}
+
+/* ========================================
+   ESTADO FOCUS
+======================================== */
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection,
+.select2-container--bootstrap-5.select2-container--open .select2-selection {
+    border-color: #a87943;
+    box-shadow: 0 0 0 3px rgba(198, 154, 91, .20);
+}
+
+.dark .select2-container--bootstrap-5.select2-container--focus .select2-selection,
+.dark .select2-container--bootstrap-5.select2-container--open .select2-selection {
+    border-color: #c69a5b;
+    box-shadow: 0 0 0 3px rgba(198, 154, 91, .25);
+}
+
+/* ========================================
+   SELECT2 - MULTIPLE
+======================================== */
+
+.select2-container--bootstrap-5 .select2-selection--multiple {
+    padding: 4px 8px;
+}
+
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__choice {
+    background-color: #eee2d2;
+    border: 1px solid #c69a5b;
+    border-radius: 6px;
+    color: #392b3c;
+}
+
+.dark .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__choice {
+    background-color: #49304f;
+    border-color: #a9824d;
+    color: #f7efe3;
+}
+
+.dark .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__choice__remove {
+    color: #c69a5b;
 }
