@@ -451,13 +451,50 @@ requireAdmin();
     }
 
 
-    hourForm.addEventListener('submit', function(event) {
+    hourForm.addEventListener('submit', async function(event) {
         event.preventDefault(); // evita que la pagina recargue
 
         const date = $('#modifyDateForm').serialize(); // toma todos los valores de los campos
         const hour = $('#modifyHourForm').serialize(); // toma todos los valores de los campos
         const dateHour = date + '&' + hour;
 
+        // validar si es que se quiere habilitar o deshabilitar la fecha
+        if (parseInt(document.querySelector('.statusHour').value) === 1) {
+            doHourModify(dateHour);
+            return;
+        }
+
+        const validateAppointment = await $.ajax({
+            method: 'GET',
+            url: '/api/searchAppointmentHourDates',
+            data: dateHour,
+            dataType: 'json'
+        });
+        debugger;
+
+        if (validateAppointment.data) {
+
+            let names = '';
+            validateAppointment.data.forEach(register => {
+                names += register.NameLastname + ', ';
+            });
+            names = names.slice(0, -2);
+            debugger;
+            modalconfirmation(
+                'Las personas: ' + names + ' han agendado, si confirma se eliminaran las citas agendadas. ¿Desea continuar?',
+                function() {
+                    doHourModify(dateHour);
+                    removeRegisterFromDate(parseInt(validateAppointment.data[0].Id))
+                }
+            );
+        } else {
+            // si entra en este apartado es por que no hay ninguna cita agendada y se puede desactivar
+            doHourModify(dateHour);
+        }
+
+    });
+
+    function doHourModify(dateHour) {
         $.ajax({
             method: 'POST',
             url: '/api/modifyHour',
@@ -473,7 +510,6 @@ requireAdmin();
             error: function(error) {
                 modalError(error);
             }
-
         });
-    });
+    }
 </script>

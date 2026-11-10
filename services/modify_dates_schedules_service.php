@@ -110,6 +110,48 @@ class ModifyDatesSchedulesService
         }
     }
 
+    public function searchAppointmentHourDates(ModifyDatesSchedules $modifyDatesSchedules)
+    {
+        try {
+            $this->conn->beginTransaction();
+            $querySearchAppointments = "SELECT Id, NameLastname FROM appointment
+                                        WHERE Date = :Date AND Schedule = :Schedule";
+
+            $stmtSearchAppointments = $this->conn->prepare($querySearchAppointments);
+            $stmtSearchAppointments->bindParam(':Date', $modifyDatesSchedules->date, PDO::PARAM_STR);
+            $stmtSearchAppointments->bindParam(':Schedule', $modifyDatesSchedules->hour, PDO::PARAM_STR);
+            $stmtSearchAppointments->execute();
+
+            $resultSearchAppointments = [];
+
+            while ($data = $stmtSearchAppointments->fetch(PDO::FETCH_ASSOC)) {
+                $register = [
+                    "Id" => $data['Id'],
+                    "NameLastname" => $data['NameLastname']
+                ];
+
+                $resultSearchAppointments[] = $register;
+            }
+
+            $this->conn->commit();
+
+            if (!empty($resultSearchAppointments)) {
+                return [
+                    'status' => 'success',
+                    'data' => $resultSearchAppointments
+                ];
+            } else {
+                return [
+                    'status' => 'success',
+                    'message' => 'No hay citas'
+                ];
+            }
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return ['status' => false, 'message' => $e->getMessage()];
+        }
+    }
+
     public function availableDisableDate(ModifyDatesSchedules $modifyDatesSchedules) // el modelo de ya existe en el controlador
     {
         // revisar todas las personas con esa fecha y avisar

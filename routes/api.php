@@ -91,6 +91,11 @@ $router->post('/api/modifyDate', [
     'modifyDate'
 ]);
 
+$router->get('/api/searchAppointmentHourDates', [
+    ModifyDatesSchedulesController::class,
+    'searchAppointmentHourDates'
+]);
+
 $router->post('/api/modifyHour', [
     ModifyDatesSchedulesController::class,
     'modifyHour'
