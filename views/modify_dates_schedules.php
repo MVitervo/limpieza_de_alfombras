@@ -225,6 +225,10 @@ requireAdmin();
             placeholder: 'Seleccionar fecha',
             width: '100%'
         });
+
+        $('#select2-hourAvailable-container').css({
+            'padding': '5px'
+        });
     });
 
     // cuando seleccione una fecha entonces buscara los horarios disponibles de esa fecha en especifico
@@ -363,7 +367,6 @@ requireAdmin();
                 names += register.NameLastname + ', ';
             });
             names = names.slice(0, -2);
-            debugger;
             modalconfirmation(
                 'Las personas: ' + names + ' han agendado, si confirma se eliminaran las citas agendadas. ¿Desea continuar?',
                 function() {
@@ -377,35 +380,6 @@ requireAdmin();
             // si entra en este apartado es por que no hay ninguna cita agendada y se puede desactivar
             doModify(date);
         }
-
-        /*
-        modalconfirmation(
-            'Esta acción eliminará el registro seleccionado. ¿Deseas continuar?',
-
-            function() {
-
-                $.ajax({
-                    method: 'POST',
-                    url: '/api/deleteRegister',
-                    data: idFormatter,
-                    dataType: 'json',
-                    success: function(response) {
-                        debugger;
-                        if (response.status === 'success') {
-                            modalSuccess(response.message);
-                        } else {
-                            modalSuccess(response.message);
-                        }
-                    },
-                    error: function(error) {
-                        debugger;
-                        modalSuccess(error.message);
-                    }
-                });
-
-            }
-        );
-        */
     });
 
     function doModify(date) {
@@ -470,7 +444,6 @@ requireAdmin();
             data: dateHour,
             dataType: 'json'
         });
-        debugger;
 
         if (validateAppointment.data) {
 
@@ -479,7 +452,6 @@ requireAdmin();
                 names += register.NameLastname + ', ';
             });
             names = names.slice(0, -2);
-            debugger;
             modalconfirmation(
                 'Las personas: ' + names + ' han agendado, si confirma se eliminaran las citas agendadas. ¿Desea continuar?',
                 function() {

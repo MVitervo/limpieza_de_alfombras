@@ -217,10 +217,22 @@
             width: '100%'
         });
 
+        $('#select2-expectHour-container').css({
+            'padding': '5px'
+        });
+
         $('.zodiacSign').select2({
             theme: 'bootstrap-5',
             placeholder: 'Seleccionar tu signo',
             width: '100%'
+        });
+
+        $('.zodiacSign').css({
+            'padding': '5px'
+        });
+
+        $('#select2-zodiacSign-container').css({
+            'padding': '5px'
         });
     });
 
@@ -247,6 +259,7 @@
             });
 
             const dateSelected = 'dateAvailable=' + document.querySelector('.dateManagement').value;
+            debugger;
             // $('#appointmentForm').serialize();
             // aqui se manda a llamar los horarios deshabilitados en esa fecha
             const disabledSchedules = await $.ajax({
@@ -393,14 +406,12 @@
         ],
 
         onReady: function(selectedDates, dateStr, instance) {
-
             $.ajax({
                 method: "GET",
                 url: "/api/getDatesSchedules",
                 dataType: "json",
 
                 success: function(response) {
-
                     if (response.status === "success") {
 
                         // Guardar todos los registros, no solo los activos
@@ -412,6 +423,7 @@
                 },
 
                 error: function(xhr, status, error) {
+                    debugger;
                     console.error("Error en AJAX:", error);
                 }
             });

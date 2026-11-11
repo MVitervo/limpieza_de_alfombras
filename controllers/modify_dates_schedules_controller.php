@@ -13,7 +13,7 @@ class ModifyDatesSchedulesController
 
     public function getDates()
     {
-        requireAdmin();
+        // requireAdmin();
 
         // $date = $_GET['date'] ?? '';
 
@@ -24,7 +24,7 @@ class ModifyDatesSchedulesController
 
     public function getSpecificDate()
     {
-        requireAdmin();
+        // requireAdmin();
 
         $getSpecificDate = $this->modifyFactory->dateFactory($_POST);
 
