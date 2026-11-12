@@ -276,25 +276,5 @@ requireAdmin();
 
             }
         );
-        /*
-        $.ajax({
-            method: 'POST',
-            url: '/api/deleteRegister',
-            data: idFormatter,
-            dataType: 'json',
-            success: function(response) {
-                debugger;
-                if (response.status === 'success') {
-                    modalSuccess(response.message);
-                } else {
-                    modalSuccess(response.message);
-                }
-            },
-            error: function(error) {
-                debugger;
-                modalSuccess(error.message);
-            }
-        });
-        */
     }
 </script>

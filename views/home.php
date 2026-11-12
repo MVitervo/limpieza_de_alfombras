@@ -332,16 +332,14 @@ $isAdmin = (
     });
     */
 
-    /*
-    revisar esto
+    
     window.addEventListener('load', function() {
-        debugger;
-        if (window.location.pathname === '/list_register' && window.isAdminAuthenticated) {
+        if (window.location.pathname === '/' && window.isAdminAuthenticated) {
             $('#btnLogout').removeClass('hidden');
             $('#btnLogout').addClass('inline-flex');
         }
     });
-    */
+    
 
     const previousRoutes = {
         '/': '/',
@@ -357,7 +355,6 @@ $isAdmin = (
     function goBack() {
         const currentRoute = window.location.pathname;
         const previousRoute = previousRoutes[currentRoute] ?? '/';
-        debugger;
         if (currentRoute === '/list_register' && window.isAdminAuthenticated) {
             loadPage('/');
             return;
@@ -382,43 +379,6 @@ $isAdmin = (
 
         return false;
     }
-
-    // $(document).on("click", "a[data-route]", function(event) {
-    //     debugger;
-
-    //     // Permitir abrir el enlace en otra pestaña o ventana
-    //     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
-    //         return;
-    //     }
-
-    //     event.preventDefault();
-
-    //     const route = $(this).attr("href");
-
-    //     // console.log("Ruta seleccionada:", route);
-
-    //     loadPage(route);
-    // });
-
-    /*
-    const themeButton = document.getElementById('toggle-theme');
-    const html = document.documentElement;
-
-    // Aplicar tema guardado al cargar
-    if (localStorage.theme === 'dark') {
-        html.classList.add('dark');
-    }
-
-    themeButton.addEventListener('click', () => {
-        if (html.classList.contains('dark')) {
-            html.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        } else {
-            html.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    });
-    */
 
     const root = document.documentElement;
 

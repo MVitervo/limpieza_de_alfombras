@@ -112,7 +112,7 @@ class SchedulesService
                 $this->conn->commit();
                 return [
                     'status' => 'success',
-                    'message' => 'Cita agendada con exito!'
+                    'message' => 'Cita agendada con exito! Te contactara el numero 656 102 9683'
                 ];
             }
 

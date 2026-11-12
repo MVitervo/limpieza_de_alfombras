@@ -46,7 +46,7 @@ requireAdmin();
         if (information.status === 'success') {
             document.querySelector('#id').value = information.data.id;
             document.querySelector('#nameLastname').value = information.data.nameLastname;
-            document.querySelector('#zodiacSign').value = information.data.zodiacSign;
+            $('#zodiacSign').val(information.data.zodiacSign).change();
             document.querySelector('#nationality').value = information.data.nationality;
             document.querySelector('#email').value = information.data.email;
             document.querySelector('#phone').value = information.data.phone;

@@ -121,6 +121,9 @@ CREATE TABLE usernames (
 INSERT INTO usernames (Username, [Password])
 VALUES ('miguel', 'ovretiv')
 
+antoniosnt
+antoniocrow
+
 la idea es que cuando la persona escoja un dia ire a revisar la tabla de appointment para saber
 que horarios deshabilitar que seran los que ya exista un registro para ese dia esos se mostraran pero
 deshabilitados

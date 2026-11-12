@@ -14,7 +14,7 @@
             <label for="nameLastname" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
                 <i data-lucide="user-round" class="h-5 w-5 text-[#a87943]"></i> Nombre y apellido
             </label>
-            <input class="field" type="text" id="nameLastname" name="nameLastname" placeholder="Ingresa tu nombre y apellido" autocomplete="given-name" required>
+            <input class="field" type="text" id="nameLastname" name="nameLastname" placeholder="Ingresa tu nombre y apellido" autocomplete="off" required>
 
         </div>
 
@@ -43,26 +43,26 @@
             <label for="nationality" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
                 <i data-lucide="user-round" class="h-5 w-5 text-[#a87943]"></i> Nacionalidad
             </label>
-            <input class="field" type="text" id="nationality" name="nationality" placeholder="Ingresa tu nacionalidad" autocomplete="family-name" required>
+            <input class="field" type="text" id="nationality" name="nationality" placeholder="Ingresa tu nacionalidad" autocomplete="off" required>
         </div>
 
         <div>
             <label for="email" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
                 <i data-lucide="mail" class="h-5 w-5 text-[#a87943]"></i> Correo electrónico
             </label>
-            <input class="field" type="email" id="email" name="email" placeholder="ejemplo@correo.com" autocomplete="email" required>
+            <input class="field" type="email" id="email" name="email" placeholder="ejemplo@correo.com" autocomplete="off" required>
         </div>
 
         <div>
             <label for="phone" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
                 <i data-lucide="phone" class="h-5 w-5 text-[#a87943]"></i> Teléfono
             </label>
-            <input class="field" type="tel" id="phone" name="phone" placeholder="Ingresa tu número de teléfono" autocomplete="tel" required>
+            <input class="field" type="number" id="phone" name="phone" placeholder="Ingresa tu número de teléfono" autocomplete="off" required>
         </div>
 
         <div>
             <label for="expectDate" class="mb-2 flex items-center gap-2 text-sm font-medium text-[#392b3c] dark:text-parchment">
-                <i data-lucide="calendar-days" class="h-5 w-5 text-[#a87943]"></i> Fecha
+                <i data-lucide="calendar-days" class="h-5 w-5 text-[#a87943]"></i> Fecha de cita
             </label>
             <input class="field dateManagement" type="date" id="expectDate" name="date" required>
         </div>
@@ -80,7 +80,7 @@
         <span class="text-gold">✦</span><span class="textButton">GUARDAR CITA</span><span class="text-gold">✦</span>
     </button>
     <p id="formMessage" class="mt-3 hidden text-center text-sm" role="status"></p>
-
+    <p>Una vez agendada una cita se contactara contigo el siguiente numero 656 102 9683</p>
     <div class="mt-7 flex items-center justify-center gap-4 text-gold">
         <div class="ornament flex-1"></div>
         <span class="text-xl">☾ ● ☽</span>
@@ -276,7 +276,6 @@
             });
 
             // validar que hay datos
-            debugger;
             if (disabledSchedules.status === 'success') {
                 if (disabledSchedules.data != 'No hay datos') {
                     // si continuamos debemos de recorrer el arreglo
@@ -336,7 +335,6 @@
             }
 
             // validacion de las citas ya agendadas
-            debugger;
             if (activeAppointment.status === 'success') {
                 if (activeAppointment.data != 'No hay datos') {
 
@@ -395,47 +393,15 @@
         } else {
             modalError(schedules.message);
         }
-        /*
-        $.ajax({
-            method: 'GET',
-            url: '/api/schedules',
-            data: {
-                // date: document.querySelector('#expectDate').value
-            },
-            dataType: 'json',
-            success: function(response) {
-                debugger;
-                const schedules = response.data;
-                $('.expectHour').empty();
-                $('.expectHour').append('<option value=""></option>')
-                const fieldSchedules = $('.expectHour');
-                schedules.forEach(element => {
-                    fieldSchedules.append(`<option value='${element.Schedule}'>${element.Schedule}</option>`);
-                });
-            },
-            error: function(response) {
-                document.querySelector('.dialogErrorDatabaseButton').click();
-            }
-        });
-        */
     }
-
-    /*
-    flatpickr(".dateManagement", {
-        dateFormat: "Y/m/d",
-
-        disable: [
-            function(date) {
-                return date.getDay() !== 0 && date.getDay() !== 6;
-            }
-        ]
-    });
-    */
 
     activeDates = [];
 
     flatpickr(".dateManagement", {
         dateFormat: "Y/m/d",
+
+        // Desactivar fechas anteriores al día actual
+        minDate: "today",
 
         disable: [
             function(date) {
@@ -487,7 +453,6 @@
                 },
 
                 error: function(xhr, status, error) {
-                    debugger;
                     console.error("Error en AJAX:", error);
                 }
             });
