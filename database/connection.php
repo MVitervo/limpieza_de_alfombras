@@ -10,16 +10,16 @@ $password = "03210O9I";
 */
 
 
-$host = "VITERVO\SQLEXPRESS";
-$dbname = "LimpiezaAlfombras";
+// $host = "VITERVO\SQLEXPRESS";
+// $dbname = "LimpiezaAlfombras";
+// $username = ""; // cuando no es necesario un usuario ni la contraseña entonces esto no es necesario
+// $password = "";
+
+
+$host = "localhost\SQLEXPRESS";
+$dbname = "materiales_dia_dia";
 $username = ""; // cuando no es necesario un usuario ni la contraseña entonces esto no es necesario
 $password = "";
-
-
-// $host = "TESTSERVER\SQLEXPRESS";
-// $dbname = "materiales_dev";
-// $username = "sa"; // cuando no es necesario un usuario ni la contraseña entonces esto no es necesario
-// $password = "03210O9I";
 
 
 /*

@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../auth.php';
+
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -220,16 +222,6 @@ $isAdmin = (
 
     function loadPage(route) {
         history.pushState({}, '', route);
-
-        <?php
-        // require_once __DIR__ . '/../auth.php';
-        // if (isAdminAuthenticated()) {
-        //     header('Location: /list_register');
-        //     exit;
-        // }
-        ?>
-
-
         onLocationChange();
         // window.dispatchEvent(
         //     new Event(NAVIGATION_EVENT)
@@ -248,6 +240,8 @@ $isAdmin = (
             dataType: 'json',
             success: function(response) {
                 if (response.status === 'success') {
+                    // Actualizar el estado de autenticación
+                    window.isAdminAuthenticated = false;
                     window.location.href = '/login';
                 }
             },
@@ -300,7 +294,6 @@ $isAdmin = (
             },
 
             error: function(xhr) {
-                debugger;
                 // aqui entra cuando la sesion ya expiro y se debe de volver a iniciar sesion
                 if (xhr.status === 401) {
 
@@ -339,6 +332,17 @@ $isAdmin = (
     });
     */
 
+    /*
+    revisar esto
+    window.addEventListener('load', function() {
+        debugger;
+        if (window.location.pathname === '/list_register' && window.isAdminAuthenticated) {
+            $('#btnLogout').removeClass('hidden');
+            $('#btnLogout').addClass('inline-flex');
+        }
+    });
+    */
+
     const previousRoutes = {
         '/': '/',
         '/login': '/',
@@ -348,10 +352,16 @@ $isAdmin = (
         '/modify_dates_schedules': '/list_register'
     };
 
+    window.isAdminAuthenticated = <?= json_encode(isAdminAuthenticated()) ?>;
+
     function goBack() {
         const currentRoute = window.location.pathname;
         const previousRoute = previousRoutes[currentRoute] ?? '/';
-
+        debugger;
+        if (currentRoute === '/list_register' && window.isAdminAuthenticated) {
+            loadPage('/');
+            return;
+        }
         loadPage(previousRoute);
     }
 

@@ -1,3 +1,15 @@
+<?php
+
+require_once __DIR__ . '/../auth.php';
+
+if (isAdminAuthenticated()) {
+    http_response_code(200);
+    echo '<script>loadPage("/list_register");</script>';
+    exit;
+}
+
+?>
+
 <!-- logica para que si ya tiene la sesion iniciada directamente se pasa a list_register -->
 <form id="loginForm" method="POST"
     class="flex min-h-[calc(100vh-100px)] items-center justify-center px-4 py-8">
@@ -90,6 +102,8 @@
                 if (response.status === 'success') {
                     $('#btnLogout').removeClass('hidden');
                     $('#btnLogout').addClass('inline-flex');
+                    // Actualizar el estado de autenticación
+                    window.isAdminAuthenticated = true;
                     loadPage('/list_register');
                 } else {
                     modalError(response.message);
