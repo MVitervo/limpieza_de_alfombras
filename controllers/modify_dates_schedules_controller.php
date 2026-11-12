@@ -33,6 +33,14 @@ class ModifyDatesSchedulesController
         );
     }
 
+    public function getActiveAppointment() {
+        $getSpecificDate = $this->modifyFactory->dateFactory($_POST);
+
+        echo json_encode(
+            $this->service->getActiveAppointment($getSpecificDate)
+        );
+    }
+
     public function searchAppointmentDates()
     {
         requireAdmin();

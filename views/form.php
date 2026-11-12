@@ -259,7 +259,6 @@
             });
 
             const dateSelected = 'dateAvailable=' + document.querySelector('.dateManagement').value;
-            debugger;
             // $('#appointmentForm').serialize();
             // aqui se manda a llamar los horarios deshabilitados en esa fecha
             const disabledSchedules = await $.ajax({
@@ -269,17 +268,82 @@
                 dataType: 'json',
             });
 
+            const activeAppointment = await $.ajax({
+                method: 'POST',
+                data: dateSelected,
+                url: '/api/getActiveAppointment',
+                dataType: 'json',
+            });
+
             // validar que hay datos
+            debugger;
             if (disabledSchedules.status === 'success') {
-                if (disabledSchedules.data === 'No hay datos') {
-                    // quiere decir que no hay ningun dato que revisar
-                    return;
+                if (disabledSchedules.data != 'No hay datos') {
+                    // si continuamos debemos de recorrer el arreglo
+                    disabledSchedules.data.forEach(element => {
+                        // si estatus de la hora es cero quiere decir que ese horario se debe de deshabilitar
+                        if (parseInt(element.StatusHour) === 0) {
+                            $('#expectHour option[value="' + element.Hour + '"]').attr('data-bloqueada', 'true').prop('disabled', true);
+
+                            $('#expectHour').select2({
+                                width: '100%',
+                                theme: 'bootstrap-5',
+                                placeholder: 'Selecciona el horario',
+
+                                templateResult: function(data) {
+
+                                    if (!data.id) {
+                                        return data.text;
+                                    }
+
+                                    const $option = $(data.element);
+
+                                    if ($option.attr('data-bloqueada') === 'true') {
+
+                                        $(data.element).prop('disabled', true);
+
+                                        return $('<span>')
+                                            .append(
+                                                $('<span>')
+                                                .css({
+                                                    'text-decoration': 'line-through',
+                                                    'color': '#999'
+                                                })
+                                                .text(data.text)
+                                            )
+                                            .append(
+                                                $('<span>')
+                                                .css({
+                                                    // 'color': '#dc3545',
+                                                    'margin-left': '8px',
+                                                    'font-size': '0.85em',
+                                                    'disabled': true
+                                                })
+                                                .text('(No disponible)')
+                                            );
+                                    }
+
+                                    return data.text;
+                                }
+                            });
+                            $('#select2-expectHour-container').css({
+                                'padding': '5px'
+                            });
+
+                        }
+                    });
                 }
-                // si continuamos debemos de recorrer el arreglo
-                disabledSchedules.data.forEach(element => {
-                    // si estatus de la hora es cero quiere decir que ese horario se debe de deshabilitar
-                    if (parseInt(element.StatusHour) === 0) {
-                        $('#expectHour option[value="' + element.Hour + '"]').attr('data-bloqueada', 'true').prop('disabled', true);
+            }
+
+            // validacion de las citas ya agendadas
+            debugger;
+            if (activeAppointment.status === 'success') {
+                if (activeAppointment.data != 'No hay datos') {
+
+                    // si continuamos debemos de recorrer el arreglo
+                    activeAppointment.data.forEach(element => {
+                        // se revisa cuales registros se deben de dehabilitar
+                        $('#expectHour option[value="' + element.Schedule + '"]').attr('data-bloqueada', 'true').prop('disabled', true);
 
                         $('#expectHour').select2({
                             width: '100%',
@@ -322,11 +386,11 @@
                                 return data.text;
                             }
                         });
-
-                    }
-                });
-            } else {
-                // no pasa nada quiere decir que esta fecha tiene todos los horarios disponibles
+                        $('#select2-expectHour-container').css({
+                            'padding': '5px'
+                        });
+                    });
+                }
             }
         } else {
             modalError(schedules.message);

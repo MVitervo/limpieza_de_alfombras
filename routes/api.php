@@ -81,6 +81,11 @@ $router->post('/api/getSpecificDate', [
     'getSpecificDate'
 ]);
 
+$router->post('/api/getActiveAppointment', [
+    ModifyDatesSchedulesController::class,
+    'getActiveAppointment'
+]);
+
 $router->get('/api/searchAppointmentDates', [
     ModifyDatesSchedulesController::class,
     'searchAppointmentDates'

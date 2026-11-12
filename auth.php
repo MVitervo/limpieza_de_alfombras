@@ -72,3 +72,14 @@ function rejectAdminAccess(): void
     header('Location: /login');
     exit;
 }
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+// funcion utilizada para validar si ya esta la sesion iniciada
+function isAdminAuthenticated(): bool
+{
+    return isset($_SESSION['admin_authenticated'])
+        && $_SESSION['admin_authenticated'] === true;
+}

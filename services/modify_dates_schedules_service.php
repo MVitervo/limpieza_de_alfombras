@@ -69,6 +69,37 @@ class ModifyDatesSchedulesService
         }
     }
 
+    public function getActiveAppointment(ModifyDatesSchedules $specificDate)
+    {
+        try {
+            $this->conn->beginTransaction();
+
+            $queryGetAppointment = "SELECT * FROM appointment WHERE Date = :Date";
+
+            $stmtGetAppointment = $this->conn->prepare($queryGetAppointment);
+            $stmtGetAppointment->bindParam(':Date', $specificDate->date, PDO::PARAM_STR);
+            $stmtGetAppointment->execute();
+
+            $resultGetAppointment = $stmtGetAppointment->fetchAll(PDO::FETCH_ASSOC);
+
+            $this->conn->commit();
+            if (!empty($resultGetAppointment)) {
+                return [
+                    'status' => 'success',
+                    'data' => $resultGetAppointment
+                ];
+            } else {
+                return [
+                    'status' => 'success',
+                    'data' => 'No hay datos'
+                ];
+            }
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return ['status' => false, 'message' => $e->getMessage()];
+        }
+    }
+
     public function searchAppointmentDates(ModifyDatesSchedules $modifyDatesSchedules)
     {
         try {

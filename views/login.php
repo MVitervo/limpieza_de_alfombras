@@ -72,7 +72,7 @@
 </form>
 
 <script>
-    const formLogin = document.querySelector('#loginForm');
+    // const formLogin = document.querySelector('#loginForm');
 
     // formLogin.addEventListener('submit', function(event) {
     $(document).on('submit', '#loginForm', function(event) {

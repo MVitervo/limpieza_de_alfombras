@@ -7,6 +7,8 @@ $isAdmin = (
     isset($_SESSION['admin_authenticated']) &&
     $_SESSION['admin_authenticated'] === true
 );
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="dark">
@@ -218,6 +220,16 @@ $isAdmin = (
 
     function loadPage(route) {
         history.pushState({}, '', route);
+
+        <?php
+        // require_once __DIR__ . '/../auth.php';
+        // if (isAdminAuthenticated()) {
+        //     header('Location: /list_register');
+        //     exit;
+        // }
+        ?>
+
+
         onLocationChange();
         // window.dispatchEvent(
         //     new Event(NAVIGATION_EVENT)

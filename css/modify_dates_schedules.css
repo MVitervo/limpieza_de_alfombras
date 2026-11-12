@@ -1,13 +1,105 @@
 /* Sábados y domingos */
-.flatpickr-day.weekend-green {
+/* .flatpickr-day.weekend-green {
     background-color: #49cf7a;
     border-color: #16a34a;
     color: white;
-}
+} */
 
 /* Lunes a viernes */
-.flatpickr-day.weekday-red {
+/* .flatpickr-day.weekday-red {
     background-color: #ca4040;
     border-color: #dc2626;
     color: white;
+} */
+
+
+/* ========================================
+   FLATPICKR - MODO CLARO
+======================================== */
+
+/* Sábados y domingos: disponibilidad */
+.flatpickr-day.weekend-green {
+    background-color: #d8eadc;
+    border-color: #83b995;
+    color: #285c3a;
+    font-weight: 600;
+}
+
+/* Lunes a viernes: no disponibles */
+.flatpickr-day.weekday-red {
+    background-color: #f1dddd;
+    border-color: #d69b9b;
+    color: #873e3e;
+    font-weight: 600;
+}
+
+/* Hover en fechas disponibles */
+.flatpickr-day.weekend-green:hover {
+    background-color: #b9dbc3;
+    border-color: #65a87d;
+    color: #204b30;
+}
+
+/* Hover en fechas no disponibles */
+.flatpickr-day.weekday-red:hover {
+    background-color: #e9c5c5;
+    border-color: #c77e7e;
+    color: #713333;
+}
+
+/* ========================================
+   FLATPICKR - MODO OSCURO
+======================================== */
+
+/* Sábados y domingos: disponibilidad */
+.dark .flatpickr-day.weekend-green {
+    background-color: #244b38;
+    border-color: #4d9068;
+    color: #b8e4c5;
+}
+
+/* Lunes a viernes: no disponibles */
+.dark .flatpickr-day.weekday-red {
+    background-color: #512d35;
+    border-color: #96535c;
+    color: #f0bfc2;
+}
+
+/* Hover en fechas disponibles */
+.dark .flatpickr-day.weekend-green:hover {
+    background-color: #326347;
+    border-color: #69ae82;
+    color: #e0f5e6;
+}
+
+/* Hover en fechas no disponibles */
+.dark .flatpickr-day.weekday-red:hover {
+    background-color: #693b43;
+    border-color: #bd727b;
+    color: #fff0f0;
+}
+
+/* ========================================
+   FECHA SELECCIONADA
+======================================== */
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+    background-color: #c69a5b !important;
+    border-color: #c69a5b !important;
+    color: #17131f !important;
+    font-weight: 700;
+}
+
+/* ========================================
+   FECHA DE HOY
+======================================== */
+
+.flatpickr-day.today {
+    border-color: #c69a5b;
+}
+
+/* Evitar que el hover de hoy pierda su borde dorado */
+.flatpickr-day.today:hover {
+    border-color: #a87943;
 }
